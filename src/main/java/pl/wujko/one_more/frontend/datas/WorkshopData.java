@@ -6,6 +6,7 @@ import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.frontend.PizzaConstants;
 
 import javax.swing.JPanel;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -104,6 +105,18 @@ public class WorkshopData
             {
                 super.setKey(brand);
             }
+
+            @Override
+            public void setBackgroundColor(String backgroundColor)
+            {
+                super.setBackgroundColor("000000");
+            }
+
+            @Override
+            public void setFontColor(String fontColor)
+            {
+                super.setFontColor("ffffff");
+            }
         };
     }
 
@@ -119,26 +132,7 @@ public class WorkshopData
 
     public int size()
     {
-        return leftSpace.size() + wholeSpace.size() + rightSpace.size();
-    }
-
-    public int usedSpaceCount()
-    {
-        int result = 0;
-        if (!leftSpace.isEmpty())
-        {
-            result++;
-        }
-        if (!wholeSpace.isEmpty())
-        {
-            result++;
-        }
-        if (!rightSpace.isEmpty())
-        {
-            result++;
-        }
-
-        return result;
+        return getAllEntries().size();
     }
 
     private LinkedList<Entry> sort(List<Entry> entryList)
