@@ -72,3 +72,10 @@ VALUES
     ('COLA',       'COL',  400, 70, 'img/cola.png',       'ffffff', '8c3c00'),
     ('PEPSI',      'PEP',  400, 80, 'img/pepsi.png',      'ffffff', '8c3c00')
 ;
+
+CREATE TABLE COMPOSITION (
+    ID              INTEGER PRIMARY KEY AUTOINCREMENT,
+    NAME            VARCHAR20 NOT NULL,
+    TOPPINGS        TEXT,
+    ADDITIONS       TEXT
+);
