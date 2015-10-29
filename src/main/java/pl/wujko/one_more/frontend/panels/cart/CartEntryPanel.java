@@ -26,7 +26,7 @@ import java.util.LinkedList;
 
 public class CartEntryPanel extends JPanel implements ActionListener
 {
-    private static final int BUTTONS_COUNT = 2;
+    private static final int STATIC_ELAMENTS_COUNT = 3;
 
     private WorkshopData workshopData;
 
@@ -67,15 +67,13 @@ public class CartEntryPanel extends JPanel implements ActionListener
 
     private void initPanel()
     {
-        int maxSize = (workshopData.size() + workshopData.usedSpaceCount() + BUTTONS_COUNT) * 2 - 1;
+        int maxSize = workshopData.size() + STATIC_ELAMENTS_COUNT;
 
         FormLayout layout = FormLayoutUtils.createDefaultEntryLayout(maxSize);
         builder = new DefaultFormBuilder(layout);
         cc = new CellConstraints();
 
-        addToBuilder(workshopData.getLeftSpace());
-        addToBuilder(workshopData.getWholeSpace());
-        addToBuilder(workshopData.getRightSpace());
+        addToBuilder(workshopData.getAllEntries());
 
         calculatePrice();
         addToBuilder(priceLabel);
