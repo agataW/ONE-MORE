@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <!--DATABASE-->
+    <bean id="databaseService" class="pl.wujko.one_more.code.service.DatabaseService"/>
+
+    <!--DAO-->
+    <bean id="toppingDao" class="pl.wujko.one_more.code.dao.impl.ToppingDao"/>
+    <bean id="additionDao" class="pl.wujko.one_more.code.dao.impl.AdditionDao"/>
+    <bean id="compositionDao" class="pl.wujko.one_more.code.dao.impl.CompositionDao"/>
+
+    <!--SERVICE-->
+    <bean id="toppingService" class="pl.wujko.one_more.code.service.impl.ToppingServiceImpl"/>
+    <bean id="additionService" class="pl.wujko.one_more.code.service.impl.AdditionServiceImpl"/>
+    <bean id="compositionService" class="pl.wujko.one_more.code.service.impl.CompositionService"/>
+
+    <!--CONTROLLERS-->
+    <bean id="panelController" class="pl.wujko.one_more.frontend.controller.ChoosePanelController"/>
+    <bean id="workshopController" class="pl.wujko.one_more.frontend.controller.WorkshopController"/>
+    <bean id="cartListController" class="pl.wujko.one_more.frontend.controller.CartListController"/>
+
+    <!--PANELS-->
+    <bean id="mainFrame" class="pl.wujko.one_more.frontend.MainFrame"/>
+    <bean id="mainPanel" class="pl.wujko.one_more.frontend.panels.MainPanel"/>
+    <bean id="cartListPanel" class="pl.wujko.one_more.frontend.panels.cart.CartListPanel"/>
+    <bean id="optionsPanel" class="pl.wujko.one_more.frontend.panels.MainOptionsPanel"/>
+    <bean id="foodPanel" class="pl.wujko.one_more.frontend.panels.food.FoodPanel">
+        <property name="selectedPanel" ref="itemsPanel"/>
+    </bean>
+
+    <bean id="choosePanelPanel" class="pl.wujko.one_more.frontend.panels.food.ChoosePanelPanel"/>
+    <bean id="packagePanel" class="pl.wujko.one_more.frontend.panels.food.CompositionPanel">
+        <property name="columnCount" value="2"/>
+    </bean>
+    <bean id="itemsPanel" class="pl.wujko.one_more.frontend.panels.food.ItemsPanel">
+        <property name="toppingColumnCount" value="3"/>
+    </bean>
+    <bean id="workshopPanel" class="pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel"/>
+
+</beans>

@@ -1,0 +1,13 @@
+package pl.wujko.one_more.frontend;
+
+/**
+ * Created by Agata on 2015-10-26.
+ */
+public class PizzaConstants
+{
+    public final static int NORMAL_PAN = 1390;
+
+    public final static int AMERICAN_PAN = 1390;
+
+    public final static int PIZZA_DISCOUNT = 200;
+}
