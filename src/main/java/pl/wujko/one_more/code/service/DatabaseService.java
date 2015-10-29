@@ -1,15 +1,21 @@
 package pl.wujko.one_more.code.service;
 
-import pl.wujko.one_more.code.constance.AdditionEnum;
-import pl.wujko.one_more.code.constance.TableEnum;
-import pl.wujko.one_more.code.constance.ToppingEnum;
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import org.apache.log4j.Logger;
+
+import pl.wujko.one_more.code.constance.AdditionEnum;
+import pl.wujko.one_more.code.constance.TableEnum;
+import pl.wujko.one_more.code.constance.ToppingEnum;
 
 /**
  * Created by Agata on 2015-05-14.
@@ -168,5 +174,42 @@ public class DatabaseService
         {
             statement.executeUpdate(query + addition);
         }
+    }
+    
+    public void importSQL(String filepath) throws SQLException
+    {
+    	FileInputStream fis ;
+		try {
+			fis = new FileInputStream(filepath);
+		} catch (FileNotFoundException e) {
+			Logger.getLogger(getClass()).error(e.getMessage());
+			return;
+		}
+    	Scanner s = new Scanner(fis);
+    	s.useDelimiter("(;(\r)?\n)|(--\n)");
+    	Statement st = null;
+    	try
+    	{
+    		st = getStatement();
+    		while (s.hasNext())
+    		{
+    			String line = s.next();
+    			if (line.startsWith("/*!") && line.endsWith("*/"))
+    			{
+    				int i = line.indexOf(' ');
+    				line = line.substring(i + 1, line.length() - " */".length());
+    			}
+
+    			if (line.trim().length() > 0)
+    			{
+    				st.execute(line);
+    			}
+    		}
+    	}
+    	finally
+    	{
+    		if (st != null) st.close();
+    		s.close();
+    	}
     }
 }
