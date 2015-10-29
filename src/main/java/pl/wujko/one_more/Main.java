@@ -1,9 +1,16 @@
 package pl.wujko.one_more;
 
-import pl.wujko.one_more.bean.BeanHelper;
-import pl.wujko.one_more.frontend.MainFrame;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.SQLException;
 
 import javax.swing.UIManager;
+
+import pl.wujko.one_more.bean.BeanHelper;
+import pl.wujko.one_more.code.service.DatabaseService;
+import pl.wujko.one_more.frontend.MainFrame;
 
 public class Main
 {
@@ -27,7 +34,17 @@ public class Main
 
         MainFrame mainFrame = (MainFrame) BeanHelper.getBean("mainFrame");
         mainFrame.initFrame();
-
+        
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current relative path is: " + s);
+        
+        DatabaseService bean = (DatabaseService) BeanHelper.getBean("databaseService");
+        try {
+			bean.importSQL("src/main/resources/script.sql");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 //        Statement statement = databaseService.getStatement();
 //
 //        try
