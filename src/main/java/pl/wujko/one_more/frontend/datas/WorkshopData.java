@@ -1,14 +1,12 @@
 package pl.wujko.one_more.frontend.datas;
 
+import org.apache.commons.collections.CollectionUtils;
 import pl.wujko.map.WujkoMap;
-import pl.wujko.one_more.code.constance.EntryTypeEnum;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Topping;
 import pl.wujko.one_more.frontend.PizzaConstants;
 
 import javax.swing.JPanel;
-import java.awt.Color;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,6 +33,11 @@ public class WorkshopData
         this.wholeSpace = sort(wholeSpaceData.valueList());
     }
 
+    public void setWholeSpace(LinkedList<Entry> list)
+    {
+        this.wholeSpace = list;
+    }
+
     public void setRightSpace(WujkoMap<JPanel, Entry> rightSpaceData)
     {
         this.rightSpace = sort(rightSpaceData.valueList());
@@ -50,21 +53,6 @@ public class WorkshopData
         this.panType = panType;
     }
 
-    public LinkedList<Entry> getLeftSpace()
-    {
-        return leftSpace;
-    }
-
-    public LinkedList<Entry> getWholeSpace()
-    {
-        return wholeSpace;
-    }
-
-    public LinkedList<Entry> getRightSpace()
-    {
-        return rightSpace;
-    }
-
     public LinkedList<Entry> getAllEntries()
     {
         LinkedList<Entry> entries = new LinkedList<Entry>();
@@ -72,13 +60,13 @@ public class WorkshopData
         {
             entries.add(createEntry("AM"));
         }
-        if (!leftSpace.isEmpty())
+        if (CollectionUtils.isNotEmpty(leftSpace))
         {
             entries.addAll(leftSpace);
             entries.add(createEntry("("));
         }
         entries.addAll(wholeSpace);
-        if (!rightSpace.isEmpty())
+        if (CollectionUtils.isNotEmpty(rightSpace))
         {
             entries.add(createEntry(")"));
             entries.addAll(rightSpace);
@@ -106,6 +94,10 @@ public class WorkshopData
 
     private int price(LinkedList<Entry> entryList, int v)
     {
+        if (CollectionUtils.isEmpty(entryList))
+        {
+            return 0;
+        }
         int price = 0;
         for (Entry entry : entryList)
         {
@@ -147,7 +139,8 @@ public class WorkshopData
     public enum PanType
     {
         NORMAL(PizzaConstants.NORMAL_PAN),
-        AMERICAN(PizzaConstants.AMERICAN_PAN);
+        AMERICAN(PizzaConstants.AMERICAN_PAN),
+        NO_PANE(0);
 
         private int price;
 

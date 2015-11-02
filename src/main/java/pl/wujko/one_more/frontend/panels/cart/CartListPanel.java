@@ -5,6 +5,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import pl.wujko.map.WujkoMap;
 import pl.wujko.one_more.code.item.Cart;
+import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.Panel;
@@ -123,6 +124,11 @@ public class CartListPanel extends Panel
         }
     }
 
+    public void addToSelectedCart(Addition addition)
+    {
+        currentCartPanel.addAddition(addition);
+    }
+
     private void ifMustSetNewCurrentCartPanel(CartPanel cartPanelToRemove)
     {
         if (cartPanelToRemove == null || cartMap.size() == 1)
@@ -131,21 +137,7 @@ public class CartListPanel extends Panel
             return;
         }
 
-                selectCurrentCartPanel(cartMap.getKey(0));
-
-        //        if (cartMap.indexOf(cartPanelToRemove) == cartMap.size() - 1)
-        //        {
-        //            selectCurrentCartPanel(cartMap.getKey(cartMap.size() - 2));
-        //            return;
-        //        }
-        //        if (cartMap.indexOf(cartPanelToRemove) == 0)
-        //        {
-        //            selectCurrentCartPanel(cartMap.getKey(0));
-        //            return;
-        //        }
-        //
-        //        int indexOfNerCurrentCartPanel = Math.min(cartMap.indexOf(cartPanelToRemove) + 1, cartMap.size() - 1);
-        //        selectCurrentCartPanel(cartMap.getKey(indexOfNerCurrentCartPanel));
+        selectCurrentCartPanel(cartMap.getKey(0));
     }
 
     private void initBuilder()

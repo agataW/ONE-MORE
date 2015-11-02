@@ -10,6 +10,7 @@ import pl.wujko.one_more.code.item.entries.Topping;
 import pl.wujko.one_more.code.service.AdditionService;
 import pl.wujko.one_more.code.service.ToppingService;
 import pl.wujko.one_more.frontend.GUIConstants;
+import pl.wujko.one_more.frontend.controller.CartListController;
 import pl.wujko.one_more.frontend.controller.WorkshopController;
 import pl.wujko.one_more.frontend.panels.Panel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
@@ -33,6 +34,9 @@ public class ToppingAndAdditionPanel extends Panel
 
     @Resource
     private WorkshopController workshopController;
+
+    @Resource
+    private CartListController cartListController;
 
     private int TOPPING_COLUMN_COUNT;
 
@@ -84,15 +88,29 @@ public class ToppingAndAdditionPanel extends Panel
         add(builder.getPanel(), cc.xy(1, 1));
     }
 
-    private JButton createButtonFor(final Entry entry)
+    private JButton createButtonFor(final Topping topping)
     {
-        JButton button = new JButton(entry.getKey());
+        JButton button = new JButton(topping.getKey());
         button.setFont(GUIConstants.DEFAULT_FONT);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                workshopController.addToSelectedWorkSpace(entry);
+                workshopController.addToSelectedWorkSpace(topping);
+            }
+        });
+        return button;
+    }
+
+    private JButton createButtonFor(final Addition addition)
+    {
+        JButton button = new JButton(addition.getKey());
+        button.setFont(GUIConstants.DEFAULT_FONT);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                cartListController.addToSelectedCart(addition);
             }
         });
         return button;

@@ -1,5 +1,6 @@
 package pl.wujko.one_more.frontend.controller;
 
+import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.cart.CartEntryPanel;
 import pl.wujko.one_more.frontend.panels.cart.CartListPanel;
@@ -47,5 +48,10 @@ public class CartListController
     public void removeCartEntry(CartEntryPanel cartEntryPanel)
     {
         cartListPanel.removeCartEntry(cartEntryPanel);
+    }
+
+    public void addToSelectedCart(Addition addition)
+    {
+        cartListPanel.addToSelectedCart(addition);
     }
 }
