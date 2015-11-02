@@ -4,7 +4,7 @@ import org.apache.commons.collections.CollectionUtils;
 import pl.wujko.map.WujkoMap;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Topping;
-import pl.wujko.one_more.frontend.PizzaConstants;
+import pl.wujko.one_more.code.constance.PizzaConstants;
 
 import javax.swing.JPanel;
 import java.util.LinkedList;
@@ -134,6 +134,11 @@ public class WorkshopData
     public boolean isEmpty()
     {
         return size() == 0;
+    }
+
+    public boolean isPizza()
+    {
+        return !panType.equals(PanType.NO_PANE);
     }
 
     public enum PanType

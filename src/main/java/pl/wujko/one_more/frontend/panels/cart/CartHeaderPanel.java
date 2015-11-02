@@ -21,8 +21,6 @@ public class CartHeaderPanel extends JPanel
 
     private final CartPanel currentCartPanel;
 
-    private static int ID = 0;
-
     private JLabel price;
 
     public CartHeaderPanel(CartPanel cartPanel)
@@ -31,23 +29,28 @@ public class CartHeaderPanel extends JPanel
 
         setBackground(GUIConstants.CART_ENTRY_PANEL_BACKGROUND);
 
-        //        JLabel time = new JLabel(getCurrentTime()); //todo
-        JLabel time = new JLabel(String.valueOf(++ID));
+        JLabel time = new JLabel(getCurrentTime());
+        time.setFont(GUIConstants.DEFAULT_FONT);
         price = new JLabel(Double.toString(0.00));
+        price.setFont(GUIConstants.DEFAULT_FONT);
         JButton close = new JButton("X");
+        close.setFont(GUIConstants.DEFAULT_FONT);
 
         close.addMouseListener(new MouseAdapter()
         {
             @Override
             public void mousePressed(MouseEvent e)
             {
-                super.mousePressed(e);
                 getCartListController().removeCart(currentCartPanel);
             }
         });
 
         add(time);
+        add(new JLabel());
+        add(new JLabel());
+        add(new JLabel());
         add(price);
+        add(new JLabel());
         add(close);
     }
 

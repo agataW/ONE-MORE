@@ -3,6 +3,7 @@ package pl.wujko.one_more.frontend.panels.cart;
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import pl.wujko.one_more.code.constance.PizzaConstants;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.frontend.GUIConstants;
@@ -47,8 +48,6 @@ public class CartPanel extends JPanel
         CartEntryPanel cartEntryPanel = new CartEntryPanel(workshop);
         cartEntryPanelList.add(cartEntryPanel);
         addToBuilder(cartEntryPanel);
-
-        calculatePrice();
     }
 
     public void removeEntry(CartEntryPanel cartEntryPanel)
@@ -85,14 +84,31 @@ public class CartPanel extends JPanel
         CartEntryPanel cartEntryPanel = new CartEntryPanel(lastAdditionCartEntry.getWorkshopData());
         cartEntryPanelList.add(index, cartEntryPanel);
         addToBuilder(cartEntryPanel);
-        calculatePrice();
 
         lastAdditionCartEntry.setCartEntryPanel(cartEntryPanel);
+    }
+
+    private int pizzaCount()
+    {
+        int pizzaCount = 0;
+        for (CartEntryPanel cartEntryPanel : cartEntryPanelList)
+        {
+            if (cartEntryPanel.isPizza())
+            {
+                ++pizzaCount;
+            }
+        }
+        return pizzaCount;
     }
 
     private void calculatePrice()
     {
         int price = 0;
+        for (CartEntryPanel cartEntryPanel : cartEntryPanelList)
+        {
+            cartEntryPanel.setPizzaDiscount(pizzaCount() >= PizzaConstants.COUNT_OF_PIZZA_TO_DISCOUNT);
+        }
+
         for (CartEntryPanel cartEntryPanel : cartEntryPanelList)
         {
             price += cartEntryPanel.getPrice();
@@ -117,6 +133,7 @@ public class CartPanel extends JPanel
         currentRow += 2;
         removeAll();
         add(builder.getPanel(), cc.xy(1, 1));
+        calculatePrice();
     }
 
     private void initBuilder()

@@ -4,6 +4,7 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import pl.wujko.one_more.bean.BeanHelper;
+import pl.wujko.one_more.code.constance.PizzaConstants;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
@@ -42,6 +43,8 @@ public class CartEntryPanel extends JPanel implements ActionListener
 
     private int currentRow = 1;
 
+    private boolean discount = false;
+
     public CartEntryPanel(WorkshopData workshopData)
     {
         this.workshopData = workshopData;
@@ -65,7 +68,22 @@ public class CartEntryPanel extends JPanel implements ActionListener
 
     public int getPrice()
     {
+        if (discount)
+        {
+            return workshopData.getPrice() - PizzaConstants.PIZZA_DISCOUNT;
+        }
         return workshopData.getPrice();
+    }
+
+    public boolean isPizza()
+    {
+        return workshopData.isPizza();
+    }
+
+    public void setPizzaDiscount(boolean discount)
+    {
+        this.discount = discount;
+        calculatePrice();
     }
 
     private void initPanel()
@@ -101,7 +119,7 @@ public class CartEntryPanel extends JPanel implements ActionListener
             addToBuilder(panel);
         }
     }
-
+    
     private void addToBuilder(Component panel)
     {
         builder.add(panel, cc.xy(currentRow, 1));
@@ -113,9 +131,10 @@ public class CartEntryPanel extends JPanel implements ActionListener
     {
         Object source = e.getSource();
 
+        //noinspection StatementWithEmptyBody
         if (source.equals(edit))
         {
-
+            //todo aga
         }
         else if (source.equals(delete))
         {
