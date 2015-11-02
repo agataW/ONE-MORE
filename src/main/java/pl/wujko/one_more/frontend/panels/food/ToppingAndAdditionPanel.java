@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by Agata on 2015-10-11.
  */
-public class ItemsPanel extends Panel
+public class ToppingAndAdditionPanel extends Panel
 {
     @Resource
     private ToppingService toppingService;

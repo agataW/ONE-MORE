@@ -40,7 +40,7 @@
     <bean id="packagePanel" class="pl.wujko.one_more.frontend.panels.food.CompositionPanel">
         <property name="columnCount" value="2"/>
     </bean>
-    <bean id="itemsPanel" class="pl.wujko.one_more.frontend.panels.food.ItemsPanel">
+    <bean id="itemsPanel" class="pl.wujko.one_more.frontend.panels.food.ToppingAndAdditionPanel">
         <property name="toppingColumnCount" value="3"/>
     </bean>
     <bean id="workshopPanel" class="pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel"/>

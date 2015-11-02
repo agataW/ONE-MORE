@@ -1,6 +1,7 @@
 package pl.wujko.one_more.frontend.controller;
 
 import pl.wujko.one_more.code.item.Entry;
+import pl.wujko.one_more.code.item.entries.Composition;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.food.FoodPanel;
 import pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel;
@@ -20,7 +21,7 @@ public class WorkshopController
 
     public void addToSelectedWorkSpace(Entry entry)
     {
-        workshopPanel.addEntry(entry);
+        workshopPanel.addEntryToSelectedSpace(entry);
     }
 
     public WorkshopData getWorkshopData()
@@ -33,5 +34,10 @@ public class WorkshopController
         foodPanel.refresh();
 
         return workshopData;
+    }
+
+    public void addToWholeSpace(Composition composition)
+    {
+        workshopPanel.addEntryToWholeSpace(composition);
     }
 }

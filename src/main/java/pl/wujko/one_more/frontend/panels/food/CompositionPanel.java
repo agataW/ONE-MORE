@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Required;
 import pl.wujko.one_more.code.item.entries.Composition;
 import pl.wujko.one_more.code.service.impl.CompositionService;
 import pl.wujko.one_more.frontend.GUIConstants;
+import pl.wujko.one_more.frontend.controller.WorkshopController;
 import pl.wujko.one_more.frontend.panels.Panel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
 
@@ -23,6 +24,9 @@ public class CompositionPanel extends Panel
 {
     @Resource
     private CompositionService compositionService;
+
+    @Resource
+    private WorkshopController workshopController;
 
     private int COLUMN_COUNT;
 
@@ -63,7 +67,7 @@ public class CompositionPanel extends Panel
         add(builder.getPanel(), cc.xy(1, 1));
     }
 
-    private JButton createButtonFor(Composition composition)
+    private JButton createButtonFor(final Composition composition)
     {
         JButton button = new JButton(composition.getKey());
         button.setFont(GUIConstants.DEFAULT_FONT);
@@ -71,7 +75,7 @@ public class CompositionPanel extends Panel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                //todo
+                workshopController.addToWholeSpace(composition);
             }
         });
         return button;
