@@ -7,31 +7,40 @@ CREATE TABLE IF NOT EXISTS TOPPING (
     IS_LIMITED          BOOLEAN,
     IMAGE               TEXT,
     FONT_COLOR          VARCHAR6,
-    BACKGROUND_COLOR    VARCHAR6
+    BACKGROUND_COLOR    VARCHAR6,
+    VISIBLE             BOOLEAN
 );
 
 
-INSERT OR IGNORE INTO TOPPING VALUES (1, 'PIECZARKI',          '1',  70,   10, 1, 'img/pieczarki.png',         'ffffff', 'ff0000');
-INSERT OR IGNORE INTO TOPPING VALUES (2, 'CEBULA',             '2',  30,   20, 1, 'img/cebula.png',            'ffffff', 'ff0000');
-INSERT OR IGNORE INTO TOPPING VALUES (3, 'SALAMI_PEPERONI',    '3',  110,  50, 1, 'img/pepperoni.png',         '000000', 'ffff00');
-INSERT OR IGNORE INTO TOPPING VALUES (4, 'SALAMI',             '4',  110,  60, 1, 'img/salami.png',            '000000', 'ffff00');
-INSERT OR IGNORE INTO TOPPING VALUES (5, 'PAPRYKA',            '5',  80,  120, 1, 'img/papryka.png',           'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (6, 'KUKURYDZA',          '6',  70,  150, 1, 'img/kukurydza.png',         'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (7, 'ANANAS',             '7',  110, 130, 1, 'img/ananas.png',            'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (8, 'SZYNKA',             '8',  120,  30, 1, 'img/szynka.png',            '000000', 'ffff00');
-INSERT OR IGNORE INTO TOPPING VALUES (9, 'BOCZEK',             '9',  120,  40, 1, 'img/boczek.png',            '000000', 'ffff00');
-INSERT OR IGNORE INTO TOPPING VALUES (10, 'OLIWKI',             '10', 70,  130, 1, 'img/oliwki.png',            'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (11, 'POMIDOR',            '11', 70,  110, 1, 'img/pomidor.png',           'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (12, 'PAPRYCZKI_PEPERONI', '12', 90,  160, 1, 'img/chili.png',             'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (13, 'RUKOLA',             '13', 70,  190, 0, 'img/rukola.png',            'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (14, 'SZPINAK',            '14', 70,  200, 0, 'img/szpinak.png',           'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (15, 'KURCZAK',            '15', 270, 170, 1, 'img/kurczak.png',           '000000', 'ffff00');
-INSERT OR IGNORE INTO TOPPING VALUES (16, 'TUNCZYK',            '16', 260, 100, 1, 'img/tunczyk.png',           '000000', 'ffff00');
-INSERT OR IGNORE INTO TOPPING VALUES (17, 'BROKULY',            '17', 110,  90, 1, 'img/brokuly.png',           'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (18, 'SUSZONE_POMIDORY',   '18', 150,  70, 1, 'img/suszone_pomidory.png',  'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (19, 'SER_FETA',           '19', 160,  80, 1, 'img/feta.png',              'ffffff', '14c814');
-INSERT OR IGNORE INTO TOPPING VALUES (20, 'SZYNKA_PROSCIUTTO',  '20', 380, 170, 1, 'img/szynka_prosciutto.png', 'ffffff', 'ffff00');
-INSERT OR IGNORE INTO TOPPING VALUES (21, 'SER',                'SER', 80,   0, 0, 'img/ser.png',               'ffffff', '14c814');
+INSERT OR IGNORE INTO TOPPING VALUES (1,    'PIECZARKI',            '1',       70,    10,    1,   'img/pieczarki.png',           'ffffff',   'ff0000',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (2,    'CEBULA',               '2',       30,    20,    1,   'img/cebula.png',              'ffffff',   'ff0000',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (3,    'SALAMI_PEPERONI',      '3',       110,   50,    1,   'img/pepperoni.png',           '000000',   'ffff00',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (4,    'SALAMI',               '4',       110,   60,    1,   'img/salami.png',              '000000',   'ffff00',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (5,    'PAPRYKA',              '5',       80,    120,   1,   'img/papryka.png',             'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (6,    'KUKURYDZA',            '6',       70,    150,   1,   'img/kukurydza.png',           'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (7,    'ANANAS',               '7',       110,   130,   1,   'img/ananas.png',              'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (8,    'SZYNKA',               '8',       120,   30,    1,   'img/szynka.png',              '000000',   'ffff00',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (9,    'BOCZEK',               '9',       120,   40,    1,   'img/boczek.png',              '000000',   'ffff00',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (10,   'OLIWKI',               '10',      70,    130,   1,   'img/oliwki.png',              'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (11,   'POMIDOR',              '11',      70,    110,   1,   'img/pomidor.png',             'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (12,   'PAPRYCZKI_PEPERONI',   '12',      90,    160,   1,   'img/chili.png',               'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (13,   'RUKOLA',               '13',      70,    190,   0,   'img/rukola.png',              'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (14,   'SZPINAK',              '14',      70,    200,   0,   'img/szpinak.png',             'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (15,   'KURCZAK',              '15',      270,   170,   1,   'img/kurczak.png',             '000000',   'ffff00',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (16,   'TUNCZYK',              '16',      260,   100,   1,   'img/tunczyk.png',             '000000',   'ffff00',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (17,   'BROKULY',              '17',      110,   90,    1,   'img/brokuly.png',             'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (18,   'SUSZONE_POMIDORY',     '18',      150,   70,    1,   'img/suszone_pomidory.png',    'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (19,   'SER_FETA',             '19',      160,   80,    1,   'img/feta.png',                'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (20,   'SZYNKA_PROSCIUTTO',    '20',      380,   170,   1,   'img/szynka_prosciutto.png',   'ffffff',   'ffff00',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (21,   'SER',                  'SER',     80,    0,     0,   'img/ser.png',                 'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (22,   'MIESO WOLOWE',         '21',      270,   0,     0,   '',                            'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (23,   'CHORIZO',              '22',      290,   0,     0,   '',                            'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (24,   'RICOTTA',              '23',      240,   0,     0,   '',                            'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (25,   'GORGONZOLA',           '24',      360,   0,     0,   '',                            'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (26,   'OLIWKI ZIELONE',       '25',      70,    0,     0,   '',                            'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (27,   'KAPARY',               '26',      160,   0,     0,   '',                            'ffffff',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (28,   'OSTRY SOS',            'OSTRY',   0,     0,     0,   '',                            'ffffff',   '8c3c00',   '0');
+INSERT OR IGNORE INTO TOPPING VALUES (29,   'PARMEZAN',             'PRMZN',   0,     0,     0,   '',                            'ffffff',   '8c3c00',   '0');
 
 
 CREATE TABLE IF NOT EXISTS ADDITION (
@@ -57,10 +66,29 @@ INSERT OR IGNORE INTO ADDITION VALUES (8, 'PEPSI',      'PEP',  400, 80, 'img/pe
 
 CREATE TABLE IF NOT EXISTS COMPOSITION (
     ID              INTEGER PRIMARY KEY AUTOINCREMENT,
-    KEY                VARCHAR8 NOT NULL,
-    PRICE              INTEGER NOT NULL,
-    PRIORITY           INTEGER,
+    KEY             VARCHAR8 NOT NULL,
+    PRICE           INTEGER NOT NULL,
+    PRIORITY        INTEGER,
     NAME            VARCHAR20 NOT NULL,
     TOPPINGS        TEXT,
     ADDITIONS       TEXT
 );
+
+INSERT OR IGNORE INTO COMPOSITION VALUES (1 ,  '1',  '0',  0,  '1',  '3,3,12,12,12',  'OSTRY');
+INSERT OR IGNORE INTO COMPOSITION VALUES (2 ,  '1',  '0',  0,  '1',  '11,5,6,14',     '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (3 ,  '1',  '0',  0,  '1',  '8,9,3,4',       '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (4 ,  '1',  '0',  0,  '1',  '1,3,4',         '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (5 ,  '1',  '0',  0,  '1',  '1,8,6',         '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (6 ,  '1',  '0',  0,  '1',  '8,6,7',         '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (7 ,  '1',  '0',  0,  '1',  '3,4,12',        '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (8 ,  '1',  '0',  0,  '1',  '8,9,5',         '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (9 ,  '1',  '0',  0,  '1',  '9,3,6,10',      '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (10,  '1',  '0',  0,  '1',  '1,9,11,6',      '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (11,  '1',  '0',  0,  '1',  '1,8,5,14',      '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (12,  '1',  '0',  0,  '1',  '1,8,11,10',     '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (13,  '1',  '0',  0,  '1',  '8,11,5,13',     '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (14,  '1',  '0',  0,  '1',  '1,3,4,12',      '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (15,  '1',  '0',  0,  '1',  '1,8,9,12',      '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (16,  '1',  '0',  0,  '1',  '3,4,11,12',     '');
+INSERT OR IGNORE INTO COMPOSITION VALUES (17,  '1',  '0',  0,  '1',  'SOS,23,24',     'PRMZN');
+

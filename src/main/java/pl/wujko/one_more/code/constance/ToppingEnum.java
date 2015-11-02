@@ -12,7 +12,8 @@ public enum ToppingEnum {
     IS_LIMITED,
     IMAGE,
     FONT_COLOR,
-    BACKGROUND_COLOR;
+    BACKGROUND_COLOR,
+    VISIBLE;
 
     ToppingEnum() {}
 }
