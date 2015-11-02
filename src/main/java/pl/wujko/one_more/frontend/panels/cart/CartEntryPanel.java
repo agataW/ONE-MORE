@@ -26,7 +26,7 @@ import java.util.LinkedList;
 
 public class CartEntryPanel extends JPanel implements ActionListener
 {
-    private static final int STATIC_ELAMENTS_COUNT = 3;
+    private static final int STATIC_ELEMENTS_COUNT = 3;
 
     private WorkshopData workshopData;
 
@@ -34,15 +34,13 @@ public class CartEntryPanel extends JPanel implements ActionListener
 
     private JButton edit;
 
-    private JLabel priceLabel = new JLabel("0.00", SwingConstants.CENTER);
+    private JLabel priceLabel;
 
     private DefaultFormBuilder builder;
 
     private CellConstraints cc;
 
     private int currentRow = 1;
-
-    private int price;
 
     public CartEntryPanel(WorkshopData workshopData)
     {
@@ -53,21 +51,26 @@ public class CartEntryPanel extends JPanel implements ActionListener
 
         delete = new JButton("X");
         delete.addActionListener(this);
+        delete.setFont(GUIConstants.DEFAULT_FONT);
 
         edit = new JButton(">");
+        edit.setFont(GUIConstants.DEFAULT_FONT);
         edit.addActionListener(this);
+
+        priceLabel = new JLabel("0.00", SwingConstants.CENTER);
+        priceLabel.setFont(GUIConstants.DEFAULT_FONT);
 
         initPanel();
     }
 
-    public double getPrice()
+    public int getPrice()
     {
-        return workshopData.getPrice() / 100d;
+        return workshopData.getPrice();
     }
 
     private void initPanel()
     {
-        int maxSize = workshopData.size() + STATIC_ELAMENTS_COUNT;
+        int maxSize = workshopData.size() + STATIC_ELEMENTS_COUNT;
 
         FormLayout layout = FormLayoutUtils.createDefaultEntryLayout(maxSize);
         builder = new DefaultFormBuilder(layout);
@@ -85,9 +88,9 @@ public class CartEntryPanel extends JPanel implements ActionListener
 
     private void calculatePrice()
     {
-        double price = workshopData.getPrice() / 100d;
-        String sPrice = Double.toString(price);
-        this.priceLabel.setText(sPrice);
+        int integer = getPrice() / 100;
+        int afterComa = getPrice() % 100;
+        this.priceLabel.setText(integer + "." + afterComa + " zł");
     }
 
     private void addToBuilder(LinkedList<Entry> space)

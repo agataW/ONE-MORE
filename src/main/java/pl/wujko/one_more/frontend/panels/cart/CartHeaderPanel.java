@@ -7,8 +7,6 @@ import pl.wujko.one_more.frontend.controller.CartListController;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
@@ -46,19 +44,6 @@ public class CartHeaderPanel extends JPanel
                 super.mousePressed(e);
                 getCartListController().removeCart(currentCartPanel);
             }
-//
-//            @Override
-//            public void mouseReleased(MouseEvent e)
-//            {
-//                super.mouseReleased(e);
-//                grabFocus();
-//            }
-
-//            @Override
-//            public void actionPerformed(ActionEvent e)
-//            {
-//                getCartListController().removeCart(currentCartPanel);
-//            }
         });
 
         add(time);
@@ -71,9 +56,11 @@ public class CartHeaderPanel extends JPanel
         return (CartListController) BeanHelper.getBean("cartListController");
     }
 
-    public void setPrice(double price)
+    public void setPrice(int price)
     {
-        this.price.setText(Double.toString(price));
+        int integer = price / 100;
+        int afterComa = price % 100;
+        this.price.setText(integer + "." + afterComa + " zł");
     }
 
     private static String getCurrentTime()
