@@ -29,6 +29,7 @@ public class AdditionDao implements Dao<Addition>
         }
         catch (SQLException e)
         {
+        	e.printStackTrace();
             return null;
         }
     }

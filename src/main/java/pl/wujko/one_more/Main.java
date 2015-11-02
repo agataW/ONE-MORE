@@ -31,20 +31,20 @@ public class Main
         {
             // If Nimbus is not available, you can set the GUI to another look and feel.
         }
+        
+//        DatabaseService bean = (DatabaseService) BeanHelper.getBean("databaseService");
+//        try {
+//        	bean.importSQL("src/main/resources/script.sql");
+//        } catch (SQLException e) {
+//        	e.printStackTrace();
+//        }
 
         MainFrame mainFrame = (MainFrame) BeanHelper.getBean("mainFrame");
         mainFrame.initFrame();
         
-        Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current relative path is: " + s);
-        
-        DatabaseService bean = (DatabaseService) BeanHelper.getBean("databaseService");
-        try {
-			bean.importSQL("src/main/resources/script.sql");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+//        Path currentRelativePath = Paths.get("");
+//        String s = currentRelativePath.toAbsolutePath().toString();
+//        System.out.println("Current relative path is: " + s);
 //        Statement statement = databaseService.getStatement();
 //
 //        try

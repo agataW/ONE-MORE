@@ -3,6 +3,7 @@ package pl.wujko.one_more.frontend.datas;
 import pl.wujko.map.WujkoMap;
 import pl.wujko.one_more.code.constance.EntryTypeEnum;
 import pl.wujko.one_more.code.item.Entry;
+import pl.wujko.one_more.code.item.entries.Topping;
 import pl.wujko.one_more.frontend.PizzaConstants;
 
 import javax.swing.JPanel;
@@ -67,15 +68,19 @@ public class WorkshopData
     public LinkedList<Entry> getAllEntries()
     {
         LinkedList<Entry> entries = new LinkedList<Entry>();
+        if (panType.equals(PanType.AMERICAN))
+        {
+            entries.add(createEntry("AM"));
+        }
         if (!leftSpace.isEmpty())
         {
             entries.addAll(leftSpace);
-            entries.add(createBracket("("));
+            entries.add(createEntry("("));
         }
         entries.addAll(wholeSpace);
         if (!rightSpace.isEmpty())
         {
-            entries.add(createBracket(")"));
+            entries.add(createEntry(")"));
             entries.addAll(rightSpace);
         }
         return entries;
@@ -90,34 +95,13 @@ public class WorkshopData
         return result;
     }
 
-    private Entry createBracket(final String brand)
+    private Entry createEntry(final String brand)
     {
-        return new Entry()
-        {
-            @Override
-            public EntryTypeEnum getType()
-            {
-                return null;
-            }
-
-            @Override
-            public void setKey(String key)
-            {
-                super.setKey(brand);
-            }
-
-            @Override
-            public void setBackgroundColor(String backgroundColor)
-            {
-                super.setBackgroundColor("000000");
-            }
-
-            @Override
-            public void setFontColor(String fontColor)
-            {
-                super.setFontColor("ffffff");
-            }
-        };
+        Entry entry = new Topping();
+        entry.setKey(brand);
+        entry.setBackgroundColor("FFFFFF");
+        entry.setFontColor("000000");
+        return entry;
     }
 
     private int price(LinkedList<Entry> entryList, int v)

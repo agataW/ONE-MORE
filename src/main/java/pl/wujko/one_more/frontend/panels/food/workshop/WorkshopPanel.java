@@ -5,6 +5,8 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import pl.wujko.map.WujkoMap;
 import pl.wujko.one_more.code.item.Entry;
+import pl.wujko.one_more.code.item.entries.Composition;
+import pl.wujko.one_more.code.item.entries.Topping;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.Panel;
@@ -15,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 /**
  * Created by Agata on 2015-10-05.
@@ -60,11 +63,11 @@ public class WorkshopPanel extends Panel
         americanPan = new JButton("AM PAN");
         americanPan.setFont(GUIConstants.DEFAULT_FONT);
         americanPan.addActionListener(createActionListener(americanPan));
-        americanPan.setEnabled(false);
 
         normalPan = new JButton("NORMAL");
         normalPan.setFont(GUIConstants.DEFAULT_FONT);
         normalPan.addActionListener(createActionListener(normalPan));
+        normalPan.setEnabled(false);
 
         leftSpace = new SpacePanel(SpacePanel.Space.HALF);
         leftSpace.setBackground(GUIConstants.WORKSPACE_PANEL_BACKGROUND);
@@ -80,7 +83,7 @@ public class WorkshopPanel extends Panel
         selectSpace(wholeSpace);
     }
 
-    public void addEntry(Entry entry)
+    public void addEntryToSelectedSpace(Entry entry)
     {
         selectedSpace.addEntry(entry);
     }
@@ -96,6 +99,19 @@ public class WorkshopPanel extends Panel
     }
 
 
+    public void addEntryToWholeSpace(Composition composition)
+    {
+        List<Topping> toppingList = composition.getToppingList();
+        if (toppingList == null)
+        {
+            return;
+        }
+        for (Topping topping : toppingList)
+        {
+            wholeSpace.addEntry(topping);
+        }
+    }
+
     public WujkoMap<JPanel, Entry> getRightSpaceData()
     {
         return rightSpace.getEntriesMap();
@@ -105,9 +121,9 @@ public class WorkshopPanel extends Panel
     {
         if (americanPan.isEnabled())
         {
-            return WorkshopData.PanType.AMERICAN;
+            return WorkshopData.PanType.NORMAL;
         }
-        return WorkshopData.PanType.NORMAL;
+        return WorkshopData.PanType.AMERICAN;
     }
 
     private void selectPan(JButton button)

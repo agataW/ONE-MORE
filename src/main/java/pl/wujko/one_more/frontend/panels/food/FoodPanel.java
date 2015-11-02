@@ -20,6 +20,7 @@ public class FoodPanel extends Panel
     @Resource
     private WorkshopPanel workshopPanel;
 
+    @Resource(name="itemsPanel")
     private Panel selectedPanel;
 
     @Override

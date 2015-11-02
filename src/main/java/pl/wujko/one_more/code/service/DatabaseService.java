@@ -22,15 +22,29 @@ import pl.wujko.one_more.code.constance.ToppingEnum;
  */
 public class DatabaseService
 {
+	private static final String SCRIPT_PATH = "src/main/resources/script.sql";
 	private Statement statement;
 
+	public DatabaseService() {
+		System.err.println("Zaczynam import bazy danych...");
+		try {
+			importSQL(SCRIPT_PATH);
+		} catch (SQLException e) {
+			System.err.println("Błąd importowania do bazy danych! : " + e.getMessage());
+			e.printStackTrace();
+			return;
+		}
+		System.err.println("Dane zaimportowane!");
+	}
+	
+	
 	public void importSQL(String filepath) throws SQLException
 	{
 		FileInputStream fis ;
 		try {
 			fis = new FileInputStream(filepath);
 		} catch (FileNotFoundException e) {
-			Logger.getLogger(getClass()).error(e.getMessage());
+			e.printStackTrace();
 			return;
 		}
 		Scanner s = new Scanner(fis);
@@ -76,6 +90,7 @@ public class DatabaseService
 			}
 			catch (Exception e)
 			{
+				e.printStackTrace();
 				return null;
 			}
 		}

@@ -33,14 +33,14 @@
     <bean id="cartListPanel" class="pl.wujko.one_more.frontend.panels.cart.CartListPanel"/>
     <bean id="optionsPanel" class="pl.wujko.one_more.frontend.panels.MainOptionsPanel"/>
     <bean id="foodPanel" class="pl.wujko.one_more.frontend.panels.food.FoodPanel">
-        <property name="selectedPanel" ref="itemsPanel"/>
+<!--         <property name="selectedPanel" ref="itemsPanel"/> -->
     </bean>
 
     <bean id="choosePanelPanel" class="pl.wujko.one_more.frontend.panels.food.ChoosePanelPanel"/>
     <bean id="packagePanel" class="pl.wujko.one_more.frontend.panels.food.CompositionPanel">
         <property name="columnCount" value="2"/>
     </bean>
-    <bean id="itemsPanel" class="pl.wujko.one_more.frontend.panels.food.ItemsPanel">
+    <bean id="itemsPanel" class="pl.wujko.one_more.frontend.panels.food.ToppingAndAdditionPanel">
         <property name="toppingColumnCount" value="3"/>
     </bean>
     <bean id="workshopPanel" class="pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel"/>

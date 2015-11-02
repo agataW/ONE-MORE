@@ -3,7 +3,7 @@ package pl.wujko.one_more.frontend.controller;
 import pl.wujko.one_more.frontend.panels.food.FoodPanel;
 import pl.wujko.one_more.frontend.panels.food.ChoosePanelPanel;
 import pl.wujko.one_more.frontend.panels.food.CompositionPanel;
-import pl.wujko.one_more.frontend.panels.food.ItemsPanel;
+import pl.wujko.one_more.frontend.panels.food.ToppingAndAdditionPanel;
 
 import javax.annotation.Resource;
 
@@ -16,7 +16,7 @@ public class ChoosePanelController
     private FoodPanel foodPanel;
 
     @Resource
-    private ItemsPanel itemsPanel;
+    private ToppingAndAdditionPanel itemsPanel;
 
     @Resource
     private CompositionPanel compositionPanel;
