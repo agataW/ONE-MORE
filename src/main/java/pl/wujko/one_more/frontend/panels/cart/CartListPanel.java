@@ -126,6 +126,10 @@ public class CartListPanel extends Panel
 
     public void addToSelectedCart(Addition addition)
     {
+        if (currentCartPanel == null)
+        {
+            addNewCart();
+        }
         currentCartPanel.addAddition(addition);
     }
 

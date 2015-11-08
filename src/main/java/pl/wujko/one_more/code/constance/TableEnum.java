@@ -5,7 +5,8 @@ package pl.wujko.one_more.code.constance;
  */
 public enum TableEnum {
     TOPPING("topping"),
-    ADDITION("addition");
+    ADDITION("addition"),
+    COMPOSITION("composition");
 
     private String name;
 

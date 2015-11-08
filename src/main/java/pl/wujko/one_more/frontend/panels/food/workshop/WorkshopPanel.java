@@ -3,6 +3,7 @@ package pl.wujko.one_more.frontend.panels.food.workshop;
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import org.apache.commons.collections.CollectionUtils;
 import pl.wujko.map.WujkoMap;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Composition;
@@ -42,9 +43,7 @@ public class WorkshopPanel extends Panel
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:m"));
 
-        FormLayout layout = new FormLayout(
-            "f:p:g, f:p:g, 2dlu, f:m, 2dlu",
-            "2dlu, f:40dlu:g, 2dlu, f:40dlu:g, 2dlu");
+        FormLayout layout = new FormLayout("f:p:g, f:p:g, 2dlu, f:m, 2dlu", "2dlu, f:40dlu:g, 2dlu, f:40dlu:g, 2dlu");
         DefaultFormBuilder builder = new DefaultFormBuilder(layout);
         CellConstraints cc = new CellConstraints();
 
@@ -83,6 +82,52 @@ public class WorkshopPanel extends Panel
         selectSpace(wholeSpace);
     }
 
+    public void addEntryToWholeSpace(Composition composition)
+    {
+        List<Topping> toppingList = composition.getToppingList();
+        if (CollectionUtils.isEmpty(toppingList))
+        {
+            return;
+        }
+        for (Topping topping : toppingList)
+        {
+            wholeSpace.addEntry(topping);
+        }
+    }
+
+
+    public void editEntry(WorkshopData workshopData)
+    {
+        if (workshopData.getPanType().equals(WorkshopData.PanType.AMERICAN))
+        {
+            selectPan(americanPan);
+        }
+
+        if (CollectionUtils.isNotEmpty(workshopData.getWholeSpace()))
+        {
+            for (Entry entry : workshopData.getWholeSpace())
+            {
+                wholeSpace.addEntry(entry);
+            }
+        }
+
+        if (CollectionUtils.isNotEmpty(workshopData.getLeftSpace()))
+        {
+            for (Entry entry : workshopData.getLeftSpace())
+            {
+                leftSpace.addEntry(entry);
+            }
+        }
+
+        if (CollectionUtils.isNotEmpty(workshopData.getRightSpace()))
+        {
+            for (Entry entry : workshopData.getRightSpace())
+            {
+                rightSpace.addEntry(entry);
+            }
+        }
+    }
+
     public void addEntryToSelectedSpace(Entry entry)
     {
         selectedSpace.addEntry(entry);
@@ -96,20 +141,6 @@ public class WorkshopPanel extends Panel
     public WujkoMap<JPanel, Entry> getWholeSpaceData()
     {
         return wholeSpace.getEntriesMap();
-    }
-
-
-    public void addEntryToWholeSpace(Composition composition)
-    {
-        List<Topping> toppingList = composition.getToppingList();
-        if (toppingList == null)
-        {
-            return;
-        }
-        for (Topping topping : toppingList)
-        {
-            wholeSpace.addEntry(topping);
-        }
     }
 
     public WujkoMap<JPanel, Entry> getRightSpaceData()
@@ -145,7 +176,8 @@ public class WorkshopPanel extends Panel
 
     private ActionListener createActionListener(final JButton button)
     {
-        return new ActionListener() {
+        return new ActionListener()
+        {
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -156,7 +188,8 @@ public class WorkshopPanel extends Panel
 
     private MouseListener createMouseListener(final SpacePanel space)
     {
-        return new MouseListener() {
+        return new MouseListener()
+        {
             @Override
             public void mouseClicked(MouseEvent e) {}
 

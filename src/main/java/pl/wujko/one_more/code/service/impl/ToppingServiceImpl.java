@@ -11,7 +11,8 @@ import java.util.List;
 /**
  * Created by Agata on 2015-05-18.
  */
-public class ToppingServiceImpl implements ToppingService {
+public class ToppingServiceImpl implements ToppingService
+{
 
     @Resource
     private ToppingDao toppingDao;
@@ -19,16 +20,20 @@ public class ToppingServiceImpl implements ToppingService {
     private List<Topping> toppingList;
 
     @Override
-    public List<Topping> findAll() {
-        if (toppingList == null){
+    public List<Topping> findAll()
+    {
+        if (toppingList == null)
+        {
             toppingList = toppingDao.findAll();
         }
         return toppingList;
     }
 
     @Override
-    public List<Topping> findAllVisible() {
-        if (toppingList == null){
+    public List<Topping> findAllVisible()
+    {
+        if (toppingList == null)
+        {
             findAll();
         }
         List<Topping> result = new ArrayList<Topping>(toppingList);
@@ -42,5 +47,23 @@ public class ToppingServiceImpl implements ToppingService {
         }
 
         return result;
+    }
+
+    @Override
+    public Topping getByKey(String toppingKey)
+    {
+        if (toppingList == null){
+            findAll();
+        }
+
+        for (Topping topping : toppingList)
+        {
+            if (topping.getKey().equals(toppingKey))
+            {
+                return topping;
+            }
+        }
+
+        return null;
     }
 }

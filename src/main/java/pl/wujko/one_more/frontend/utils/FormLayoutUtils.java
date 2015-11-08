@@ -8,9 +8,11 @@ import com.jgoodies.forms.layout.FormLayout;
 public class FormLayoutUtils
 {
     //FOOD
-    private static final String DEFAULT_START = "f:p:g";
+    private static final String DEFAULT_START = "f:p:g(0.1)";
 
     private static final String DEFAULT_NEXT = ", 1dlu, " + DEFAULT_START;
+
+    private static final String MAX_NEXT = ", 1dlu, f:p:g(0.9)";
 
     //CART
     public static final String CART_START = "f:m";
@@ -27,14 +29,34 @@ public class FormLayoutUtils
         return new FormLayout("f:p:g", builder.toString());
     }
 
-    public static FormLayout createDefaultEntryLayout(int size)
+    public static FormLayout createDefaultCartEntryLayout(int size)
     {
-        return new FormLayout(getSpecs(size), getSpecs(1));
+        return new FormLayout(getCartEntrySpecs(size), getSpecs(1));
     }
 
     public static FormLayout createDefaultFoodLayout(int columns, int rows)
     {
         return new FormLayout(getSpecs(columns), getSpecs(rows));
+    }
+
+    private static String getCartEntrySpecs(int count)
+    {
+        StringBuilder specs = new StringBuilder(DEFAULT_START);
+        int i = 1;
+        while (count > i)
+        {
+            if (count - 4 == i)
+            {
+                specs.append(MAX_NEXT);
+            }
+            else
+            {
+                specs.append(DEFAULT_NEXT);
+            }
+            ++i;
+        }
+
+        return specs.toString();
     }
 
     private static String getSpecs(int count)

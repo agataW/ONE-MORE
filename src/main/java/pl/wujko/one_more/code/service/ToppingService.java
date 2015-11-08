@@ -11,4 +11,6 @@ public interface ToppingService {
     List<Topping> findAll();
 
     List<Topping> findAllVisible();
+
+    Topping getByKey(String toppingKey);
 }

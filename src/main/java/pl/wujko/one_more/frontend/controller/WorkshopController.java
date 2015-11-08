@@ -40,4 +40,13 @@ public class WorkshopController
     {
         workshopPanel.addEntryToWholeSpace(composition);
     }
+
+    public void editEntry(WorkshopData workshopData)
+    {
+        workshopPanel.getLeftSpaceData(); //bardzo glupie
+        workshopPanel.getWholeSpaceData(); //bardzo glupie
+        workshopPanel.getRightSpaceData(); //bardzo glupie
+        foodPanel.refresh();
+        workshopPanel.editEntry(workshopData);
+    }
 }

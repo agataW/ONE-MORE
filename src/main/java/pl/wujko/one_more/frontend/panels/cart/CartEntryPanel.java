@@ -8,8 +8,10 @@ import pl.wujko.one_more.code.constance.PizzaConstants;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
+import pl.wujko.one_more.frontend.controller.WorkshopController;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.entry.EntryPanel;
+import pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
 
 import javax.swing.JButton;
@@ -27,7 +29,7 @@ import java.util.LinkedList;
 
 public class CartEntryPanel extends JPanel implements ActionListener
 {
-    private static final int STATIC_ELEMENTS_COUNT = 3;
+    private static final int STATIC_ELEMENTS_COUNT = 4;
 
     private WorkshopData workshopData;
 
@@ -36,6 +38,8 @@ public class CartEntryPanel extends JPanel implements ActionListener
     private JButton edit;
 
     private JLabel priceLabel;
+
+    private JLabel emptyLabel;
 
     private DefaultFormBuilder builder;
 
@@ -63,12 +67,14 @@ public class CartEntryPanel extends JPanel implements ActionListener
         priceLabel = new JLabel("0.00", SwingConstants.CENTER);
         priceLabel.setFont(GUIConstants.DEFAULT_FONT);
 
+        emptyLabel = new JLabel();
+
         initPanel();
     }
 
     public int getPrice()
     {
-        if (discount)
+        if (discount && !workshopData.getPanType().equals(WorkshopData.PanType.NO_PANE))
         {
             return workshopData.getPrice() - PizzaConstants.PIZZA_DISCOUNT;
         }
@@ -90,13 +96,14 @@ public class CartEntryPanel extends JPanel implements ActionListener
     {
         int maxSize = workshopData.size() + STATIC_ELEMENTS_COUNT;
 
-        FormLayout layout = FormLayoutUtils.createDefaultEntryLayout(maxSize);
+        FormLayout layout = FormLayoutUtils.createDefaultCartEntryLayout(maxSize);
         builder = new DefaultFormBuilder(layout);
         cc = new CellConstraints();
 
         addToBuilder(workshopData.getAllEntries());
 
         calculatePrice();
+        addToBuilder(emptyLabel);
         addToBuilder(priceLabel);
         addToBuilder(delete);
         addToBuilder(edit);
@@ -131,15 +138,20 @@ public class CartEntryPanel extends JPanel implements ActionListener
     {
         Object source = e.getSource();
 
-        //noinspection StatementWithEmptyBody
         if (source.equals(edit))
         {
-            //todo aga
+            getWorkshopController().editEntry(workshopData);
+            getCartListController().removeCartEntry(this);
         }
         else if (source.equals(delete))
         {
             getCartListController().removeCartEntry(this);
         }
+    }
+
+    private WorkshopController getWorkshopController()
+    {
+        return (WorkshopController) BeanHelper.getBean("workshopController");
     }
 
     private CartListController getCartListController()

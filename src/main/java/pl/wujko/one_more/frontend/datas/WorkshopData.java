@@ -48,6 +48,21 @@ public class WorkshopData
         return panType;
     }
 
+    public LinkedList<Entry> getLeftSpace()
+    {
+        return leftSpace;
+    }
+
+    public LinkedList<Entry> getWholeSpace()
+    {
+        return wholeSpace;
+    }
+
+    public LinkedList<Entry> getRightSpace()
+    {
+        return rightSpace;
+    }
+
     public void setPanType(PanType panType)
     {
         this.panType = panType;
