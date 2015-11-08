@@ -46,7 +46,7 @@ public class ToppingAndAdditionPanel extends Panel
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:p:g"));
 
-        List<Topping> toppingList = toppingService.findAll();
+        List<Topping> toppingList = toppingService.findAllVisible();
         List<Addition> additionList = additionService.findAll();
 
         int maxRowsCount = toppingList.size() / TOPPING_COLUMN_COUNT;

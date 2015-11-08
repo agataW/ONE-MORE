@@ -12,6 +12,7 @@ public class Topping extends Entry
     private String name;
     private boolean isLimited;
     private String image;
+    private boolean visible;
 
     @Override
     public EntryTypeEnum getType()
@@ -57,5 +58,15 @@ public class Topping extends Entry
     public void setImage(String image)
     {
         this.image = image;
+    }
+
+    public boolean isVisible()
+    {
+        return visible;
+    }
+
+    public void setVisible(boolean visible)
+    {
+        this.visible = visible;
     }
 }

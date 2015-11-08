@@ -1,6 +1,6 @@
 package pl.wujko.one_more.code.item;
 
-import pl.wujko.one_more.code.constance.Properties;
+import pl.wujko.one_more.code.constance.PizzaConstants;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,7 +52,7 @@ public class Cart
 
     public boolean useDiscount()
     {
-        return pizzaCount >= Properties.COUNT_OF_PIZZA_TO_DISCOUNT;
+        return pizzaCount >= PizzaConstants.COUNT_OF_PIZZA_TO_DISCOUNT;
     }
 
     public int getPrice()

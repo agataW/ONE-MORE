@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface ToppingService {
     List<Topping> findAll();
+
+    List<Topping> findAllVisible();
 }

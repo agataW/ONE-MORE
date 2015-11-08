@@ -49,6 +49,7 @@ public class ToppingDao implements Dao<Topping>
                 topping.setImage(rs.getString(ToppingEnum.IMAGE.toString()));
                 topping.setFontColor(rs.getString(ToppingEnum.FONT_COLOR.toString()));
                 topping.setBackgroundColor(rs.getString(ToppingEnum.BACKGROUND_COLOR.toString()));
+                topping.setVisible(rs.getBoolean(ToppingEnum.VISIBLE.toString()));
                 toppingList.add(topping);
             }
         }
