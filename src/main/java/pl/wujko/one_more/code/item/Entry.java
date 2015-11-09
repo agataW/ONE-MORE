@@ -79,6 +79,5 @@ public abstract class Entry
         setBackgroundColor(new Color(Integer.parseInt(backgroundColor, 16)));
     }
 
-    @Deprecated
     public abstract EntryTypeEnum getType();
 }

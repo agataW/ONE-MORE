@@ -4,7 +4,6 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import org.springframework.beans.factory.annotation.Required;
-import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.code.item.entries.Topping;
 import pl.wujko.one_more.code.service.AdditionService;
@@ -16,7 +15,12 @@ import pl.wujko.one_more.frontend.panels.Panel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
 
 import javax.annotation.Resource;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -91,8 +95,14 @@ public class ToppingAndAdditionPanel extends Panel
     private JButton createButtonFor(final Topping topping)
     {
         JButton button = new JButton(topping.getKey());
+        button.setHorizontalTextPosition(SwingConstants.LEADING);
+        button.setBackground(Color.WHITE);
         button.setFont(GUIConstants.DEFAULT_FONT);
-        button.addActionListener(new ActionListener() {
+        button.setBorderPainted(false);
+        button.setMargin(new Insets(0, 0, 0, 0));
+        button.setIcon(new ImageIcon(topping.getImage().getScaledInstance(35, -1, Image.SCALE_SMOOTH)));
+        button.addActionListener(new ActionListener()
+        {
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -105,8 +115,14 @@ public class ToppingAndAdditionPanel extends Panel
     private JButton createButtonFor(final Addition addition)
     {
         JButton button = new JButton(addition.getKey());
+        button.setHorizontalTextPosition(SwingConstants.LEADING);
+        button.setBackground(Color.WHITE);
         button.setFont(GUIConstants.DEFAULT_FONT);
-        button.addActionListener(new ActionListener() {
+        button.setBorderPainted(false);
+        button.setMargin(new Insets(0, 0, 0, 0));
+        button.setIcon(new ImageIcon(addition.getImage().getScaledInstance(35, -1, Image.SCALE_SMOOTH)));
+        button.addActionListener(new ActionListener()
+        {
             @Override
             public void actionPerformed(ActionEvent e)
             {

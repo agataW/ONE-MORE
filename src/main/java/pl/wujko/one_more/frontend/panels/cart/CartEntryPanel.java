@@ -11,7 +11,6 @@ import pl.wujko.one_more.frontend.controller.CartListController;
 import pl.wujko.one_more.frontend.controller.WorkshopController;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.entry.EntryPanel;
-import pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
 
 import javax.swing.JButton;
@@ -92,6 +91,11 @@ public class CartEntryPanel extends JPanel implements ActionListener
         calculatePrice();
     }
 
+    public void disableEditButton()
+    {
+        edit.setEnabled(false);
+    }
+
     private void initPanel()
     {
         int maxSize = workshopData.size() + STATIC_ELEMENTS_COUNT;
@@ -126,7 +130,7 @@ public class CartEntryPanel extends JPanel implements ActionListener
             addToBuilder(panel);
         }
     }
-    
+
     private void addToBuilder(Component panel)
     {
         builder.add(panel, cc.xy(currentRow, 1));

@@ -70,7 +70,9 @@ public class CartPanel extends JPanel
     public void addAddition(Addition addition)
     {
         int index = cartEntryPanelList.size();
-        if (lastAdditionCartEntry == null || lastAdditionCartEntry.full())
+        if (lastAdditionCartEntry == null
+            || lastAdditionCartEntry.full()
+            || cartEntryPanelList.indexOf(lastAdditionCartEntry.getCartEntryPanel()) == -1)
         {
             lastAdditionCartEntry = new AdditionCartEntry();
         }
@@ -82,6 +84,7 @@ public class CartPanel extends JPanel
         lastAdditionCartEntry.add(addition);
 
         CartEntryPanel cartEntryPanel = new CartEntryPanel(lastAdditionCartEntry.getWorkshopData());
+        cartEntryPanel.disableEditButton();
         cartEntryPanelList.add(index, cartEntryPanel);
         addToBuilder(cartEntryPanel);
 

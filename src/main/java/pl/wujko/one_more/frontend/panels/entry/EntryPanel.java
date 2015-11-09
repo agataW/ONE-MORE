@@ -17,7 +17,6 @@ public class EntryPanel extends JPanel
     {
         setLayout(new FormLayout("f:p:g", "f:m"));
         setBackground(entry.getBackgroundColor());
-        setForeground(entry.getFontColor());
 
         StringBuilder text = new StringBuilder()
             .append(' ')
@@ -25,6 +24,7 @@ public class EntryPanel extends JPanel
             .append(' ');
         JLabel label = new JLabel(text.toString());
         label.setFont(GUIConstants.DEFAULT_FONT);
+        label.setForeground(entry.getFontColor());
 
         CellConstraints cc = new CellConstraints();
         add(label, cc.xy(1, 1));

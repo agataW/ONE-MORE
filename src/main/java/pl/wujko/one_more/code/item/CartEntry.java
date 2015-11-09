@@ -1,7 +1,7 @@
 package pl.wujko.one_more.code.item;
 
 import pl.wujko.one_more.code.constance.EntryTypeEnum;
-import pl.wujko.one_more.code.constance.Properties;
+import pl.wujko.one_more.code.constance.PizzaConstants;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class CartEntry {
         }
         if (isPizza() && cart.useDiscount())
         {
-            price -= Properties.DISCOUNT;
+            price -= PizzaConstants.PIZZA_DISCOUNT;
         }
     }
 

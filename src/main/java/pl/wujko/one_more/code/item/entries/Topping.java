@@ -3,6 +3,12 @@ package pl.wujko.one_more.code.item.entries;
 import pl.wujko.one_more.code.constance.EntryTypeEnum;
 import pl.wujko.one_more.code.item.Entry;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 /**
  * Created by Agata on 2015-05-15.
  */
@@ -11,7 +17,7 @@ public class Topping extends Entry
     private int id;
     private String name;
     private boolean isLimited;
-    private String image;
+    private BufferedImage image;
     private boolean visible;
 
     @Override
@@ -50,14 +56,21 @@ public class Topping extends Entry
         this.isLimited = isLimited;
     }
 
-    public String getImage()
+    public BufferedImage getImage()
     {
         return image;
     }
 
     public void setImage(String image)
     {
-        this.image = image;
+        try
+        {
+            this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(image));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public boolean isVisible()

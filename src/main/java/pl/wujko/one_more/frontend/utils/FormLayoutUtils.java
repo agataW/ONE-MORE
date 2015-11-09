@@ -8,7 +8,7 @@ import com.jgoodies.forms.layout.FormLayout;
 public class FormLayoutUtils
 {
     //FOOD
-    private static final String DEFAULT_START = "f:p:g(0.1)";
+    private static final String DEFAULT_START = "f:m:g(0.1)";
 
     private static final String DEFAULT_NEXT = ", 1dlu, " + DEFAULT_START;
 
