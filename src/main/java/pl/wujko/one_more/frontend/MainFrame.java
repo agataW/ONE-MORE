@@ -17,7 +17,7 @@ public class MainFrame extends JFrame
 
     public static final int WIDTH = 1024;
 
-    public static final int HEIGHT = 768;
+    public static final int HEIGHT = 738;//768;
 
     public void initFrame()
     {

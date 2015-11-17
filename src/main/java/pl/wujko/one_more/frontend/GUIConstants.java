@@ -36,4 +36,8 @@ public class GUIConstants
 
     // CART ENTRY
     public static final Color CART_ENTRY_PANEL_BACKGROUND = new Color(60, 60, 60);
+
+    //CONFIRM DELETE
+    public static final Color CONFIRM_DELETE_LABEL_FOREGROUND = new Color(200, 200, 200);
+    public static final Color CONFIRM_DELETE_BUTTONS_BACKGROUND = new Color(200, 200, 200);
 }

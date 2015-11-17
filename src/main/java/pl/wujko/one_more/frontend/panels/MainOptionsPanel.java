@@ -3,8 +3,10 @@ package pl.wujko.one_more.frontend.panels;
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import pl.wujko.one_more.bean.BeanHelper;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
+import pl.wujko.one_more.frontend.interfaces.NeedConfirmation;
 
 import javax.annotation.Resource;
 import javax.swing.JButton;
@@ -16,7 +18,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by Agata on 2015-06-30.
  */
-public class MainOptionsPanel extends Panel implements ActionListener
+public class MainOptionsPanel extends Panel implements ActionListener, NeedConfirmation
 {
     @Resource
     private CartListController cartListController;
@@ -49,17 +51,15 @@ public class MainOptionsPanel extends Panel implements ActionListener
         addEntry.setFont(GUIConstants.DEFAULT_FONT);
         price.setFont(GUIConstants.DEFAULT_FONT);
 
-        FormLayout formLayout = new FormLayout(
-            "f:100dlu:g, 1dlu, f:120dlu:g, 1dlu, f:50dlu:g, 1dlu, f:50dlu:g",
-            "f:p:g"
-        );
+        FormLayout formLayout = new FormLayout("f:100dlu:g, 1dlu, f:120dlu:g, 1dlu, f:50dlu:g, 1dlu, f:50dlu:g",
+            "f:p:g");
         DefaultFormBuilder builder = new DefaultFormBuilder(formLayout);
         CellConstraints cc = new CellConstraints();
 
         builder.add(cleanCartList, cc.rc(1, 1));
         builder.add(newCart, cc.rc(1, 3));
         builder.add(price, cc.rc(1, 5));
-        builder.add(addEntry, cc.rc(1,7));
+        builder.add(addEntry, cc.rc(1, 7));
 
         add(builder.getPanel(), cc.xy(1, 1));
     }
@@ -71,7 +71,7 @@ public class MainOptionsPanel extends Panel implements ActionListener
 
         if (source == cleanCartList)
         {
-            cartListController.removeAllCart();
+            getConfirmDeletionPanel().showConfirmation(this);
         }
         else if (source == newCart)
         {
@@ -81,5 +81,16 @@ public class MainOptionsPanel extends Panel implements ActionListener
         {
             cartListController.addItemsToActiveCart();
         }
+    }
+
+    @Override
+    public void deleteAfterConfirmation()
+    {
+        cartListController.removeAllCart();
+    }
+
+    private ConfirmDeletionPanel getConfirmDeletionPanel()
+    {
+        return (ConfirmDeletionPanel) BeanHelper.getBean("confirmDeletionPanel");
     }
 }

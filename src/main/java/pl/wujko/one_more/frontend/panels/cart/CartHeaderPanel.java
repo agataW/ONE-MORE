@@ -3,6 +3,8 @@ package pl.wujko.one_more.frontend.panels.cart;
 import pl.wujko.one_more.bean.BeanHelper;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
+import pl.wujko.one_more.frontend.interfaces.NeedConfirmation;
+import pl.wujko.one_more.frontend.panels.ConfirmDeletionPanel;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,7 +17,7 @@ import java.util.Date;
 /**
  * Created by Agata on 2015-10-14.
  */
-public class CartHeaderPanel extends JPanel
+public class CartHeaderPanel extends JPanel implements NeedConfirmation
 {
     private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm");
 
@@ -36,12 +38,13 @@ public class CartHeaderPanel extends JPanel
         JButton close = new JButton("X");
         close.setFont(GUIConstants.DEFAULT_FONT);
 
+        final CartHeaderPanel that = this;
         close.addMouseListener(new MouseAdapter()
         {
             @Override
             public void mousePressed(MouseEvent e)
             {
-                getCartListController().removeCart(currentCartPanel);
+                getConfirmDeletionPanel().showConfirmation(that);
             }
         });
 
@@ -54,9 +57,10 @@ public class CartHeaderPanel extends JPanel
         add(close);
     }
 
-    public CartListController getCartListController()
+    @Override
+    public void deleteAfterConfirmation()
     {
-        return (CartListController) BeanHelper.getBean("cartListController");
+        getCartListController().removeCart(currentCartPanel);
     }
 
     public void setPrice(int price)
@@ -69,5 +73,15 @@ public class CartHeaderPanel extends JPanel
     private static String getCurrentTime()
     {
         return DATE_FORMAT.format(new Date());
+    }
+
+    private CartListController getCartListController()
+    {
+        return (CartListController) BeanHelper.getBean("cartListController");
+    }
+
+    private ConfirmDeletionPanel getConfirmDeletionPanel()
+    {
+        return (ConfirmDeletionPanel) BeanHelper.getBean("confirmDeletionPanel");
     }
 }

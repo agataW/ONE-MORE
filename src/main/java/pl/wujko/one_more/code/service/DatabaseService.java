@@ -1,28 +1,18 @@
 package pl.wujko.one_more.code.service;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-
-import org.apache.log4j.Logger;
-
-import pl.wujko.one_more.code.constance.AdditionEnum;
-import pl.wujko.one_more.code.constance.TableEnum;
-import pl.wujko.one_more.code.constance.ToppingEnum;
 
 /**
  * Created by Agata on 2015-05-14.
  */
 public class DatabaseService
 {
-	private static final String SCRIPT_PATH = "src/main/resources/script.sql";
+	private static final String SCRIPT_PATH = "script.sql";
 	private Statement statement;
 
 	public DatabaseService() {
@@ -30,7 +20,7 @@ public class DatabaseService
 		try {
 			importSQL(SCRIPT_PATH);
 		} catch (SQLException e) {
-			System.err.println("Błąd importowania do bazy danych! : " + e.getMessage());
+			System.err.println("\nBłąd importowania do bazy danych! : " + e.getMessage());
 			e.printStackTrace();
 			return;
 		}
@@ -40,10 +30,11 @@ public class DatabaseService
 	
 	public void importSQL(String filepath) throws SQLException
 	{
-		FileInputStream fis ;
+		InputStream fis ;
 		try {
-			fis = new FileInputStream(filepath);
-		} catch (FileNotFoundException e) {
+//			fis = new FileInputStream(filepath);
+            fis = ClassLoader.getSystemResourceAsStream(filepath);
+		} catch (Exception e) {
 			e.printStackTrace();
 			return;
 		}

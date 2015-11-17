@@ -10,6 +10,8 @@ import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
 import pl.wujko.one_more.frontend.controller.WorkshopController;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
+import pl.wujko.one_more.frontend.interfaces.NeedConfirmation;
+import pl.wujko.one_more.frontend.panels.ConfirmDeletionPanel;
 import pl.wujko.one_more.frontend.panels.entry.EntryPanel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
 
@@ -26,7 +28,7 @@ import java.util.LinkedList;
  * Created by Agata on 2015-10-21.
  */
 
-public class CartEntryPanel extends JPanel implements ActionListener
+public class CartEntryPanel extends JPanel implements ActionListener, NeedConfirmation
 {
     private static final int STATIC_ELEMENTS_COUNT = 4;
 
@@ -149,17 +151,28 @@ public class CartEntryPanel extends JPanel implements ActionListener
         }
         else if (source.equals(delete))
         {
-            getCartListController().removeCartEntry(this);
+            getConfirmDeletionPanel().showConfirmation(this);
         }
     }
 
-    private WorkshopController getWorkshopController()
+    @Override
+    public void deleteAfterConfirmation()
     {
-        return (WorkshopController) BeanHelper.getBean("workshopController");
+        getCartListController().removeCartEntry(this);
     }
 
     private CartListController getCartListController()
     {
         return (CartListController) BeanHelper.getBean("cartListController");
+    }
+
+    private ConfirmDeletionPanel getConfirmDeletionPanel()
+    {
+        return (ConfirmDeletionPanel) BeanHelper.getBean("confirmDeletionPanel");
+    }
+
+    private WorkshopController getWorkshopController()
+    {
+        return (WorkshopController) BeanHelper.getBean("workshopController");
     }
 }

@@ -45,4 +45,6 @@
     </bean>
     <bean id="workshopPanel" class="pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel"/>
 
+    <bean id="confirmDeletionPanel" class="pl.wujko.one_more.frontend.panels.ConfirmDeletionPanel"/>
+
 </beans>

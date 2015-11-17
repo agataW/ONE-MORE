@@ -47,8 +47,6 @@ public class CartListPanel extends Panel
 
         cartMap = new WujkoMap<CartPanel, Cart>();
         addNewCart();
-        addNewCart();
-        addNewCart();
     }
 
     public void addNewCart()
