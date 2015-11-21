@@ -22,7 +22,7 @@ public class FormLayoutUtils
     public static FormLayout createCartListLayout(int rows)
     {
         StringBuilder builder = new StringBuilder(CART_START);
-        for (int i = 1; i < rows; ++i)
+        for (int i = 0; i < rows; ++i)
         {
             builder.append(CART_NEXT);
         }

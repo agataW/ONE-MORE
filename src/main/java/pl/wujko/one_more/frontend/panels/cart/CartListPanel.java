@@ -40,7 +40,6 @@ public class CartListPanel extends Panel
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:m"));
 
-        layout = FormLayoutUtils.createCartListLayout(MAX_ROW_COUNT);
         initBuilder();
         cc = new CellConstraints();
         add(builder.getPanel(), cc.xy(1, 1));
@@ -79,25 +78,13 @@ public class CartListPanel extends Panel
             cartMap.remove(cartPanel);
         }
 
-        removeAll();
-        initBuilder();
-
-        if (cartMap.isEmpty())
-        {
-            repaint();
-            revalidate();
-            return;
-        }
-        for (CartPanel panel : cartMap.keyList())
-        {
-            addPanel(panel);
-        }
+        repaintCartListPanel();
     }
 
     public void removeAllCarts()
     {
         cartMap.clear();
-        removeCart(null);
+        repaintCartListPanel();
     }
 
     public void addToSelectedCart(WorkshopData workshop)
@@ -131,6 +118,23 @@ public class CartListPanel extends Panel
         currentCartPanel.addAddition(addition);
     }
 
+    private void repaintCartListPanel()
+    {
+        removeAll();
+        initBuilder();
+
+        if (cartMap.isEmpty())
+        {
+            repaint();
+            revalidate();
+            return;
+        }
+        for (CartPanel panel : cartMap.keyList())
+        {
+            addPanel(panel);
+        }
+    }
+
     private void ifMustSetNewCurrentCartPanel(CartPanel cartPanelToRemove)
     {
         if (cartPanelToRemove == null || cartMap.size() == 1)
@@ -145,6 +149,7 @@ public class CartListPanel extends Panel
     private void initBuilder()
     {
         currentRow = 1;
+        layout = FormLayoutUtils.createCartListLayout(MAX_ROW_COUNT);
         builder = new DefaultFormBuilder(layout);
     }
 

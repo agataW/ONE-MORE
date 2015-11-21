@@ -26,7 +26,7 @@ public class WorkshopController
         workshopData.setLeftSpace(workshopPanel.getLeftSpaceData());
         workshopData.setWholeSpace(workshopPanel.getWholeSpaceData());
         workshopData.setRightSpace(workshopPanel.getRightSpaceData());
-        workshopData.setPanType(workshopPanel.getPan());
+        workshopData.setPanType(workshopPanel.getPanType());
         return workshopData;
     }
 

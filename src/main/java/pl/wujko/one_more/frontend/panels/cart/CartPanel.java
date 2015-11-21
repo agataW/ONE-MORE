@@ -3,6 +3,7 @@ package pl.wujko.one_more.frontend.panels.cart;
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import org.apache.commons.collections.CollectionUtils;
 import pl.wujko.one_more.code.constance.PizzaConstants;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Addition;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public class CartPanel extends JPanel
 {
-    public static final int MAX_ROW_COUNT = 15;
+    //    public static final int MAX_ROW_COUNT = 15;
 
     private FormLayout layout;
 
@@ -40,6 +41,10 @@ public class CartPanel extends JPanel
     {
         headerPanel = new CartHeaderPanel(this);
         cartEntryPanelList = new LinkedList<CartEntryPanel>();
+
+        setBackground(GUIConstants.CART_LIST_PANEL_BACKGROUND);
+        setLayout(new FormLayout("f:p:g", "f:m"));
+
         initPanel();
     }
 
@@ -47,17 +52,13 @@ public class CartPanel extends JPanel
     {
         CartEntryPanel cartEntryPanel = new CartEntryPanel(workshop);
         cartEntryPanelList.add(cartEntryPanel);
-        addToBuilder(cartEntryPanel);
+        initPanel();
     }
 
     public void removeEntry(CartEntryPanel cartEntryPanel)
     {
         cartEntryPanelList.remove(cartEntryPanel);
         initPanel();
-        for (CartEntryPanel entryPanel : cartEntryPanelList)
-        {
-            addToBuilder(entryPanel);
-        }
         calculatePrice();
         revalidate();
     }
@@ -70,9 +71,8 @@ public class CartPanel extends JPanel
     public void addAddition(Addition addition)
     {
         int index = cartEntryPanelList.size();
-        if (lastAdditionCartEntry == null
-            || lastAdditionCartEntry.full()
-            || cartEntryPanelList.indexOf(lastAdditionCartEntry.getCartEntryPanel()) == -1)
+        if (lastAdditionCartEntry == null || lastAdditionCartEntry.full() || cartEntryPanelList
+            .indexOf(lastAdditionCartEntry.getCartEntryPanel()) == -1)
         {
             lastAdditionCartEntry = new AdditionCartEntry();
         }
@@ -86,7 +86,7 @@ public class CartPanel extends JPanel
         CartEntryPanel cartEntryPanel = new CartEntryPanel(lastAdditionCartEntry.createWorkshopData());
         cartEntryPanel.disableEditButton();
         cartEntryPanelList.add(index, cartEntryPanel);
-        addToBuilder(cartEntryPanel);
+        initPanel();
 
         lastAdditionCartEntry.setCartEntryPanel(cartEntryPanel);
     }
@@ -121,13 +121,21 @@ public class CartPanel extends JPanel
 
     private void initPanel()
     {
-        setBackground(GUIConstants.CART_LIST_PANEL_BACKGROUND);
-        setLayout(new FormLayout("f:p:g", "f:m"));
-
-        layout = FormLayoutUtils.createCartListLayout(MAX_ROW_COUNT);
         cc = new CellConstraints();
         initBuilder();
         addToBuilder(headerPanel);
+        addToBuilder(cartEntryPanelList);
+    }
+
+    private void addToBuilder(List<CartEntryPanel> cartEntryPanelList)
+    {
+        if (CollectionUtils.isNotEmpty(cartEntryPanelList))
+        {
+            for (CartEntryPanel cartEntryPanel : cartEntryPanelList)
+            {
+                addToBuilder(cartEntryPanel);
+            }
+        }
     }
 
     private void addToBuilder(Component component)
@@ -142,6 +150,7 @@ public class CartPanel extends JPanel
     private void initBuilder()
     {
         currentRow = 1;
+        layout = FormLayoutUtils.createCartListLayout(cartEntryPanelList.size());
         builder = new DefaultFormBuilder(layout);
     }
 

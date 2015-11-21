@@ -10,6 +10,7 @@ import pl.wujko.one_more.frontend.panels.entry.EntryPanel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
 
 import javax.swing.JPanel;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -112,25 +113,13 @@ public class SpacePanel extends JPanel
 
     private MouseListener createMouseListener(final JPanel panel)
     {
-        return new MouseListener()
+        return new MouseAdapter()
         {
-            @Override
-            public void mouseClicked(MouseEvent e) {}
-
             @Override
             public void mousePressed(MouseEvent e)
             {
                 removeEntry(panel);
             }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-
-            @Override
-            public void mouseExited(MouseEvent e) {}
         };
     }
 

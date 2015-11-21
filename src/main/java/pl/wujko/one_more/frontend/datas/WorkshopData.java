@@ -71,10 +71,6 @@ public class WorkshopData
     public LinkedList<Entry> getAllEntries()
     {
         LinkedList<Entry> entries = new LinkedList<Entry>();
-        if (panType.equals(PanType.AMERICAN))
-        {
-            entries.add(createEntry("AM"));
-        }
         if (CollectionUtils.isNotEmpty(leftSpace))
         {
             entries.addAll(leftSpace);
@@ -86,6 +82,15 @@ public class WorkshopData
             entries.add(createEntry(")"));
             entries.addAll(rightSpace);
         }
+
+        if (!entries.isEmpty())
+        {
+            if (panType.equals(PanType.AMERICAN))
+            {
+                entries.add(0, createEntry("AM"));
+            }
+        }
+
         return entries;
 
 //        LinkedList<Entry> entries = new LinkedList<Entry>();

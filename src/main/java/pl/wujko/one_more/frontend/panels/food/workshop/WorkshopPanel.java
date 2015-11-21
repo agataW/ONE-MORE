@@ -14,8 +14,10 @@ import pl.wujko.one_more.frontend.panels.Panel;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -33,9 +35,11 @@ public class WorkshopPanel extends Panel
 
     private SpacePanel selectedSpace;
 
-    private JButton americanPan;
+    private JButton americanPanButton;
 
-    private JButton normalPan;
+    private WorkshopData.PanType panType;
+
+    //    private JButton normalPan;
 
     @Override
     public void initPanel()
@@ -51,34 +55,51 @@ public class WorkshopPanel extends Panel
         builder.add(rightSpace, cc.xywh(2, 1, 1, 3));
         builder.add(wholeSpace, cc.xywh(1, 4, 2, 2));
 
-        builder.add(americanPan, cc.xy(4, 2));
-        builder.add(normalPan, cc.xy(4, 4));
+        builder.add(americanPanButton, cc.xy(4, 2));
+        //        builder.add(normalPan, cc.xy(4, 4));
 
         add(builder.getPanel(), cc.xy(1, 1));
     }
 
     public void initButtonsAndLabels()
     {
-        americanPan = new JButton("AM PAN");
-        americanPan.setFont(GUIConstants.DEFAULT_FONT);
-        americanPan.addActionListener(createActionListener(americanPan));
+        americanPanButton = new JButton("AM PAN");
+        americanPanButton.setFont(GUIConstants.DEFAULT_FONT);
+        americanPanButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (panType.equals(WorkshopData.PanType.AMERICAN))
+                {
+                    setPanType(WorkshopData.PanType.NORMAL);
+                }
+                else
+                {
+                    setPanType(WorkshopData.PanType.AMERICAN);
+                }
+            }
+        });
 
-        normalPan = new JButton("NORMAL");
-        normalPan.setFont(GUIConstants.DEFAULT_FONT);
-        normalPan.addActionListener(createActionListener(normalPan));
-        normalPan.setEnabled(false);
+        panType = WorkshopData.PanType.NORMAL;
+        setPanType(panType); // musi być po inicjalizacji americanPanButton
+
+        //        normalPan = new JButton("NORMAL");
+        //        normalPan.setFont(GUIConstants.DEFAULT_FONT);
+        //        normalPan.addActionListener(createActionListener(normalPan));
+        //        normalPan.setEnabled(false);
 
         leftSpace = new SpacePanel(SpacePanel.Space.HALF);
         leftSpace.setBackground(GUIConstants.WORKSPACE_PANEL_BACKGROUND);
-        leftSpace.addMouseListener(createMouseListener(leftSpace));
+        leftSpace.addMouseListener(createMouseAdapterForSpace(leftSpace));
 
         rightSpace = new SpacePanel(SpacePanel.Space.HALF);
         rightSpace.setBackground(GUIConstants.WORKSPACE_PANEL_BACKGROUND);
-        rightSpace.addMouseListener(createMouseListener(rightSpace));
+        rightSpace.addMouseListener(createMouseAdapterForSpace(rightSpace));
 
         wholeSpace = new SpacePanel(SpacePanel.Space.WHOLE);
         wholeSpace.setBackground(GUIConstants.WORKSPACE_PANEL_BACKGROUND);
-        wholeSpace.addMouseListener(createMouseListener(wholeSpace));
+        wholeSpace.addMouseListener(createMouseAdapterForSpace(wholeSpace));
         selectSpace(wholeSpace);
     }
 
@@ -98,10 +119,7 @@ public class WorkshopPanel extends Panel
 
     public void editWorkshop(WorkshopData workshopData)
     {
-        if (workshopData.getPanType().equals(WorkshopData.PanType.AMERICAN))
-        {
-            selectPan(americanPan);
-        }
+        setPanType(workshopData.getPanType());
 
         if (CollectionUtils.isNotEmpty(workshopData.getWholeSpace()))
         {
@@ -128,6 +146,24 @@ public class WorkshopPanel extends Panel
         }
     }
 
+    private void setPanType(WorkshopData.PanType panType)
+    {
+        this.panType = panType;
+        changePanTypeButton(panType);
+    }
+
+    private void changePanTypeButton(WorkshopData.PanType panType)
+    {
+        if (panType.equals(WorkshopData.PanType.AMERICAN))
+        {
+            americanPanButton.setBackground(Color.GREEN);
+        }
+        else
+        {
+            americanPanButton.setBackground(Color.GRAY);
+        }
+    }
+
     public void addEntryToSelectedSpace(Entry entry)
     {
         selectedSpace.addEntry(entry);
@@ -148,13 +184,9 @@ public class WorkshopPanel extends Panel
         return rightSpace.getEntriesMap();
     }
 
-    public WorkshopData.PanType getPan()
+    public WorkshopData.PanType getPanType()
     {
-        if (americanPan.isEnabled())
-        {
-            return WorkshopData.PanType.NORMAL;
-        }
-        return WorkshopData.PanType.AMERICAN;
+        return panType;
     }
 
     public void clearWorkshop()
@@ -163,6 +195,7 @@ public class WorkshopPanel extends Panel
         leftSpace.clearSpace();
         rightSpace.clearSpace();
         selectSpace(wholeSpace);
+        setPanType(WorkshopData.PanType.NORMAL);
     }
 
     public void selectWholeSpace()
@@ -170,12 +203,6 @@ public class WorkshopPanel extends Panel
         selectSpace(wholeSpace);
     }
 
-    private void selectPan(JButton button)
-    {
-        americanPan.setEnabled(true);
-        normalPan.setEnabled(true);
-        button.setEnabled(false);
-    }
 
     private void selectSpace(SpacePanel space)
     {
@@ -192,39 +219,15 @@ public class WorkshopPanel extends Panel
         selectedSpace = space;
     }
 
-    private ActionListener createActionListener(final JButton button)
+    private MouseListener createMouseAdapterForSpace(final SpacePanel space)
     {
-        return new ActionListener()
+        return new MouseAdapter()
         {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                selectPan(button);
-            }
-        };
-    }
-
-    private MouseListener createMouseListener(final SpacePanel space)
-    {
-        return new MouseListener()
-        {
-            @Override
-            public void mouseClicked(MouseEvent e) {}
-
             @Override
             public void mousePressed(MouseEvent e)
             {
                 selectSpace(space);
             }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-
-            @Override
-            public void mouseExited(MouseEvent e) {}
         };
     }
 }
