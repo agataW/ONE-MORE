@@ -35,6 +35,7 @@ public class ToppingDao implements Dao<Topping>
 
     private List<Topping> convert(ResultSet rs) {
         List<Topping> toppingList = new ArrayList<Topping>();
+        Topping ser = null;
         try
         {
             while (rs.next())
@@ -50,13 +51,22 @@ public class ToppingDao implements Dao<Topping>
                 topping.setFontColor(rs.getString(ToppingEnum.FONT_COLOR.toString()));
                 topping.setBackgroundColor(rs.getString(ToppingEnum.BACKGROUND_COLOR.toString()));
                 topping.setVisible(rs.getBoolean(ToppingEnum.VISIBLE.toString()));
-                toppingList.add(topping);
+                if (topping.getKey().equals("SER"))
+                {
+                    ser = topping;
+                }
+                else
+                {
+                    toppingList.add(topping);
+                }
             }
         }
         catch (SQLException e)
         {
             return null;
         }
+
+        toppingList.add(ser);
         return toppingList;
     }
 }
