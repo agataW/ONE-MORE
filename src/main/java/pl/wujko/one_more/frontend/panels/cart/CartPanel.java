@@ -83,7 +83,7 @@ public class CartPanel extends JPanel
         }
         lastAdditionCartEntry.add(addition);
 
-        CartEntryPanel cartEntryPanel = new CartEntryPanel(lastAdditionCartEntry.getWorkshopData());
+        CartEntryPanel cartEntryPanel = new CartEntryPanel(lastAdditionCartEntry.createWorkshopData());
         cartEntryPanel.disableEditButton();
         cartEntryPanelList.add(index, cartEntryPanel);
         addToBuilder(cartEntryPanel);
@@ -175,7 +175,7 @@ public class CartPanel extends JPanel
             return additionList.size() == 5;
         }
 
-        public WorkshopData getWorkshopData()
+        public WorkshopData createWorkshopData()
         {
             WorkshopData workshopData = new WorkshopData();
             workshopData.setPanType(WorkshopData.PanType.NO_PANE);

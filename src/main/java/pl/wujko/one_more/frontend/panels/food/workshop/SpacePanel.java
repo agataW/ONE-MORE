@@ -58,10 +58,32 @@ public class SpacePanel extends JPanel
 
     public WujkoMap<JPanel, Entry> getEntriesMap()
     {
-        WujkoMap<JPanel, Entry> wujkoMap = new WujkoMap<JPanel, Entry>(entryMap);
+//        WujkoMap<JPanel, Entry> wujkoMap = new WujkoMap<JPanel, Entry>(entryMap);
+//        entryMap.clear();
+        return entryMap;
+    }
+
+    public void clearSpace()
+    {
         entryMap.clear();
-        removeEntry(null);
-        return wujkoMap;
+        repaintSpace();
+    }
+
+    private void repaintSpace()
+    {
+        removeAll();
+        initBuilder();
+
+        if (entryMap.isEmpty())
+        {
+            repaint();
+            revalidate();
+            return;
+        }
+        for (JPanel jPanel : entryMap.keyList())
+        {
+            addPanel(jPanel);
+        }
     }
 
     private void initBuilder()
@@ -85,19 +107,7 @@ public class SpacePanel extends JPanel
         {
             entryMap.remove(panel);
         }
-        removeAll();
-        initBuilder();
-
-        if (entryMap.isEmpty())
-        {
-            repaint();
-            revalidate();
-            return;
-        }
-        for (JPanel jPanel : entryMap.keyList())
-        {
-            addPanel(jPanel);
-        }
+        repaintSpace();
     }
 
     private MouseListener createMouseListener(final JPanel panel)

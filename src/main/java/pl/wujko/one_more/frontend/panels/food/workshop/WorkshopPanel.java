@@ -96,7 +96,7 @@ public class WorkshopPanel extends Panel
     }
 
 
-    public void editEntry(WorkshopData workshopData)
+    public void editWorkshop(WorkshopData workshopData)
     {
         if (workshopData.getPanType().equals(WorkshopData.PanType.AMERICAN))
         {
@@ -157,6 +157,19 @@ public class WorkshopPanel extends Panel
         return WorkshopData.PanType.AMERICAN;
     }
 
+    public void clearWorkshop()
+    {
+        wholeSpace.clearSpace();
+        leftSpace.clearSpace();
+        rightSpace.clearSpace();
+        selectSpace(wholeSpace);
+    }
+
+    public void selectWholeSpace()
+    {
+        selectSpace(wholeSpace);
+    }
+
     private void selectPan(JButton button)
     {
         americanPan.setEnabled(true);
@@ -166,6 +179,11 @@ public class WorkshopPanel extends Panel
 
     private void selectSpace(SpacePanel space)
     {
+        if (space.equals(selectedSpace))
+        {
+            space = wholeSpace;
+        }
+
         leftSpace.setBorder(GUIConstants.WORKSPACE_BORDER_BLACK);
         rightSpace.setBorder(GUIConstants.WORKSPACE_BORDER_BLACK);
         wholeSpace.setBorder(GUIConstants.WORKSPACE_BORDER_BLACK);

@@ -87,6 +87,23 @@ public class WorkshopData
             entries.addAll(rightSpace);
         }
         return entries;
+
+//        LinkedList<Entry> entries = new LinkedList<Entry>();
+//        if (panType.equals(PanType.AMERICAN))
+//        {
+//            entries.add(createEntry("AM"));
+//        }
+//        if (CollectionUtils.isNotEmpty(leftSpace) || CollectionUtils.isNotEmpty(rightSpace))
+//        {
+//            entries.addAll(leftSpace);
+//            entries.add(createEntry("|"));
+//            entries.addAll(rightSpace);
+//        }
+//        else
+//        {
+//            entries.addAll(wholeSpace);
+//        }
+//        return entries;
     }
 
     public int getPrice()

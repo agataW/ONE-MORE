@@ -3,7 +3,6 @@ package pl.wujko.one_more.frontend.controller;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Composition;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
-import pl.wujko.one_more.frontend.panels.food.FoodPanel;
 import pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel;
 
 import javax.annotation.Resource;
@@ -15,9 +14,6 @@ public class WorkshopController
 {
     @Resource
     private WorkshopPanel workshopPanel;
-
-    @Resource
-    private FoodPanel foodPanel;
 
     public void addToSelectedWorkSpace(Entry entry)
     {
@@ -31,9 +27,12 @@ public class WorkshopController
         workshopData.setWholeSpace(workshopPanel.getWholeSpaceData());
         workshopData.setRightSpace(workshopPanel.getRightSpaceData());
         workshopData.setPanType(workshopPanel.getPan());
-        foodPanel.refresh();
-
         return workshopData;
+    }
+
+    public void clearWorkshop()
+    {
+        workshopPanel.clearWorkshop();
     }
 
     public void addToWholeSpace(Composition composition)
@@ -43,10 +42,12 @@ public class WorkshopController
 
     public void editEntry(WorkshopData workshopData)
     {
-        workshopPanel.getLeftSpaceData(); //bardzo glupie
-        workshopPanel.getWholeSpaceData(); //bardzo glupie
-        workshopPanel.getRightSpaceData(); //bardzo glupie
-        foodPanel.refresh();
-        workshopPanel.editEntry(workshopData);
+        workshopPanel.clearWorkshop();
+        workshopPanel.editWorkshop(workshopData);
+    }
+
+    public void selectWholeSpace()
+    {
+        workshopPanel.selectWholeSpace();
     }
 }

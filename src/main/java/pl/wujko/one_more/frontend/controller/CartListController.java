@@ -38,6 +38,7 @@ public class CartListController
     public void addItemsToActiveCart()
     {
         WorkshopData workshop = workshopController.getWorkshopData();
+        workshopController.clearWorkshop();
 
         if (!workshop.isEmpty())
         {
