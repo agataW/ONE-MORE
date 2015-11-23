@@ -128,8 +128,8 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
     {
         for (Entry entry : space)
         {
-            EntryPanel panel = new EntryPanel(entry);
-            addToBuilder(panel);
+            EntryPanel entryPanel = new EntryPanel(entry);
+            addToBuilder(entryPanel);
         }
     }
 

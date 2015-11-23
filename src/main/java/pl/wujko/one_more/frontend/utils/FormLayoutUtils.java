@@ -14,6 +14,8 @@ public class FormLayoutUtils
 
     private static final String MAX_NEXT = ", 1dlu, f:p:g(0.9)";
 
+    private static final String MIN_NEXT = ", 1dlu, f:m";
+
     //CART
     public static final String CART_START = "f:m";
 
@@ -48,6 +50,10 @@ public class FormLayoutUtils
             if (count - 4 == i)
             {
                 specs.append(MAX_NEXT);
+                specs.append(MIN_NEXT);
+                specs.append(MIN_NEXT);
+                specs.append(MIN_NEXT);
+                break;
             }
             else
             {

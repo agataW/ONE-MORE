@@ -7,6 +7,7 @@ import pl.wujko.one_more.frontend.GUIConstants;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  * Created by Agata on 2015-10-25.
@@ -18,11 +19,7 @@ public class EntryPanel extends JPanel
         setLayout(new FormLayout("f:p:g", "f:m"));
         setBackground(entry.getBackgroundColor());
 
-        StringBuilder text = new StringBuilder()
-            .append(' ')
-            .append(entry.getKey())
-            .append(' ');
-        JLabel label = new JLabel(text.toString());
+        JLabel label = new JLabel(entry.getKey(), SwingConstants.CENTER);
         label.setFont(GUIConstants.DEFAULT_FONT);
         label.setForeground(entry.getFontColor());
 
