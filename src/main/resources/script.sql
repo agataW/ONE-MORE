@@ -34,15 +34,16 @@ INSERT OR IGNORE INTO TOPPING VALUES (18,   'SUSZONE_POMIDORY',     '18',      1
 INSERT OR IGNORE INTO TOPPING VALUES (19,   'SER_FETA',             '19',      160,   80,    1,   'img/feta.png',                '000000',   '14c814',   '1');
 INSERT OR IGNORE INTO TOPPING VALUES (20,   'SZYNKA_PROSCIUTTO',    '20',      380,   170,   1,   'img/szynka_prosciutto.png',   '000000',   'ff0000',   '1');
 INSERT OR IGNORE INTO TOPPING VALUES (21,   'SER',                  'SER',     80,    0,     0,   'img/ser.png',                 '000000',   '14c814',   '1');
-INSERT OR IGNORE INTO TOPPING VALUES (22,   'MIESO WOLOWE',         '21',      270,   0,     0,   'img/wolowina.png',            '000000',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (22,   'MIESO WOLOWE',         '21',      270,   0,     1,   'img/wolowina.png',           '000000',   '14c814',   '1');
 INSERT OR IGNORE INTO TOPPING VALUES (23,   'CHORIZO',              '22',      290,   0,     0,   'img/chorizo.png',            '000000',   'ff0000',   '1');
 INSERT OR IGNORE INTO TOPPING VALUES (24,   'RICOTTA',              '23',      240,   0,     0,   'img/ricotto.png',            '000000',   '14c814',   '1');
 INSERT OR IGNORE INTO TOPPING VALUES (25,   'GORGONZOLA',           '24',      360,   0,     0,   'img/gorgonzola.png',         '000000',   '14c814',   '1');
-INSERT OR IGNORE INTO TOPPING VALUES (26,   'OLIWKI ZIELONE',       '25',      70,    0,     0,   'img/oliwki_zielone.png',     '000000',   '14c814',   '1');
+INSERT OR IGNORE INTO TOPPING VALUES (26,   'OLIWKI ZIELONE',       '25',      70,    0,     1,   'img/oliwki_zielone.png',     '000000',   '14c814',   '1');
 INSERT OR IGNORE INTO TOPPING VALUES (27,   'KAPARY',               '26',      160,   0,     0,   'img/kapary.png',             '000000',   '14c814',   '1');
 INSERT OR IGNORE INTO TOPPING VALUES (28,   'OSTRY SOS',            'OSTRY',   0,     0,     0,   'img/kapary.png',             '000000',   '8c3c00',   '0');
 INSERT OR IGNORE INTO TOPPING VALUES (29,   'PARMEZAN',             'PRMZN',   0,     0,     0,   'img/kapary.png',             '000000',   '8c3c00',   '0');
 
+UPDATE TOPPING SET IS_LIMITED = 1 WHERE ID = 22 OR ID = 26;
 
 CREATE TABLE IF NOT EXISTS ADDITION (
     ID                 INTEGER PRIMARY KEY AUTOINCREMENT,

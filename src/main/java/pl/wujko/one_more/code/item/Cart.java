@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Created by Agata on 2015-06-25.
  */
+@Deprecated
 public class Cart
 {
     private List<CartEntry> cartEntryList = new ArrayList<CartEntry>();

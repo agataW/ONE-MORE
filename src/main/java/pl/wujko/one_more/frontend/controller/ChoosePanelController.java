@@ -16,7 +16,7 @@ public class ChoosePanelController
     private FoodPanel foodPanel;
 
     @Resource
-    private ToppingAndAdditionPanel itemsPanel;
+    private ToppingAndAdditionPanel toppingAndAdditionPanel;
 
     @Resource
     private CompositionPanel compositionPanel;
@@ -29,7 +29,7 @@ public class ChoosePanelController
         }
         else if (ChoosePanelPanel.CHOOSE_WORKSHOP.equals(chooseWorkshop))
         {
-            foodPanel.setSelectedPanel(itemsPanel);
+            foodPanel.setSelectedPanel(toppingAndAdditionPanel);
         }
     }
 }

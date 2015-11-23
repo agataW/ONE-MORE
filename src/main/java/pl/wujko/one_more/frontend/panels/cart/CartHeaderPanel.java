@@ -29,7 +29,7 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
     {
         this.currentCartPanel = cartPanel;
 
-        setBackground(GUIConstants.CART_ENTRY_PANEL_BACKGROUND);
+        setBackground(GUIConstants.CART_HEADER_PANEL_BACKGROUND);
 
         JLabel time = new JLabel(getCurrentTime());
         time.setFont(GUIConstants.DEFAULT_FONT);

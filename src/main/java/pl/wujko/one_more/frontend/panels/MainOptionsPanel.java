@@ -64,6 +64,13 @@ public class MainOptionsPanel extends Panel implements ActionListener, NeedConfi
         add(builder.getPanel(), cc.xy(1, 1));
     }
 
+    public void setPrice(int price)
+    {
+        int integer = price / 100;
+        int afterComa = price % 100;
+        this.price.setText(integer + "." + afterComa + " zł");
+    }
+
     @Override
     public void actionPerformed(ActionEvent e)
     {

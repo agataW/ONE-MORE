@@ -20,7 +20,7 @@ public class FoodPanel extends Panel
     @Resource
     private WorkshopPanel workshopPanel;
 
-    @Resource(name="itemsPanel")
+    @Resource(name="toppingAndAdditionPanel")
     private Panel selectedPanel;
 
     @Override
@@ -45,11 +45,6 @@ public class FoodPanel extends Panel
         this.selectedPanel = selectedPanel;
         removeAll();
         initPanel();
-        revalidate();
-    }
-
-    public void refresh()
-    {
         revalidate();
     }
 }

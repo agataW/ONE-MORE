@@ -1,12 +1,13 @@
 package pl.wujko.one_more.frontend.datas;
 
 import org.apache.commons.collections.CollectionUtils;
-import pl.wujko.map.WujkoMap;
 import pl.wujko.one_more.code.item.Entry;
+import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.code.item.entries.Topping;
 import pl.wujko.one_more.code.constance.PizzaConstants;
+import pl.wujko.one_more.frontend.interfaces.SpaceList;
+import pl.wujko.one_more.frontend.panels.food.workshop.SpacePanel;
 
-import javax.swing.JPanel;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,32 +16,161 @@ import java.util.List;
  */
 public class WorkshopData
 {
-    private LinkedList<Entry> leftSpace;
+    private SpaceList<Entry> leftSpace;
 
-    private LinkedList<Entry> wholeSpace;
+    private SpaceList<Entry> wholeSpace;
 
-    private LinkedList<Entry> rightSpace;
+    private SpaceList<Entry> rightSpace;
 
     private PanType panType;
 
-    public void setLeftSpace(WujkoMap<JPanel, Entry> leftSpaceData)
+    public WorkshopData()
     {
-        this.leftSpace = sort(leftSpaceData.valueList());
+        leftSpace = new SpaceList<Entry>(SpacePanel.Space.HALF);
+        rightSpace = new SpaceList<Entry>(SpacePanel.Space.HALF);
+        wholeSpace = new SpaceList<Entry>(SpacePanel.Space.WHOLE);
+        panType = PanType.NORMAL;
     }
 
-    public void setWholeSpace(WujkoMap<JPanel, Entry> wholeSpaceData)
+    public LinkedList<Entry> getAllEntries()
     {
-        this.wholeSpace = sort(wholeSpaceData.valueList());
+        LinkedList<Entry> entries = new LinkedList<Entry>();
+        if (CollectionUtils.isNotEmpty(leftSpace))
+        {
+            entries.addAll(leftSpace);
+            entries.add(createEntry("("));
+        }
+        entries.addAll(wholeSpace);
+        if (CollectionUtils.isNotEmpty(rightSpace))
+        {
+            entries.add(createEntry(")"));
+            entries.addAll(rightSpace);
+        }
+
+        if (!entries.isEmpty())
+        {
+            if (panType.equals(PanType.AMERICAN))
+            {
+                entries.add(0, createEntry("AM"));
+            }
+        }
+
+        return entries;
+    }
+
+    public int getPrice()
+    {
+        int result = 0;
+        result += price(leftSpace, 2);
+        result += price(rightSpace, 2);
+        result += price(wholeSpace, 1);
+        return result == 0 ? 0 : result + getPanType().getPrice();
+    }
+
+    private Entry createEntry(final String brand)
+    {
+        Entry entry = new Topping();
+        entry.setKey(brand);
+        entry.setBackgroundColor("FFFFFF");
+        entry.setFontColor("000000");
+        return entry;
+    }
+
+    private int price(LinkedList<Entry> entryList, int v)
+    {
+        if (CollectionUtils.isEmpty(entryList))
+        {
+            return 0;
+        }
+        int price = 0;
+        for (Entry entry : entryList)
+        {
+            price += entry.getPrice();
+        }
+        return price / v;
+    }
+
+    public void addToWholeSpace(Entry entry)
+    {
+        addToSpace(wholeSpace, entry);
+    }
+
+    public void addToLeftSpace(Entry entry)
+    {
+        addToSpace(leftSpace, entry);
+    }
+
+    public void addToRightSpace(Entry entry)
+    {
+        addToSpace(rightSpace, entry);
+    }
+
+    public int size()
+    {
+        return getAllEntries().size();
+    }
+
+    private void addToSpace(SpaceList<Entry> space, List<Entry> entries)
+    {
+        for (Entry entry : entries)
+        {
+            addToSpace(space, entry);
+        }
+    }
+
+    private void addToSpace(SpaceList<Entry> space, Entry entry)
+    {
+        if (entry instanceof Addition)
+        {
+            space.add(entry);
+            return;
+        }
+
+        if (space.getSpace().getColumn() == space.size() || ((Topping) entry)
+            .isLimited() && space.getSpace().getLimit() == countContainedLimitedTopping(space))
+        {
+            return;
+        }
+
+        for (Entry spaceElement : space)
+        {
+            if (spaceElement.getPriority() > entry.getPriority())
+            {
+                space.add(space.indexOf(spaceElement), entry);
+                return;
+            }
+        }
+        space.add(entry);
+    }
+
+    private int countContainedLimitedTopping(SpaceList<Entry> space)
+    {
+        int count = 0;
+
+        for (Entry entry : space)
+        {
+            if (((Topping) entry).isLimited())
+            {
+                ++count;
+            }
+        }
+
+        return count;
+    }
+
+    public boolean isEmpty()
+    {
+        return size() == 0;
+    }
+
+    public boolean isPizza()
+    {
+        return !panType.equals(PanType.NO_PANE);
     }
 
     public void setWholeSpace(LinkedList<Entry> list)
     {
-        this.wholeSpace = list;
-    }
-
-    public void setRightSpace(WujkoMap<JPanel, Entry> rightSpaceData)
-    {
-        this.rightSpace = sort(rightSpaceData.valueList());
+        addToSpace(wholeSpace, list);
     }
 
     public PanType getPanType()
@@ -68,114 +198,20 @@ public class WorkshopData
         this.panType = panType;
     }
 
-    public LinkedList<Entry> getAllEntries()
+    public void removeFromWholeSpace(Entry entry)
     {
-        LinkedList<Entry> entries = new LinkedList<Entry>();
-        if (CollectionUtils.isNotEmpty(leftSpace))
-        {
-            entries.addAll(leftSpace);
-            entries.add(createEntry("("));
-        }
-        entries.addAll(wholeSpace);
-        if (CollectionUtils.isNotEmpty(rightSpace))
-        {
-            entries.add(createEntry(")"));
-            entries.addAll(rightSpace);
-        }
-
-        if (!entries.isEmpty())
-        {
-            if (panType.equals(PanType.AMERICAN))
-            {
-                entries.add(0, createEntry("AM"));
-            }
-        }
-
-        return entries;
-
-//        LinkedList<Entry> entries = new LinkedList<Entry>();
-//        if (panType.equals(PanType.AMERICAN))
-//        {
-//            entries.add(createEntry("AM"));
-//        }
-//        if (CollectionUtils.isNotEmpty(leftSpace) || CollectionUtils.isNotEmpty(rightSpace))
-//        {
-//            entries.addAll(leftSpace);
-//            entries.add(createEntry("|"));
-//            entries.addAll(rightSpace);
-//        }
-//        else
-//        {
-//            entries.addAll(wholeSpace);
-//        }
-//        return entries;
+        wholeSpace.remove(entry);
     }
 
-    public int getPrice()
+    public void removeFromLeftSpace(Entry entry)
     {
-        int result = getPanType().getPrice();
-        result += price(leftSpace, 2);
-        result += price(rightSpace, 2);
-        result += price(wholeSpace, 1);
-        return result;
+        leftSpace.remove(entry);
     }
 
-    private Entry createEntry(final String brand)
+
+    public void removeFromRightSpace(Entry entry)
     {
-        Entry entry = new Topping();
-        entry.setKey(brand);
-        entry.setBackgroundColor("FFFFFF");
-        entry.setFontColor("000000");
-        return entry;
-    }
-
-    private int price(LinkedList<Entry> entryList, int v)
-    {
-        if (CollectionUtils.isEmpty(entryList))
-        {
-            return 0;
-        }
-        int price = 0;
-        for (Entry entry : entryList)
-        {
-            price += entry.getPrice();
-        }
-        return price / v;
-    }
-
-    public int size()
-    {
-        return getAllEntries().size();
-    }
-
-    private LinkedList<Entry> sort(List<Entry> entryList)
-    {
-        LinkedList<Entry> resultEntries = new LinkedList<Entry>();
-
-        int index;
-        for (Entry entry : entryList)
-        {
-            for (index = 0; index < resultEntries.size(); ++index)
-            {
-                if (entry.getPriority() > resultEntries.get(index).getPriority())
-                {
-                    break;
-                }
-            }
-            resultEntries.add(entry);
-        }
-
-        return resultEntries;
-    }
-
-    public boolean isEmpty()
-    {
-        return size() == 0;
-    }
-
-    public boolean isPizza()
-    {
-        return !panType.equals(PanType.NO_PANE);
+        rightSpace.remove(entry);
     }
 
     public enum PanType
@@ -195,5 +231,6 @@ public class WorkshopData
         {
             return price;
         }
+
     }
 }

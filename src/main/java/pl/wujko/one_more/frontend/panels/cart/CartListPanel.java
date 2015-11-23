@@ -3,26 +3,25 @@ package pl.wujko.one_more.frontend.panels.cart;
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
-import pl.wujko.map.WujkoMap;
-import pl.wujko.one_more.code.item.Cart;
+import org.apache.commons.collections.CollectionUtils;
 import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.Panel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
 
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Agata on 2015-06-30.
  */
 public class CartListPanel extends Panel
 {
-    public static final int MAX_ROW_COUNT = 100;
-
-    private FormLayout layout;
 
     private DefaultFormBuilder builder;
 
@@ -30,61 +29,80 @@ public class CartListPanel extends Panel
 
     private CartPanel currentCartPanel;
 
-    private WujkoMap<CartPanel, Cart> cartMap;
+    private List<CartPanel> cartPanelList;
 
     private int currentRow;
 
     @Override
     public void initPanel()
     {
+        cartPanelList = new LinkedList<CartPanel>();
+
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:m"));
 
-        initBuilder();
         cc = new CellConstraints();
-        add(builder.getPanel(), cc.xy(1, 1));
 
-        cartMap = new WujkoMap<CartPanel, Cart>();
         addNewCart();
+    }
+
+    private void repaintBuilder()
+    {
+        currentRow = 1;
+        FormLayout layout = FormLayoutUtils.createCartListLayout(cartPanelList.size());
+        builder = new DefaultFormBuilder(layout);
+        removeAll();
+        repaint();
+        addToBuilder(cartPanelList);
+    }
+
+    private void addToBuilder(List<CartPanel> cartPanelList)
+    {
+        if (CollectionUtils.isNotEmpty(cartPanelList))
+        {
+            for (CartPanel cartPanel : cartPanelList)
+            {
+                addToBuilder(cartPanel);
+            }
+        }
+        add(builder.getPanel(), cc.xy(1, 1));
+    }
+
+    private void addToBuilder(Component component)
+    {
+        builder.add(component, cc.xy(1, currentRow));
+        currentRow += 2;
     }
 
     public void addNewCart()
     {
-        if (currentRow <= MAX_ROW_COUNT)
+        if (currentRow <= (cartPanelList.size() * 2 + 1))
         {
             CartPanel cartPanel = new CartPanel();
             cartPanel.addMouseListener(createMouseListener(cartPanel));
-            addPanel(cartPanel);
 
-            cartMap.put(cartPanel, new Cart());
+            cartPanelList.add(cartPanel);
+            repaintBuilder();
             selectCurrentCartPanel(cartPanel);
         }
     }
 
-    private void addPanel(CartPanel cartPanel)
-    {
-        builder.add(cartPanel, cc.xy(1, currentRow));
-        currentRow += 2;
-
-        add(builder.getPanel(), cc.xy(1, 1));
-        revalidate();
-    }
-
     public void removeCart(CartPanel cartPanel)
     {
-        ifMustSetNewCurrentCartPanel(cartPanel); // musi być przed **cartMap.remove (cartPanel);**
+        ifMustSetNewCurrentCartPanel(cartPanel); // musi być przed **carttttMap . remove (cartPanel);**
         if (cartPanel != null)
         {
-            cartMap.remove(cartPanel);
+            cartPanelList.remove(cartPanel);
         }
 
-        repaintCartListPanel();
+        repaintBuilder();
     }
 
     public void removeAllCarts()
     {
-        cartMap.clear();
-        repaintCartListPanel();
+        cartPanelList.clear();
+        currentCartPanel = null;
+        repaintBuilder();
     }
 
     public void addToSelectedCart(WorkshopData workshop)
@@ -99,7 +117,7 @@ public class CartListPanel extends Panel
 
     public void removeCartEntry(CartEntryPanel cartEntryPanel)
     {
-        for (CartPanel cartPanel : cartMap.keyList())
+        for (CartPanel cartPanel : cartPanelList)
         {
             if (cartPanel.contains(cartEntryPanel))
             {
@@ -118,44 +136,20 @@ public class CartListPanel extends Panel
         currentCartPanel.addAddition(addition);
     }
 
-    private void repaintCartListPanel()
-    {
-        removeAll();
-        initBuilder();
-
-        if (cartMap.isEmpty())
-        {
-            repaint();
-            revalidate();
-            return;
-        }
-        for (CartPanel panel : cartMap.keyList())
-        {
-            addPanel(panel);
-        }
-    }
-
     private void ifMustSetNewCurrentCartPanel(CartPanel cartPanelToRemove)
     {
-        if (cartPanelToRemove == null || cartMap.size() == 1)
+        if (cartPanelToRemove == null || cartPanelList.size() == 1)
         {
             currentCartPanel = null;
             return;
         }
 
-        selectCurrentCartPanel(cartMap.getKey(0));
-    }
-
-    private void initBuilder()
-    {
-        currentRow = 1;
-        layout = FormLayoutUtils.createCartListLayout(MAX_ROW_COUNT);
-        builder = new DefaultFormBuilder(layout);
+        selectCurrentCartPanel(cartPanelList.get(0));
     }
 
     private void selectCurrentCartPanel(CartPanel cartPanel)
     {
-        for (CartPanel panel : cartMap.keyList())
+        for (CartPanel panel : cartPanelList)
         {
             panel.setBorder(GUIConstants.CART_BORDER_BLACK);
         }

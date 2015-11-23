@@ -21,10 +21,6 @@ import java.util.List;
  */
 public class CartPanel extends JPanel
 {
-    //    public static final int MAX_ROW_COUNT = 15;
-
-    private FormLayout layout;
-
     private DefaultFormBuilder builder;
 
     private CellConstraints cc;
@@ -42,7 +38,7 @@ public class CartPanel extends JPanel
         headerPanel = new CartHeaderPanel(this);
         cartEntryPanelList = new LinkedList<CartEntryPanel>();
 
-        setBackground(GUIConstants.CART_LIST_PANEL_BACKGROUND);
+        setBackground(GUIConstants.CART_HEADER_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:m"));
 
         initPanel();
@@ -142,7 +138,6 @@ public class CartPanel extends JPanel
     {
         builder.add(component, cc.xy(1, currentRow));
         currentRow += 2;
-        removeAll();
         add(builder.getPanel(), cc.xy(1, 1));
         calculatePrice();
     }
@@ -150,8 +145,9 @@ public class CartPanel extends JPanel
     private void initBuilder()
     {
         currentRow = 1;
-        layout = FormLayoutUtils.createCartListLayout(cartEntryPanelList.size());
+        FormLayout layout = FormLayoutUtils.createCartListLayout(cartEntryPanelList.size());
         builder = new DefaultFormBuilder(layout);
+        removeAll();
     }
 
     private class AdditionCartEntry

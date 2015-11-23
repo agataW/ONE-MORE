@@ -28,7 +28,7 @@ public class GUIConstants
     // CART
     public static final Color CART_BORDER_COLOR = new Color(153, 104, 55);
 
-    public static final Color CART_LIST_PANEL_BACKGROUND = new Color(40, 40, 40);
+    public static final Color CART_HEADER_PANEL_BACKGROUND = new Color(40, 40, 40);
 
     public static final Border CART_BORDER = BorderFactory.createLineBorder(CART_BORDER_COLOR, 2);
 

@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Created by Agata on 2015-06-25.
  */
+@Deprecated
 public class CartEntry {
     private Cart cart;
     private List<Entry> entryList;

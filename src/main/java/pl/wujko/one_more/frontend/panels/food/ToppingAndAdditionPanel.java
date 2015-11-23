@@ -23,7 +23,9 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Agata on 2015-10-11.
@@ -42,6 +44,10 @@ public class ToppingAndAdditionPanel extends Panel
     @Resource
     private CartListController cartListController;
 
+//    private List<Topping> toppingList;
+
+    private Map<Topping, JButton> toppingToButtonMap;
+
     private int TOPPING_COLUMN_COUNT;
 
     @Override
@@ -50,6 +56,7 @@ public class ToppingAndAdditionPanel extends Panel
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:p:g"));
 
+        toppingToButtonMap = new HashMap<Topping, JButton>();
         List<Topping> toppingList = toppingService.findAllVisible();
         List<Addition> additionList = additionService.findAll();
 
@@ -71,6 +78,7 @@ public class ToppingAndAdditionPanel extends Panel
         {
             JButton button = createButtonFor(topping);
             builder.add(button, cc.rc(row, column));
+            toppingToButtonMap.put(topping, button);
 
             row += 2;
             if (row > maxRow)
@@ -90,6 +98,18 @@ public class ToppingAndAdditionPanel extends Panel
         }
 
         add(builder.getPanel(), cc.xy(1, 1));
+    }
+
+
+    public void setButtonDisable(boolean disable)
+    {
+        for (Topping topping : toppingToButtonMap.keySet())
+        {
+            if (topping.isLimited())
+            {
+                toppingToButtonMap.get(topping).setEnabled(disable);
+            }
+        }
     }
 
     private JButton createButtonFor(final Topping topping)

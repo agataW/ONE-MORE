@@ -4,7 +4,6 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import org.apache.commons.collections.CollectionUtils;
-import pl.wujko.map.WujkoMap;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Composition;
 import pl.wujko.one_more.code.item.entries.Topping;
@@ -13,7 +12,6 @@ import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.Panel;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,7 +35,7 @@ public class WorkshopPanel extends Panel
 
     private JButton americanPanButton;
 
-    private WorkshopData.PanType panType;
+    private WorkshopData workshopData;
 
     //    private JButton normalPan;
 
@@ -63,6 +61,8 @@ public class WorkshopPanel extends Panel
 
     public void initButtonsAndLabels()
     {
+        workshopData = new WorkshopData();
+
         americanPanButton = new JButton("AM PAN");
         americanPanButton.setFont(GUIConstants.DEFAULT_FONT);
         americanPanButton.addActionListener(new ActionListener()
@@ -70,19 +70,22 @@ public class WorkshopPanel extends Panel
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                WorkshopData.PanType panType = workshopData.getPanType();
                 if (panType.equals(WorkshopData.PanType.AMERICAN))
                 {
-                    setPanType(WorkshopData.PanType.NORMAL);
+                    workshopData.setPanType(WorkshopData.PanType.NORMAL);
+                    changePanTypeButton(WorkshopData.PanType.NORMAL);
                 }
                 else
                 {
-                    setPanType(WorkshopData.PanType.AMERICAN);
+                    workshopData.setPanType(WorkshopData.PanType.AMERICAN);
+                    changePanTypeButton(WorkshopData.PanType.AMERICAN);
                 }
             }
         });
 
-        panType = WorkshopData.PanType.NORMAL;
-        setPanType(panType); // musi być po inicjalizacji americanPanButton
+        workshopData.setPanType(WorkshopData.PanType.NORMAL);
+        changePanTypeButton(WorkshopData.PanType.NORMAL);
 
         //        normalPan = new JButton("NORMAL");
         //        normalPan.setFont(GUIConstants.DEFAULT_FONT);
@@ -113,13 +116,15 @@ public class WorkshopPanel extends Panel
         for (Topping topping : toppingList)
         {
             wholeSpace.addEntry(topping);
+            workshopData.addToWholeSpace(topping);
         }
     }
 
 
     public void editWorkshop(WorkshopData workshopData)
     {
-        setPanType(workshopData.getPanType());
+        this.workshopData = workshopData;
+        changePanTypeButton(workshopData.getPanType());
 
         if (CollectionUtils.isNotEmpty(workshopData.getWholeSpace()))
         {
@@ -146,12 +151,6 @@ public class WorkshopPanel extends Panel
         }
     }
 
-    private void setPanType(WorkshopData.PanType panType)
-    {
-        this.panType = panType;
-        changePanTypeButton(panType);
-    }
-
     private void changePanTypeButton(WorkshopData.PanType panType)
     {
         if (panType.equals(WorkshopData.PanType.AMERICAN))
@@ -164,45 +163,53 @@ public class WorkshopPanel extends Panel
         }
     }
 
+    public WorkshopData getWorkshopData()
+    {
+        return workshopData;
+    }
+
     public void addEntryToSelectedSpace(Entry entry)
     {
         selectedSpace.addEntry(entry);
+        if (selectedSpace.equals(wholeSpace))
+        {
+            workshopData.addToWholeSpace(entry);
+        }
+        else if (selectedSpace.equals(leftSpace))
+        {
+            workshopData.addToLeftSpace(entry);
+        }
+        else if (selectedSpace.equals(rightSpace))
+        {
+            workshopData.addToRightSpace(entry);
+        }
     }
 
-    public WujkoMap<JPanel, Entry> getLeftSpaceData()
+    public void removeFromSpace(SpacePanel spacePanel, Entry entry)
     {
-        return leftSpace.getEntriesMap();
-    }
-
-    public WujkoMap<JPanel, Entry> getWholeSpaceData()
-    {
-        return wholeSpace.getEntriesMap();
-    }
-
-    public WujkoMap<JPanel, Entry> getRightSpaceData()
-    {
-        return rightSpace.getEntriesMap();
-    }
-
-    public WorkshopData.PanType getPanType()
-    {
-        return panType;
+        if (spacePanel.equals(wholeSpace))
+        {
+            workshopData.removeFromWholeSpace(entry);
+        }
+        else if (spacePanel.equals(leftSpace))
+        {
+            workshopData.removeFromLeftSpace(entry);
+        }
+        else if (spacePanel.equals(rightSpace))
+        {
+            workshopData.removeFromRightSpace(entry);
+        }
     }
 
     public void clearWorkshop()
     {
+        workshopData = new WorkshopData();
         wholeSpace.clearSpace();
         leftSpace.clearSpace();
         rightSpace.clearSpace();
         selectSpace(wholeSpace);
-        setPanType(WorkshopData.PanType.NORMAL);
+        changePanTypeButton(WorkshopData.PanType.NORMAL);
     }
-
-    public void selectWholeSpace()
-    {
-        selectSpace(wholeSpace);
-    }
-
 
     private void selectSpace(SpacePanel space)
     {
