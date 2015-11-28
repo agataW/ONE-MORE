@@ -28,14 +28,14 @@ public class GUIConstants
     // CART
     public static final Color CART_BORDER_COLOR = new Color(244, 63, 21);
 
-    public static final Color CART_HEADER_PANEL_BACKGROUND = new Color(100, 100, 100);
+    public static final Color CART_HEADER_PANEL_BACKGROUND = new Color(140, 140, 140);
 
     public static final Border CART_BORDER = BorderFactory.createLineBorder(CART_BORDER_COLOR, 2);
 
     public static final Border CART_BORDER_BLACK = BorderFactory.createLineBorder(new Color(0, 0, 0), 1);
 
     // CART ENTRY
-    public static final Color CART_ENTRY_PANEL_BACKGROUND = new Color(140, 140, 140);
+    public static final Color CART_ENTRY_PANEL_BACKGROUND = new Color(160, 160, 160);
 
     //CONFIRM DELETE
     public static final Color CONFIRM_DELETE_LABEL_FOREGROUND = new Color(200, 200, 200);
