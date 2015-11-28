@@ -19,6 +19,8 @@ import java.util.Date;
  */
 public class CartHeaderPanel extends JPanel implements NeedConfirmation
 {
+    private static int COUNT_OF_CART = 0;
+
     private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm");
 
     private final CartPanel currentCartPanel;
@@ -31,6 +33,8 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
 
         setBackground(GUIConstants.CART_HEADER_PANEL_BACKGROUND);
 
+        JLabel countLabel = new JLabel((++COUNT_OF_CART) + ".");
+        countLabel.setFont(GUIConstants.DEFAULT_FONT);
         JLabel time = new JLabel(getCurrentTime());
         time.setFont(GUIConstants.DEFAULT_FONT);
         price = new JLabel(Double.toString(0.00));
@@ -48,7 +52,17 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
             }
         });
 
+        add(countLabel);
+        add(new JLabel());
         add(time);
+        JLabel label = new JLabel();
+        label.setSize(100, 1);
+        add(label);
+        add(new JLabel());
+        add(new JLabel());
+        add(new JLabel());
+        add(new JLabel());
+        add(new JLabel());
         add(new JLabel());
         add(new JLabel());
         add(new JLabel());
