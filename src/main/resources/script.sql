@@ -11,8 +11,6 @@ CREATE TABLE IF NOT EXISTS TOPPING (
     VISIBLE             BOOLEAN
 );
 
-DELETE FROM TOPPING;
-
 INSERT OR IGNORE INTO TOPPING VALUES (1,    'PIECZARKI',            '1',       70,    10,    1,   'img/pieczarki.png',           '000000',   '14c814',   '1');
 INSERT OR IGNORE INTO TOPPING VALUES (2,    'CEBULA',               '2',       30,    20,    1,   'img/cebula.png',              '000000',   '14c814',   '1');
 INSERT OR IGNORE INTO TOPPING VALUES (3,    'SALAMI_PEPERONI',      '3',       110,   50,    1,   'img/pepperoni.png',           '000000',   '14c814',   '1');
@@ -43,8 +41,6 @@ INSERT OR IGNORE INTO TOPPING VALUES (27,   'KAPARY',               '26',      1
 INSERT OR IGNORE INTO TOPPING VALUES (28,   'OSTRY SOS',            'OSTRY',   0,     0,     0,   'img/kapary.png',             '000000',   '8c3c00',   '0');
 INSERT OR IGNORE INTO TOPPING VALUES (29,   'PARMEZAN',             'PRMZN',   0,     0,     0,   'img/kapary.png',             '000000',   '8c3c00',   '0');
 
-UPDATE TOPPING SET IS_LIMITED = 1 WHERE ID = 22 OR ID = 26;
-
 CREATE TABLE IF NOT EXISTS ADDITION (
     ID                 INTEGER PRIMARY KEY AUTOINCREMENT,
     NAME               VARCHAR20 NOT NULL,
@@ -56,7 +52,6 @@ CREATE TABLE IF NOT EXISTS ADDITION (
     BACKGROUND_COLOR   VARCHAR6
 );
 
-
 INSERT OR IGNORE INTO ADDITION VALUES (1, 'CZOSNKOWY',    'X',  160, 10, 'img/czosnkowy.png',  'ffffff', '3282ff');
 INSERT OR IGNORE INTO ADDITION VALUES (2, 'POMIDOROWY',   'Y',  160, 20, 'img/pomidorowy.png', 'ffffff', '3282ff');
 INSERT OR IGNORE INTO ADDITION VALUES (3, 'PIEKIELNY',    'Z',  200, 30, 'img/piekielny.png',  'ffffff', '3282ff');
@@ -64,8 +59,6 @@ INSERT OR IGNORE INTO ADDITION VALUES (4, 'BBQ',          'Q',  240, 40, 'img/bb
 INSERT OR IGNORE INTO ADDITION VALUES (5, 'OIL_1',     'OIL1',  190, 50, 'img/oil.png',        '000000', 'ffffff');
 INSERT OR IGNORE INTO ADDITION VALUES (7, 'COLA',       'COL',  400, 70, 'img/cola.png',       'ffffff', '8c3c00');
 INSERT OR IGNORE INTO ADDITION VALUES (9, 'FANTA',      'FAN',  400, 80, 'img/fanta.png',      'ffffff', '8c3c00');
-
-DELETE FROM ADDITION WHERE ID = 6 OR ID = 8;
 
 CREATE TABLE IF NOT EXISTS COMPOSITION (
     ID              INTEGER PRIMARY KEY AUTOINCREMENT,
