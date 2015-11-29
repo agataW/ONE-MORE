@@ -14,6 +14,7 @@ import pl.wujko.one_more.frontend.interfaces.NeedConfirmation;
 import pl.wujko.one_more.frontend.panels.ConfirmDeletionPanel;
 import pl.wujko.one_more.frontend.panels.entry.EntryPanel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
+import pl.wujko.one_more.frontend.utils.PriceUtils;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -119,9 +120,7 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
 
     private void calculatePrice()
     {
-        int integer = getPrice() / 100;
-        int afterComa = getPrice() % 100;
-        this.priceLabel.setText(integer + "." + afterComa + " zł");
+        this.priceLabel.setText(PriceUtils.convertPrice(getPrice()));
     }
 
     private void addToBuilder(LinkedList<Entry> space)

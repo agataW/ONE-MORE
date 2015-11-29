@@ -151,11 +151,18 @@ public class CartListPanel extends Panel
     {
         for (CartPanel panel : cartPanelList)
         {
-            panel.setBorder(GUIConstants.CART_BORDER_BLACK);
+            if (panel.equals(cartPanel))
+            {
+                panel.setBorder(GUIConstants.CART_BORDER);
+                panel.setSelected(true);
+                currentCartPanel = panel;
+            }
+            else
+            {
+                panel.setBorder(GUIConstants.CART_BORDER_BLACK);
+                panel.setSelected(false);
+            }
         }
-
-        cartPanel.setBorder(GUIConstants.CART_BORDER);
-        currentCartPanel = cartPanel;
     }
 
     private MouseListener createMouseListener(final CartPanel cartPanel)

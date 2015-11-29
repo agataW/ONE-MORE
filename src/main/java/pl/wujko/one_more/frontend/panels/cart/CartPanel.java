@@ -33,6 +33,8 @@ public class CartPanel extends JPanel
 
     private int currentRow = 1;
 
+    private boolean selected;
+
     public CartPanel()
     {
         headerPanel = new CartHeaderPanel(this);
@@ -49,6 +51,7 @@ public class CartPanel extends JPanel
         CartEntryPanel cartEntryPanel = new CartEntryPanel(workshop);
         cartEntryPanelList.add(cartEntryPanel);
         initPanel();
+        calculatePrice();
     }
 
     public void removeEntry(CartEntryPanel cartEntryPanel)
@@ -82,6 +85,7 @@ public class CartPanel extends JPanel
         CartEntryPanel cartEntryPanel = new CartEntryPanel(lastAdditionCartEntry.createWorkshopData());
         cartEntryPanel.disableEditButton();
         cartEntryPanelList.add(index, cartEntryPanel);
+        calculatePrice();
         initPanel();
 
         lastAdditionCartEntry.setCartEntryPanel(cartEntryPanel);
@@ -120,7 +124,10 @@ public class CartPanel extends JPanel
         cc = new CellConstraints();
         initBuilder();
         addToBuilder(headerPanel);
-        addToBuilder(cartEntryPanelList);
+        if (selected)
+        {
+            addToBuilder(cartEntryPanelList);
+        }
     }
 
     private void addToBuilder(List<CartEntryPanel> cartEntryPanelList)
@@ -139,15 +146,28 @@ public class CartPanel extends JPanel
         builder.add(component, cc.xy(1, currentRow));
         currentRow += 2;
         add(builder.getPanel(), cc.xy(1, 1));
-        calculatePrice();
     }
 
     private void initBuilder()
     {
         currentRow = 1;
-        FormLayout layout = FormLayoutUtils.createCartListLayout(cartEntryPanelList.size());
+        int size = 0;
+        if (selected)
+        {
+            size = cartEntryPanelList.size();
+        }
+        FormLayout layout = FormLayoutUtils.createCartListLayout(size);
         builder = new DefaultFormBuilder(layout);
         removeAll();
+    }
+
+    public void setSelected(boolean selected)
+    {
+        if (this.selected != selected)
+        {
+            this.selected = selected;
+            initPanel();
+        }
     }
 
     private class AdditionCartEntry

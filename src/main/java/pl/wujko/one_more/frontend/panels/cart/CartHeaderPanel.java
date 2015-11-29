@@ -5,6 +5,7 @@ import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
 import pl.wujko.one_more.frontend.interfaces.NeedConfirmation;
 import pl.wujko.one_more.frontend.panels.ConfirmDeletionPanel;
+import pl.wujko.one_more.frontend.utils.PriceUtils;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -37,7 +38,7 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
         countLabel.setFont(GUIConstants.DEFAULT_FONT);
         JLabel time = new JLabel(getCurrentTime());
         time.setFont(GUIConstants.DEFAULT_FONT);
-        price = new JLabel(Double.toString(0.00));
+        price = new JLabel(PriceUtils.convertPrice(0));
         price.setFont(GUIConstants.DEFAULT_FONT);
         JButton close = new JButton("X");
         close.setFont(GUIConstants.DEFAULT_FONT);
@@ -55,9 +56,6 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
         add(countLabel);
         add(new JLabel());
         add(time);
-        JLabel label = new JLabel();
-        label.setSize(100, 1);
-        add(label);
         add(new JLabel());
         add(new JLabel());
         add(new JLabel());
@@ -79,9 +77,7 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
 
     public void setPrice(int price)
     {
-        int integer = price / 100;
-        int afterComa = price % 100;
-        this.price.setText(integer + "." + afterComa + " zł");
+        this.price.setText(PriceUtils.convertPrice(price));
     }
 
     private static String getCurrentTime()
