@@ -173,7 +173,7 @@ public class SpacePanel extends JPanel
 
     public enum Space
     {
-        HALF(6, 4),
+        HALF(6, 3),
         WHOLE(8, 5);
 
         private int column;

@@ -5,6 +5,7 @@ import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.code.item.entries.Topping;
 import pl.wujko.one_more.code.constance.PizzaConstants;
+import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.interfaces.SpaceList;
 import pl.wujko.one_more.frontend.panels.food.workshop.SpacePanel;
 
@@ -50,12 +51,23 @@ public class WorkshopData
             entries.addAll(rightSpace);
         }
 
-        if (!entries.isEmpty())
+        if (!entries.isEmpty() && !panType.equals(PanType.NO_PANE))
         {
+            Entry panEntry;
             if (panType.equals(PanType.AMERICAN))
             {
-                entries.add(0, createEntry("AM"));
+                panEntry = createEntry("AM");
             }
+            else
+            {
+                panEntry = createEntry("CL");
+            }
+
+            if (panSize.equals(PanSize.SIZE_35))
+            {
+                panEntry.setBackgroundColor(GUIConstants.PAN_SIZE_35_BACKGROUND);
+            }
+            entries.add(0, panEntry);
         }
 
         return entries;
@@ -67,6 +79,11 @@ public class WorkshopData
         result += price(leftSpace, 2);
         result += price(rightSpace, 2);
         result += price(wholeSpace, 1);
+
+        if (result % 10 == 5)
+        {
+            result += 5;
+        }
         return result == 0 ? 0 : result + getPanType().getPrice();
     }
 
@@ -86,9 +103,19 @@ public class WorkshopData
             return 0;
         }
         int price = 0;
-        for (Entry entry : entryList)
+        if (panSize.equals(PanSize.SIZE_35))
         {
-            price += entry.getPrice();
+            for (Entry entry : entryList)
+            {
+                price += ((Topping) entry).getPrice35();
+            }
+        }
+        else
+        {
+            for (Entry entry : entryList)
+            {
+                price += entry.getPrice();
+            }
         }
         return price / v;
     }
@@ -248,6 +275,7 @@ public class WorkshopData
 
     public enum PanSize
     {
+        NO_SIZE,
         NORMAL,
         SIZE_35
     }

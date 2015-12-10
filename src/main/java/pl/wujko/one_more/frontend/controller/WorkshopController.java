@@ -3,6 +3,7 @@ package pl.wujko.one_more.frontend.controller;
 import pl.wujko.one_more.bean.BeanHelper;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Composition;
+import pl.wujko.one_more.code.item.entries.Topping;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.MainOptionsPanel;
 import pl.wujko.one_more.frontend.panels.food.workshop.SpacePanel;
@@ -18,9 +19,9 @@ public class WorkshopController
     @Resource
     private WorkshopPanel workshopPanel;
 
-    public void addToSelectedWorkSpace(Entry entry)
+    public void addToSelectedWorkSpace(Topping topping)
     {
-        workshopPanel.addEntryToSelectedSpace(entry);
+        workshopPanel.addEntryToSelectedSpace(topping);
         updatePriceInMainOptionPanel();
     }
 

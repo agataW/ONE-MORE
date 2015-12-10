@@ -204,6 +204,7 @@ public class CartPanel extends JPanel
         {
             WorkshopData workshopData = new WorkshopData();
             workshopData.setPanType(WorkshopData.PanType.NO_PANE);
+            workshopData.setPanSize(WorkshopData.PanSize.NO_SIZE);
             workshopData.setWholeSpace(additionList);
             return workshopData;
         }

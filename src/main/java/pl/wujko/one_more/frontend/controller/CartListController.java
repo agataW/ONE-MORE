@@ -20,6 +20,8 @@ public class CartListController
     @Resource
     private WorkshopController workshopController;
 
+    private WorkshopData lastWorkshopData;
+
     public void addNewCart()
     {
         cartListPanel.addNewCart();
@@ -43,6 +45,11 @@ public class CartListController
         if (!workshop.isEmpty())
         {
             cartListPanel.addToSelectedCart(workshop);
+            lastWorkshopData = workshop;
+        }
+        else if (lastWorkshopData != null)
+        {
+            cartListPanel.addToSelectedCart(lastWorkshopData);
         }
     }
 
