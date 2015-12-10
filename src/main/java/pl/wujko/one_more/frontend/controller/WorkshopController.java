@@ -63,4 +63,9 @@ public class WorkshopController
     {
         return (MainOptionsPanel) BeanHelper.getBean("optionsPanel");
     }
+
+    public void selectWholeSpace()
+    {
+        workshopPanel.selectWholeSpace();
+    }
 }

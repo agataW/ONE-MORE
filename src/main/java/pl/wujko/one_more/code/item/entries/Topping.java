@@ -4,8 +4,6 @@ import pl.wujko.one_more.code.constance.EntryTypeEnum;
 import pl.wujko.one_more.code.item.Entry;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -19,6 +17,7 @@ public class Topping extends Entry
     private boolean isLimited;
     private BufferedImage image;
     private boolean visible;
+    private int price35;
 
     @Override
     public EntryTypeEnum getType()
@@ -81,5 +80,15 @@ public class Topping extends Entry
     public void setVisible(boolean visible)
     {
         this.visible = visible;
+    }
+
+    public int getPrice35()
+    {
+        return price35;
+    }
+
+    public void setPrice35(int price35)
+    {
+        this.price35 = price35;
     }
 }

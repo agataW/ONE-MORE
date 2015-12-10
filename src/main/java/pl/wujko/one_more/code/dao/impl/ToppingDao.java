@@ -45,6 +45,7 @@ public class ToppingDao implements Dao<Topping>
                 topping.setName(rs.getString(ToppingEnum.NAME.toString()));
                 topping.setKey(rs.getString(ToppingEnum.KEY.toString()));
                 topping.setPrice(rs.getInt(ToppingEnum.PRICE.toString()));
+                topping.setPrice35(rs.getInt(ToppingEnum.PRICE35.toString()));
                 topping.setPriority(rs.getInt(ToppingEnum.PRIORITY.toString()));
                 topping.setLimited(rs.getBoolean(ToppingEnum.IS_LIMITED.toString()));
                 topping.setImage(rs.getString(ToppingEnum.IMAGE.toString()));

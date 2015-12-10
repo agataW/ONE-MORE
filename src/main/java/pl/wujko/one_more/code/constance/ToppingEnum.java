@@ -8,6 +8,7 @@ public enum ToppingEnum {
     NAME,
     KEY,
     PRICE,
+    PRICE35,
     PRIORITY,
     IS_LIMITED,
     IMAGE,

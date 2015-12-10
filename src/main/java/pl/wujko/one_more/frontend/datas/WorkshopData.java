@@ -24,12 +24,15 @@ public class WorkshopData
 
     private PanType panType;
 
+    private PanSize panSize;
+
     public WorkshopData()
     {
         leftSpace = new SpaceList<Entry>(SpacePanel.Space.HALF);
         rightSpace = new SpaceList<Entry>(SpacePanel.Space.HALF);
         wholeSpace = new SpaceList<Entry>(SpacePanel.Space.WHOLE);
         panType = PanType.NORMAL;
+        panSize = PanSize.NORMAL;
     }
 
     public LinkedList<Entry> getAllEntries()
@@ -173,11 +176,6 @@ public class WorkshopData
         addToSpace(wholeSpace, list);
     }
 
-    public PanType getPanType()
-    {
-        return panType;
-    }
-
     public LinkedList<Entry> getLeftSpace()
     {
         return leftSpace;
@@ -193,9 +191,24 @@ public class WorkshopData
         return rightSpace;
     }
 
+    public PanType getPanType()
+    {
+        return panType;
+    }
+
     public void setPanType(PanType panType)
     {
         this.panType = panType;
+    }
+
+    public PanSize getPanSize()
+    {
+        return panSize;
+    }
+
+    public void setPanSize(PanSize panSize)
+    {
+        this.panSize = panSize;
     }
 
     public void removeFromWholeSpace(Entry entry)
@@ -231,6 +244,11 @@ public class WorkshopData
         {
             return price;
         }
+    }
 
+    public enum PanSize
+    {
+        NORMAL,
+        SIZE_35
     }
 }

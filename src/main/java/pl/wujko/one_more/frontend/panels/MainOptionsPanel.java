@@ -6,6 +6,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import pl.wujko.one_more.bean.BeanHelper;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
+import pl.wujko.one_more.frontend.controller.WorkshopController;
 import pl.wujko.one_more.frontend.interfaces.NeedConfirmation;
 
 import javax.annotation.Resource;
@@ -22,6 +23,9 @@ public class MainOptionsPanel extends Panel implements ActionListener, NeedConfi
 {
     @Resource
     private CartListController cartListController;
+
+    @Resource
+    private WorkshopController workshopController;
 
     private JButton addEntry;
 
@@ -79,6 +83,7 @@ public class MainOptionsPanel extends Panel implements ActionListener, NeedConfi
         if (source == cleanCartList)
         {
             getConfirmDeletionPanel().showConfirmation(this);
+            workshopController.selectWholeSpace();
         }
         else if (source == newCart)
         {

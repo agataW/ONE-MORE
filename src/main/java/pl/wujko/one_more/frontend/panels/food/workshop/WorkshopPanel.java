@@ -37,7 +37,7 @@ public class WorkshopPanel extends Panel
 
     private WorkshopData workshopData;
 
-    //    private JButton normalPan;
+    private JButton panSize35Button;
 
     @Override
     public void initPanel()
@@ -54,7 +54,7 @@ public class WorkshopPanel extends Panel
         builder.add(wholeSpace, cc.xywh(1, 4, 2, 2));
 
         builder.add(americanPanButton, cc.xy(4, 2));
-        //        builder.add(normalPan, cc.xy(4, 4));
+        builder.add(panSize35Button, cc.xy(4, 4));
 
         add(builder.getPanel(), cc.xy(1, 1));
     }
@@ -83,14 +83,29 @@ public class WorkshopPanel extends Panel
                 }
             }
         });
-
-        workshopData.setPanType(WorkshopData.PanType.NORMAL);
         changePanTypeButton(WorkshopData.PanType.NORMAL);
 
-        //        normalPan = new JButton("NORMAL");
-        //        normalPan.setFont(GUIConstants.DEFAULT_FONT);
-        //        normalPan.addActionListener(createActionListener(normalPan));
-        //        normalPan.setEnabled(false);
+        panSize35Button = new JButton("35");
+        panSize35Button.setFont(GUIConstants.DEFAULT_FONT);
+        panSize35Button.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                WorkshopData.PanSize panSize = workshopData.getPanSize();
+                if (panSize.equals(WorkshopData.PanSize.SIZE_35))
+                {
+                    workshopData.setPanSize(WorkshopData.PanSize.NORMAL);
+                    changePanSizeButton(WorkshopData.PanSize.NORMAL);
+                }
+                else
+                {
+                    workshopData.setPanSize(WorkshopData.PanSize.SIZE_35);
+                    changePanSizeButton(WorkshopData.PanSize.SIZE_35);
+                }
+            }
+        });
+        changePanSizeButton(WorkshopData.PanSize.NORMAL);
 
         leftSpace = new SpacePanel(SpacePanel.Space.HALF);
         leftSpace.setBackground(GUIConstants.WORKSPACE_PANEL_BACKGROUND);
@@ -125,6 +140,7 @@ public class WorkshopPanel extends Panel
     {
         this.workshopData = workshopData;
         changePanTypeButton(workshopData.getPanType());
+        changePanSizeButton(workshopData.getPanSize());
 
         if (CollectionUtils.isNotEmpty(workshopData.getWholeSpace()))
         {
@@ -160,6 +176,18 @@ public class WorkshopPanel extends Panel
         else
         {
             americanPanButton.setBackground(Color.GRAY);
+        }
+    }
+
+    private void changePanSizeButton(WorkshopData.PanSize panSize)
+    {
+        if (panSize.equals(WorkshopData.PanSize.SIZE_35))
+        {
+            panSize35Button.setBackground(Color.GREEN);
+        }
+        else
+        {
+            panSize35Button.setBackground(Color.GRAY);
         }
     }
 
@@ -209,6 +237,12 @@ public class WorkshopPanel extends Panel
         rightSpace.clearSpace();
         selectSpace(wholeSpace);
         changePanTypeButton(WorkshopData.PanType.NORMAL);
+        changePanSizeButton(WorkshopData.PanSize.NORMAL);
+    }
+
+    public void selectWholeSpace()
+    {
+        selectSpace(wholeSpace);
     }
 
     private void selectSpace(SpacePanel space)
