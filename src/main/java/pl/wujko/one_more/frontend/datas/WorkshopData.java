@@ -82,7 +82,7 @@ public class WorkshopData
 
         if (result % 10 == 5)
         {
-            result += 5;
+            result -= 5;
         }
         return result == 0 ? 0 : result + getPanType().getPrice();
     }
