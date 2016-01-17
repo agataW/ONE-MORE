@@ -76,8 +76,8 @@ public class WorkshopData
     public int getPrice()
     {
         int result = 0;
-        result += price(leftSpace, 2);
-        result += price(rightSpace, 2);
+        result += price(leftSpace, 1);
+        result += price(rightSpace, 1);
         result += price(wholeSpace, 1);
 
         if (result % 10 == 5)

@@ -64,6 +64,11 @@ public class SpacePanel extends JPanel
         }
     }
 
+    public boolean contains(Entry entry)
+    {
+        return entryMap.valueList().contains(entry);
+    }
+
     public List<Entry> getEntries()
     {
         return entryMap.valueList();
@@ -137,6 +142,19 @@ public class SpacePanel extends JPanel
         revalidate();
     }
 
+    public void removeEntry(Entry entry)
+    {
+        JPanel panelToRemove = null;
+        for (WujkoMap<JPanel, Entry>.Pair pair : entryMap.pairs())
+        {
+            if (pair.getValue().getKey().equals(entry.getKey()))
+            {
+                panelToRemove = pair.getKey();
+            }
+        }
+        removeEntry(panelToRemove);
+    }
+
     private void removeEntry(JPanel panel)
     {
         if (panel != null)
@@ -144,6 +162,7 @@ public class SpacePanel extends JPanel
             entryMap.remove(panel);
         }
         repaintSpace();
+        getToppingAndAdditionPanel().setButtonDisable(getCountOfLimitedEntries() < space.getLimit());
     }
 
     private MouseListener createMouseListener(final JPanel panel)
@@ -156,7 +175,6 @@ public class SpacePanel extends JPanel
             {
                 getWorkshopController().removeFromSpace(spacePanel, entryMap.get(panel));
                 removeEntry(panel);
-                getToppingAndAdditionPanel().setButtonDisable(getCountOfLimitedEntries() < space.getLimit());
             }
         };
     }

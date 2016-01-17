@@ -198,17 +198,35 @@ public class WorkshopPanel extends Panel
 
     public void addEntryToSelectedSpace(Entry entry)
     {
-        selectedSpace.addEntry(entry);
         if (selectedSpace.equals(wholeSpace))
         {
+            wholeSpace.addEntry(entry);
             workshopData.addToWholeSpace(entry);
         }
         else if (selectedSpace.equals(leftSpace))
         {
+            if (rightSpace.contains(entry))
+            {
+                rightSpace.removeEntry(entry);
+                workshopData.removeFromRightSpace(entry);
+                wholeSpace.addEntry(entry);
+                workshopData.addToWholeSpace(entry);
+                return;
+            }
+            leftSpace.addEntry(entry);
             workshopData.addToLeftSpace(entry);
         }
         else if (selectedSpace.equals(rightSpace))
         {
+            if (leftSpace.contains(entry))
+            {
+                leftSpace.removeEntry(entry);
+                workshopData.removeFromLeftSpace(entry);
+                wholeSpace.addEntry(entry);
+                workshopData.addToWholeSpace(entry);
+                return;
+            }
+            rightSpace.addEntry(entry);
             workshopData.addToRightSpace(entry);
         }
     }
