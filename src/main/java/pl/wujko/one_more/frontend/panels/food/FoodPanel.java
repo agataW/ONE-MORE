@@ -29,7 +29,7 @@ public class FoodPanel extends Panel
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:p:g"));
 
-        FormLayout formLayout = new FormLayout("f:p:g", "f:m, 5dlu, f:p:g, 10dlu, f:p");
+        FormLayout formLayout = new FormLayout("f:p:g", "f:m, 2dlu, f:p:g, 2dlu, f:p");
         DefaultFormBuilder builder = new DefaultFormBuilder(formLayout);
         CellConstraints cc = new CellConstraints();
 

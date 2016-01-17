@@ -34,7 +34,7 @@ public class ChoosePanelPanel extends Panel implements ActionListener
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:p"));
 
-        FormLayout formLayout = new FormLayout("f:p:g, 1dlu, f:p:g, 1dlu", "f:p:g");
+        FormLayout formLayout = new FormLayout("f:p:g, 1dlu, f:p:g", "f:p");
         DefaultFormBuilder builder = new DefaultFormBuilder(formLayout);
         CellConstraints cc = new CellConstraints();
 

@@ -45,7 +45,7 @@ public class WorkshopPanel extends Panel
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:m"));
 
-        FormLayout layout = new FormLayout("f:p:g, f:p:g, 2dlu, f:m, 2dlu", "2dlu, f:40dlu:g, 2dlu, f:40dlu:g, 2dlu");
+        FormLayout layout = new FormLayout("f:p:g, f:p:g, 2dlu, f:m, 2dlu", "2dlu, f:30dlu:g, 2dlu, f:30dlu:g, 2dlu");
         DefaultFormBuilder builder = new DefaultFormBuilder(layout);
         CellConstraints cc = new CellConstraints();
 
