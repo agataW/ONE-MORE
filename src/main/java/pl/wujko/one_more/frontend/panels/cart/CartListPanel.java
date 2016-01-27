@@ -54,6 +54,7 @@ public class CartListPanel extends Panel
         removeAll();
         repaint();
         addToBuilder(cartPanelList);
+        revalidate();
     }
 
     private void addToBuilder(List<CartPanel> cartPanelList)
@@ -143,8 +144,20 @@ public class CartListPanel extends Panel
             currentCartPanel = null;
             return;
         }
+        int indexOfCart = cartPanelList.indexOf(cartPanelToRemove);
 
-        selectCurrentCartPanel(cartPanelList.get(0));
+        if (indexOfCart == 0)
+        {
+            selectCurrentCartPanel(cartPanelList.get(1));
+        }
+        else if (indexOfCart == cartPanelList.size() - 1)
+        {
+            selectCurrentCartPanel(cartPanelList.get(cartPanelList.size() - 2));
+        }
+        else if (cartPanelToRemove.equals(currentCartPanel))
+        {
+            selectCurrentCartPanel(cartPanelList.get(indexOfCart + 1));
+        }
     }
 
     private void selectCurrentCartPanel(CartPanel cartPanel)

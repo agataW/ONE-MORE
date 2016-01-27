@@ -75,6 +75,11 @@ public class WorkshopData
 
     public int getPrice()
     {
+        if (wholeSpace.isEmpty() &&leftSpace.isEmpty() && rightSpace.isEmpty())
+        {
+            return 0;
+        }
+
         int result = 0;
         result += price(leftSpace, 1);
         result += price(rightSpace, 1);
@@ -84,7 +89,7 @@ public class WorkshopData
         {
             result -= 5;
         }
-        return result == 0 ? 0 : result + getPanType().getPrice();
+        return result + getPanType().getPrice();
     }
 
     private Entry createEntry(final String brand)
