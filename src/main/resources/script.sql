@@ -56,6 +56,8 @@ INSERT OR IGNORE INTO TOPPING VALUES (28, 'OSTRY SOS', 'OSTRY', 0, 0, 0, 0, 'img
 INSERT OR IGNORE INTO TOPPING VALUES (29, 'CZOSNEK', '27', 110, 0, 250, 0, 'img/czosnek.png', '000000', '8c3c00', '1');
 INSERT OR IGNORE INTO TOPPING VALUES (30, 'PARMEZAN', '28', 170, 0, 250, 0, 'img/parmezan.png', '000000', '8c3c00','1');
 INSERT OR IGNORE INTO TOPPING VALUES (31, 'STARTER', 'START', 0, 0, 0, 0, 'img/ser.png', '000000', '8c3c00','0');
+INSERT OR IGNORE INTO TOPPING VALUES (32, 'SLONECZNIK', '29', 100, 0, 210, 0, 'img/slonecznik.png', '000000', '8c3c00',
+                                      '1');
 
 CREATE TABLE IF NOT EXISTS ADDITION (
     ID                 INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -68,13 +70,15 @@ CREATE TABLE IF NOT EXISTS ADDITION (
     BACKGROUND_COLOR   VARCHAR6
 );
 
-INSERT OR IGNORE INTO ADDITION VALUES (1, 'CZOSNKOWY',    'X',  160, 10, 'img/czosnkowy.png',  'ffffff', '3282ff');
-INSERT OR IGNORE INTO ADDITION VALUES (2, 'POMIDOROWY',   'Y',  160, 20, 'img/pomidorowy.png', 'ffffff', '3282ff');
-INSERT OR IGNORE INTO ADDITION VALUES (3, 'PIEKIELNY',    'Z',  200, 30, 'img/piekielny.png',  'ffffff', '3282ff');
-INSERT OR IGNORE INTO ADDITION VALUES (4, 'BBQ',          'Q',  240, 40, 'img/bbq.png',        'ffffff', '3282ff');
-INSERT OR IGNORE INTO ADDITION VALUES (5, 'OIL_1',     'OIL1',  190, 50, 'img/oil.png',        '000000', 'ffffff');
+DELETE FROM ADDITION;
+INSERT OR IGNORE INTO ADDITION VALUES (1, 'CZOSNKOWY',    'X',  150, 10, 'img/czosnkowy.png',  'ffffff', '3282ff');
+INSERT OR IGNORE INTO ADDITION VALUES (2, 'POMIDOROWY',   'Y',  150, 20, 'img/pomidorowy.png', 'ffffff', '3282ff');
+INSERT OR IGNORE INTO ADDITION VALUES (3, 'PIEKIELNY',    'Z',  150, 30, 'img/piekielny.png',  'ffffff', '3282ff');
+INSERT OR IGNORE INTO ADDITION VALUES (4, 'SAMBAL',        'S',  150, 40, 'img/sambal.png',        'ffffff', '3282ff');
+INSERT OR IGNORE INTO ADDITION VALUES (5, 'BBQ',          'Q',  240, 50, 'img/bbq.png',        'ffffff', '3282ff');
+INSERT OR IGNORE INTO ADDITION VALUES (6, 'OIL',        'OIL',  190, 60, 'img/oil.png',        '000000', 'ffffff');
 INSERT OR IGNORE INTO ADDITION VALUES (7, 'COLA',       'COL',  400, 70, 'img/cola.png',       'ffffff', '8c3c00');
-INSERT OR IGNORE INTO ADDITION VALUES (9, 'FANTA',      'FAN',  400, 80, 'img/fanta.png',      'ffffff', '8c3c00');
+INSERT OR IGNORE INTO ADDITION VALUES (8, 'FANTA',      'FAN',  400, 80, 'img/fanta.png',      'ffffff', '8c3c00');
 
 CREATE TABLE IF NOT EXISTS COMPOSITION (
     ID              INTEGER PRIMARY KEY AUTOINCREMENT,
