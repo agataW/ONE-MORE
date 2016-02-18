@@ -36,7 +36,7 @@ public class WorkshopData
         panSize = PanSize.NORMAL;
     }
 
-    public LinkedList<Entry> getAllEntries()
+    public LinkedList<Entry> getEntriesToPrint()
     {
         LinkedList<Entry> entries = new LinkedList<Entry>();
         if (CollectionUtils.isNotEmpty(leftSpace))
@@ -89,7 +89,7 @@ public class WorkshopData
         {
             result -= 5;
         }
-        return result + getPanType().getPrice();
+        return result + getPanSize().getPrice();
     }
 
     private Entry createEntry(final String brand)
@@ -138,11 +138,6 @@ public class WorkshopData
     public void addToRightSpace(Entry entry)
     {
         addToSpace(rightSpace, entry);
-    }
-
-    public int size()
-    {
-        return getAllEntries().size();
     }
 
     private void addToSpace(SpaceList<Entry> space, List<Entry> entries)
@@ -195,7 +190,7 @@ public class WorkshopData
 
     public boolean isEmpty()
     {
-        return size() == 0;
+        return leftSpace.isEmpty() && rightSpace.isEmpty() && wholeSpace.isEmpty();
     }
 
     public boolean isPizza()
@@ -261,13 +256,20 @@ public class WorkshopData
 
     public enum PanType
     {
-        NORMAL(PizzaConstants.NORMAL_PAN),
-        AMERICAN(PizzaConstants.AMERICAN_PAN),
-        NO_PANE(0);
+        NORMAL,
+        AMERICAN,
+        NO_PANE
+    }
+
+    public enum PanSize
+    {
+        NO_SIZE(0),
+        NORMAL(PizzaConstants.Price.PAN_SIZE_NORMAL),
+        SIZE_35(PizzaConstants.Price.PAN_SIZE_35);
 
         private int price;
 
-        PanType(int price)
+        PanSize(int price)
         {
             this.price = price;
         }
@@ -276,12 +278,5 @@ public class WorkshopData
         {
             return price;
         }
-    }
-
-    public enum PanSize
-    {
-        NO_SIZE,
-        NORMAL,
-        SIZE_35
     }
 }

@@ -78,7 +78,7 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
     {
         if (discount && !workshopData.getPanType().equals(WorkshopData.PanType.NO_PANE))
         {
-            return workshopData.getPrice() - PizzaConstants.PIZZA_DISCOUNT;
+            return workshopData.getPrice() - PizzaConstants.Price.PIZZA_DISCOUNT;
         }
         return workshopData.getPrice();
     }
@@ -101,13 +101,14 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
 
     private void initPanel()
     {
-        int maxSize = workshopData.size() + STATIC_ELEMENTS_COUNT;
+        LinkedList<Entry> entriesToPrint = workshopData.getEntriesToPrint();
+        int maxSize = entriesToPrint.size() + STATIC_ELEMENTS_COUNT;
 
         FormLayout layout = FormLayoutUtils.createDefaultCartEntryLayout(maxSize);
         builder = new DefaultFormBuilder(layout);
         cc = new CellConstraints();
 
-        addToBuilder(workshopData.getAllEntries());
+        addToBuilder(entriesToPrint);
 
         calculatePrice();
         addToBuilder(emptyLabel);

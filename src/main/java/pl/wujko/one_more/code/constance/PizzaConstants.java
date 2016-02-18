@@ -5,11 +5,14 @@ package pl.wujko.one_more.code.constance;
  */
 public class PizzaConstants
 {
-    public final static int NORMAL_PAN = 1390;
+    public class Price
+    {
+        public final static int PAN_SIZE_NORMAL = 1390;
 
-    public final static int AMERICAN_PAN = 1390;
+        public final static int PAN_SIZE_35 = 1690;
 
-    public final static int PIZZA_DISCOUNT = 200;
+        public final static int PIZZA_DISCOUNT = 200;
+    }
 
     public static final int COUNT_OF_PIZZA_TO_DISCOUNT = 2;
 }

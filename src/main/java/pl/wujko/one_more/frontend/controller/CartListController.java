@@ -47,7 +47,7 @@ public class CartListController
             cartListPanel.addToSelectedCart(workshop);
             lastWorkshopData = workshop;
         }
-        else if (lastWorkshopData != null)
+        else if (lastWorkshopData != null && !lastWorkshopData.isEmpty())
         {
             cartListPanel.addToSelectedCart(lastWorkshopData);
         }
