@@ -1,10 +1,11 @@
 package pl.wujko.one_more.frontend.datas;
 
 import org.apache.commons.collections.CollectionUtils;
+import pl.wujko.one_more.code.constance.PanSize;
+import pl.wujko.one_more.code.constance.PanType;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.code.item.entries.Topping;
-import pl.wujko.one_more.code.constance.PizzaConstants;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.interfaces.SpaceList;
 import pl.wujko.one_more.frontend.panels.food.workshop.SpacePanel;
@@ -90,6 +91,25 @@ public class WorkshopData
             result -= 5;
         }
         return result + getPanSize().getPrice();
+    }
+
+    public int getPriceWithDiscount()
+    {
+        if (wholeSpace.isEmpty() &&leftSpace.isEmpty() && rightSpace.isEmpty())
+        {
+            return 0;
+        }
+
+        int result = 0;
+        result += price(leftSpace, 1);
+        result += price(rightSpace, 1);
+        result += price(wholeSpace, 1);
+
+        if (result % 10 == 5)
+        {
+            result -= 5;
+        }
+        return result + getPanSize().getPriceWithDiscount();
     }
 
     private Entry createEntry(final String brand)
@@ -252,31 +272,5 @@ public class WorkshopData
     public void removeFromRightSpace(Entry entry)
     {
         rightSpace.remove(entry);
-    }
-
-    public enum PanType
-    {
-        NORMAL,
-        AMERICAN,
-        NO_PANE
-    }
-
-    public enum PanSize
-    {
-        NO_SIZE(0),
-        NORMAL(PizzaConstants.Price.PAN_SIZE_NORMAL),
-        SIZE_35(PizzaConstants.Price.PAN_SIZE_35);
-
-        private int price;
-
-        PanSize(int price)
-        {
-            this.price = price;
-        }
-
-        public int getPrice()
-        {
-            return price;
-        }
     }
 }

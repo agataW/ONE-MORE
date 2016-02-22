@@ -26,13 +26,11 @@ public class DatabaseService
 		}
 		System.err.println("Dane zaimportowane!");
 	}
-	
-	
+
 	public void importSQL(String filepath) throws SQLException
 	{
 		InputStream fis ;
 		try {
-//			fis = new FileInputStream(filepath);
             fis = ClassLoader.getSystemResourceAsStream(filepath);
 		} catch (Exception e) {
 			e.printStackTrace();

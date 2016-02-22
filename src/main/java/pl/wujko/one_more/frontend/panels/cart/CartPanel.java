@@ -4,6 +4,8 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import org.apache.commons.collections.CollectionUtils;
+import pl.wujko.one_more.code.constance.PanSize;
+import pl.wujko.one_more.code.constance.PanType;
 import pl.wujko.one_more.code.constance.PizzaConstants;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Addition;
@@ -203,8 +205,8 @@ public class CartPanel extends JPanel
         public WorkshopData createWorkshopData()
         {
             WorkshopData workshopData = new WorkshopData();
-            workshopData.setPanType(WorkshopData.PanType.NO_PANE);
-            workshopData.setPanSize(WorkshopData.PanSize.NO_SIZE);
+            workshopData.setPanType(PanType.NO_PANE);
+            workshopData.setPanSize(PanSize.NO_PAN);
             workshopData.setWholeSpace(additionList);
             return workshopData;
         }

@@ -32,9 +32,7 @@
     <bean id="mainPanel" class="pl.wujko.one_more.frontend.panels.MainPanel"/>
     <bean id="cartListPanel" class="pl.wujko.one_more.frontend.panels.cart.CartListPanel"/>
     <bean id="optionsPanel" class="pl.wujko.one_more.frontend.panels.MainOptionsPanel"/>
-    <bean id="foodPanel" class="pl.wujko.one_more.frontend.panels.food.FoodPanel">
-<!--         <property name="selectedPanel" ref="toppingAndAdditionPanel"/> -->
-    </bean>
+    <bean id="foodPanel" class="pl.wujko.one_more.frontend.panels.food.FoodPanel"/>
 
     <bean id="choosePanelPanel" class="pl.wujko.one_more.frontend.panels.food.ChoosePanelPanel"/>
     <bean id="packagePanel" class="pl.wujko.one_more.frontend.panels.food.CompositionPanel">

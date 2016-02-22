@@ -4,7 +4,7 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import pl.wujko.one_more.bean.BeanHelper;
-import pl.wujko.one_more.code.constance.PizzaConstants;
+import pl.wujko.one_more.code.constance.PanType;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
@@ -76,9 +76,9 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
 
     public int getPrice()
     {
-        if (discount && !workshopData.getPanType().equals(WorkshopData.PanType.NO_PANE))
+        if (discount && !workshopData.getPanType().equals(PanType.NO_PANE))
         {
-            return workshopData.getPrice() - PizzaConstants.Price.PIZZA_DISCOUNT;
+            return workshopData.getPriceWithDiscount();
         }
         return workshopData.getPrice();
     }
