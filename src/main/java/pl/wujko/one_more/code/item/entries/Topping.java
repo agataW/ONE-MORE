@@ -1,5 +1,6 @@
 package pl.wujko.one_more.code.item.entries;
 
+import org.apache.log4j.Logger;
 import pl.wujko.one_more.code.constance.EntryTypeEnum;
 import pl.wujko.one_more.code.item.Entry;
 
@@ -11,6 +12,8 @@ import java.awt.image.BufferedImage;
  */
 public class Topping extends Entry
 {
+    private static Logger LOG = Logger.getLogger(Topping.class);
+
     private String name;
     private boolean isLimited;
     private BufferedImage image;
@@ -56,7 +59,7 @@ public class Topping extends Entry
         }
         catch (Exception e)
         {
-            System.out.println("Brak obrazka dla " + getKey());
+            LOG.info("Brak obrazka dla " + getKey());
         }
     }
 

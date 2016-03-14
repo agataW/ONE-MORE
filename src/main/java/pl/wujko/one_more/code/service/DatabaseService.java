@@ -1,5 +1,8 @@
 package pl.wujko.one_more.code.service;
 
+import org.apache.log4j.Logger;
+
+import java.io.IOError;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Scanner;
@@ -9,6 +12,8 @@ import java.util.Scanner;
  */
 public class DatabaseService
 {
+	private static Logger LOG = Logger.getLogger(DatabaseService.class);
+
 	private static final String SCRIPT_PATH = "script.sql";
 
 	private static final String DATABASE_NAME = "one-more";
@@ -26,19 +31,18 @@ public class DatabaseService
 
 			if (checkIfMustImportDefaultDatabase())
 			{
-				System.err.println("Zaczynam import bazy danych...");
+				LOG.info("Zaczynam import bazy danych...");
 				importSQL(SCRIPT_PATH);
-				System.err.println("Dane zaimportowane!");
+				LOG.info("Dane zaimportowane!");
 			}
 		}
 		catch (SQLException e)
 		{
-			System.err.println("\nBłąd importowania do bazy danych! : " + e.getMessage());
-			e.printStackTrace();
+			LOG.error("Błąd importowania do bazy danych! : ", e);
 		}
 		catch (ClassNotFoundException e)
 		{
-			e.printStackTrace();
+			LOG.error("Nie znaleziono klasy! : ", e);
 		}
 	}
 
@@ -49,18 +53,9 @@ public class DatabaseService
 //		return !resultSet.next();
 	}
 
-	private void importSQL(String filepath) throws SQLException
+	private void importSQL(String filepath) throws SQLException, IOError
 	{
-		InputStream fis;
-		try
-		{
-			fis = ClassLoader.getSystemResourceAsStream(filepath);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			return;
-		}
+		InputStream fis = ClassLoader.getSystemResourceAsStream(filepath);
 
 		Scanner s = new Scanner(fis);
 		s.useDelimiter("(;(\r)?\n)|(--\n)");
@@ -89,7 +84,7 @@ public class DatabaseService
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			LOG.warn("Problem podczas wykonania query: " + query, e);
 			return null;
 		}
 	}

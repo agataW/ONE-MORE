@@ -1,5 +1,6 @@
 package pl.wujko.one_more.code.dao;
 
+import org.apache.log4j.Logger;
 import pl.wujko.one_more.code.service.DatabaseService;
 
 import javax.annotation.Resource;
@@ -13,6 +14,8 @@ import java.util.List;
  */
 public class PropertyDao
 {
+	private static Logger LOG = Logger.getLogger(PropertyDao.class);
+
 	public static final String VALUE = "value";
 
 	@Resource
@@ -31,7 +34,7 @@ public class PropertyDao
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			LOG.error("Nie mozna zalezc klucza " + key, e);
 			return null;
 		}
 	}

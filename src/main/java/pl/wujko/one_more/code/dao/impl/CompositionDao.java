@@ -1,5 +1,6 @@
 package pl.wujko.one_more.code.dao.impl;
 
+import org.apache.log4j.Logger;
 import pl.wujko.one_more.code.constance.TableEnum;
 import pl.wujko.one_more.code.dao.Dao;
 import pl.wujko.one_more.code.item.entries.Composition;
@@ -18,6 +19,8 @@ import java.util.List;
  */
 public class CompositionDao implements Dao<Composition>
 {
+    private static Logger LOG = Logger.getLogger(CompositionDao.class);
+
     @Resource
     private DatabaseService databaseService;
 
@@ -34,7 +37,7 @@ public class CompositionDao implements Dao<Composition>
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            LOG.error("Blad przy imporcie", e);
             return null;
         }
     }

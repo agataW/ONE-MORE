@@ -1,5 +1,6 @@
 package pl.wujko.one_more.code.item.entries;
 
+import org.apache.log4j.Logger;
 import pl.wujko.one_more.code.constance.EntryTypeEnum;
 import pl.wujko.one_more.code.item.Entry;
 
@@ -10,46 +11,54 @@ import java.io.IOException;
 /**
  * Created by Agata on 2015-06-25.
  */
-public class Addition extends Entry {
-    private int id;
-    private String name;
-    private BufferedImage image;
+public class Addition extends Entry
+{
+	private static Logger LOG = Logger.getLogger(Addition.class);
 
-    @Override
-    public EntryTypeEnum getType() {
-        return EntryTypeEnum.ADDITIONS;
-    }
+	private int id;
+	private String name;
+	private BufferedImage image;
 
-    public int getId() {
-        return id;
-    }
+	@Override
+	public EntryTypeEnum getType()
+	{
+		return EntryTypeEnum.ADDITIONS;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId()
+	{
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(int id)
+	{
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName()
+	{
+		return name;
+	}
 
-    public BufferedImage getImage()
-    {
-        return image;
-    }
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 
-    public void setImage(String image)
-    {
-        try
-        {
-            this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(image));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
+	public BufferedImage getImage()
+	{
+		return image;
+	}
+
+	public void setImage(String image)
+	{
+		try
+		{
+			this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(image));
+		}
+		catch (Exception e)
+		{
+			LOG.info("Brak obrazka dla " + getKey());
+		}
+	}
 }

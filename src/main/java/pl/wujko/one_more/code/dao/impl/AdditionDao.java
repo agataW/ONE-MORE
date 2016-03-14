@@ -1,5 +1,6 @@
 package pl.wujko.one_more.code.dao.impl;
 
+import org.apache.log4j.Logger;
 import pl.wujko.one_more.code.constance.AdditionEnum;
 import pl.wujko.one_more.code.constance.TableEnum;
 import pl.wujko.one_more.code.dao.Dao;
@@ -17,6 +18,8 @@ import java.util.List;
  */
 public class AdditionDao implements Dao<Addition>
 {
+    private static Logger LOG = Logger.getLogger(AdditionDao.class);
+
     @Resource
     private DatabaseService databaseService;
 
@@ -29,7 +32,7 @@ public class AdditionDao implements Dao<Addition>
         }
         catch (SQLException e)
         {
-        	e.printStackTrace();
+        	LOG.error("Blad przy imporcie", e);
             return null;
         }
     }

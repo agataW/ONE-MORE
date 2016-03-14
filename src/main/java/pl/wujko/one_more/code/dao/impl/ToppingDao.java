@@ -1,5 +1,6 @@
 package pl.wujko.one_more.code.dao.impl;
 
+import org.apache.log4j.Logger;
 import pl.wujko.one_more.code.constance.TableEnum;
 import pl.wujko.one_more.code.constance.ToppingEnum;
 import pl.wujko.one_more.code.dao.Dao;
@@ -17,6 +18,8 @@ import java.util.*;
  */
 public class ToppingDao implements Dao<Topping>
 {
+	private static Logger LOG = Logger.getLogger(ToppingDao.class);
+
 	@Resource
 	private DatabaseService databaseService;
 
@@ -35,11 +38,13 @@ public class ToppingDao implements Dao<Topping>
 		}
 		catch (SQLException e)
 		{
+			LOG.error("Blad przy imporcie", e);
 			return null;
 		}
 	}
 
-	private List<Topping> convert(ResultSet rs, List<String> queueToppingsInOrder, final List<String> queueToppingsInFoodPanel) throws SQLException
+	private List<Topping> convert(ResultSet rs, List<String> queueToppingsInOrder,
+								  final List<String> queueToppingsInFoodPanel) throws SQLException
 	{
 		List<Topping> resultList = new ArrayList<Topping>();
 
@@ -69,7 +74,8 @@ public class ToppingDao implements Dao<Topping>
 			resultList.add(topping);
 		}
 
-		Collections.sort(resultList, new Comparator<Topping>() {
+		Collections.sort(resultList, new Comparator<Topping>()
+		{
 			@Override
 			public int compare(Topping topping1, Topping topping2)
 			{
