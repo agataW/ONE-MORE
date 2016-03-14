@@ -29,7 +29,7 @@ public class CompositionDao implements Dao<Composition>
     {
         try
         {
-            ResultSet resultSet = databaseService.getStatement().executeQuery("SELECT * FROM " + TableEnum.COMPOSITION);
+            ResultSet resultSet = databaseService.executeQuery("SELECT * FROM " + TableEnum.COMPOSITION);
             return convert(resultSet);
         }
         catch (SQLException e)

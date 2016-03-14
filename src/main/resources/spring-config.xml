@@ -16,11 +16,13 @@
     <bean id="toppingDao" class="pl.wujko.one_more.code.dao.impl.ToppingDao"/>
     <bean id="additionDao" class="pl.wujko.one_more.code.dao.impl.AdditionDao"/>
     <bean id="compositionDao" class="pl.wujko.one_more.code.dao.impl.CompositionDao"/>
+    <bean id="propertyDao" class="pl.wujko.one_more.code.dao.PropertyDao"/>
 
     <!--SERVICE-->
     <bean id="toppingService" class="pl.wujko.one_more.code.service.impl.ToppingServiceImpl"/>
     <bean id="additionService" class="pl.wujko.one_more.code.service.impl.AdditionServiceImpl"/>
     <bean id="compositionService" class="pl.wujko.one_more.code.service.impl.CompositionService"/>
+    <bean id="propertyService" class="pl.wujko.one_more.code.service.PropertyService"/>
 
     <!--CONTROLLERS-->
     <bean id="panelController" class="pl.wujko.one_more.frontend.controller.ChoosePanelController"/>

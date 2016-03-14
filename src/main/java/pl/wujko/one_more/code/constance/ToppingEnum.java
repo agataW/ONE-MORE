@@ -4,12 +4,10 @@ package pl.wujko.one_more.code.constance;
 * Created by Agata on 2015-05-19.
 */
 public enum ToppingEnum {
-    ID,
     NAME,
     KEY,
     PRICE,
     PRICE35,
-    PRIORITY,
     IS_LIMITED,
     IMAGE,
     FONT_COLOR,

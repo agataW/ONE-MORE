@@ -23,6 +23,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,12 +116,7 @@ public class ToppingAndAdditionPanel extends Panel
     private JButton createButtonFor(final Topping topping)
     {
         JButton button = new JButton(topping.getKey());
-        button.setHorizontalTextPosition(SwingConstants.LEADING);
-        button.setBackground(Color.WHITE);
-        button.setFont(GUIConstants.DEFAULT_FONT);
-        button.setBorderPainted(false);
-        button.setMargin(new Insets(0, 0, 0, 0));
-        button.setIcon(new ImageIcon(topping.getImage().getScaledInstance(35, -1, Image.SCALE_SMOOTH)));
+        setDefaultOptions(button, topping.getImage());
         button.addActionListener(new ActionListener()
         {
             @Override
@@ -135,12 +131,7 @@ public class ToppingAndAdditionPanel extends Panel
     private JButton createButtonFor(final Addition addition)
     {
         JButton button = new JButton(addition.getKey());
-        button.setHorizontalTextPosition(SwingConstants.LEADING);
-        button.setBackground(Color.WHITE);
-        button.setFont(GUIConstants.DEFAULT_FONT);
-        button.setBorderPainted(false);
-        button.setMargin(new Insets(0, 0, 0, 0));
-        button.setIcon(new ImageIcon(addition.getImage().getScaledInstance(35, -1, Image.SCALE_SMOOTH)));
+        setDefaultOptions(button, addition.getImage());
         button.addActionListener(new ActionListener()
         {
             @Override
@@ -150,6 +141,20 @@ public class ToppingAndAdditionPanel extends Panel
             }
         });
         return button;
+    }
+
+    private void setDefaultOptions(JButton button, BufferedImage image)
+    {
+        button.setHorizontalTextPosition(SwingConstants.LEADING);
+        button.setBackground(Color.WHITE);
+        button.setFont(GUIConstants.DEFAULT_FONT);
+        button.setBorderPainted(false);
+        button.setBorder(null);
+        button.setMargin(new Insets(0, 0, 0, 0));
+        if (image != null)
+        {
+            button.setIcon(new ImageIcon(image.getScaledInstance(35, -1, Image.SCALE_SMOOTH)));
+        }
     }
 
     @Required

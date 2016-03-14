@@ -5,14 +5,12 @@ import pl.wujko.one_more.code.item.Entry;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 /**
  * Created by Agata on 2015-05-15.
  */
 public class Topping extends Entry
 {
-    private int id;
     private String name;
     private boolean isLimited;
     private BufferedImage image;
@@ -23,16 +21,6 @@ public class Topping extends Entry
     public EntryTypeEnum getType()
     {
         return EntryTypeEnum.TOPPINGS;
-    }
-
-    public int getId()
-    {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
     }
 
     public String getName()
@@ -66,9 +54,9 @@ public class Topping extends Entry
         {
             this.image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(image));
         }
-        catch (IOException e)
+        catch (Exception e)
         {
-            e.printStackTrace();
+            System.out.println("Brak obrazka dla " + getKey());
         }
     }
 

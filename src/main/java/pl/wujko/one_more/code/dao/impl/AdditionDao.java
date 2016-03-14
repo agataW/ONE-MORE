@@ -24,7 +24,7 @@ public class AdditionDao implements Dao<Addition>
     {
         try
         {
-            ResultSet resultSet = databaseService.getStatement().executeQuery("SELECT * FROM " + TableEnum.ADDITION);
+            ResultSet resultSet = databaseService.executeQuery("SELECT * FROM " + TableEnum.ADDITION);
             return convert(resultSet);
         }
         catch (SQLException e)

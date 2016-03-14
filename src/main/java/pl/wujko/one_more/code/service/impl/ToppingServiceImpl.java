@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class ToppingServiceImpl implements ToppingService
 {
-
     @Resource
     private ToppingDao toppingDao;
 
