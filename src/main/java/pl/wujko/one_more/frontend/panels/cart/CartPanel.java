@@ -71,9 +71,36 @@ public class CartPanel extends JPanel
 
     public void addAddition(Addition addition)
     {
+        if (addition.isSingleInLine())
+        {
+            addSingleAddition(addition);
+        }
+        else
+        {
+            addMultiAddition(addition);
+        }
+    }
+
+    private void addSingleAddition(Addition addition)
+    {
+        int index = cartEntryPanelList.size();
+        AdditionCartEntry singleAdditionCartEntry = new AdditionCartEntry();
+        singleAdditionCartEntry.add(addition);
+
+        CartEntryPanel cartEntryPanel = new CartEntryPanel(singleAdditionCartEntry.createWorkshopData());
+        cartEntryPanel.disableEditButton();
+        cartEntryPanelList.add(index, cartEntryPanel);
+        calculatePrice();
+        initPanel();
+
+        singleAdditionCartEntry.setCartEntryPanel(cartEntryPanel);
+    }
+
+    private void addMultiAddition(Addition addition)
+    {
         int index = cartEntryPanelList.size();
         if (lastAdditionCartEntry == null || lastAdditionCartEntry.full() || cartEntryPanelList
-            .indexOf(lastAdditionCartEntry.getCartEntryPanel()) == -1)
+                .indexOf(lastAdditionCartEntry.getCartEntryPanel()) == -1)
         {
             lastAdditionCartEntry = new AdditionCartEntry();
         }

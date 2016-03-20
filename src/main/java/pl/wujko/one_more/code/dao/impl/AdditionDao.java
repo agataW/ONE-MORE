@@ -51,6 +51,7 @@ public class AdditionDao implements Dao<Addition>
             addition.setImage(rs.getString(AdditionEnum.IMAGE.toString()));
             addition.setFontColor(rs.getString(AdditionEnum.FONT_COLOR.toString()));
             addition.setBackgroundColor(rs.getString(AdditionEnum.BACKGROUND_COLOR.toString()));
+            addition.setSingleInLine(rs.getBoolean(AdditionEnum.SINGLE_IN_LINE.toString()));
             additionList.add(addition);
         }
         return additionList;

@@ -11,7 +11,8 @@ public enum AdditionEnum {
     PRIORITY,
     IMAGE,
     FONT_COLOR,
-    BACKGROUND_COLOR;
+    BACKGROUND_COLOR,
+    SINGLE_IN_LINE;
 
     AdditionEnum() {}
 }

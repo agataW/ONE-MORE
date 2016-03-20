@@ -1,14 +1,14 @@
 DROP TABLE IF EXISTS TOPPING;
 CREATE TABLE TOPPING (
-    NAME                VARCHAR20 NOT NULL,
-    KEY                 VARCHAR8 NOT NULL,
-    PRICE               INTEGER NOT NULL,
-    PRICE35             INTEGER NOT NULL,
-    IS_LIMITED          BOOLEAN,
-    IMAGE               TEXT,
-    FONT_COLOR          VARCHAR6,
-    BACKGROUND_COLOR    VARCHAR6,
-    VISIBLE             BOOLEAN
+NAME                VARCHAR20 NOT NULL,
+KEY                 VARCHAR8 NOT NULL,
+PRICE               INTEGER NOT NULL,
+PRICE35             INTEGER NOT NULL,
+IS_LIMITED          BOOLEAN,
+IMAGE               TEXT,
+FONT_COLOR          VARCHAR6,
+BACKGROUND_COLOR    VARCHAR6,
+VISIBLE             BOOLEAN
 );
 
 INSERT INTO TOPPING VALUES ('PIECZARKI', '1', 70, 90, 1, 'img/pieczarki.png', '000000', '14c814', '1');
@@ -26,7 +26,7 @@ INSERT INTO TOPPING VALUES ('PAPRYCZKI_PEPERONI', '12', 110, 150, 1, 'img/chili.
 INSERT INTO TOPPING VALUES ('RUKOLA', '13', 70, 100, 0, 'img/rukola.png', '000000', 'ff0000', '1');
 INSERT INTO TOPPING VALUES ('SZPINAK', '14', 70, 100, 0, 'img/szpinak.png', '000000', 'ff0000', '1');
 INSERT INTO TOPPING VALUES ('KURCZAK', '15', 270, 370, 1, 'img/kurczak.png', '000000', '14c814', '1');
-INSERT INTO TOPPING VALUES ('TUNCZYK', '16', 250, 350, 1, 'img/tunczyk.png', '000000', '14c814', '1');
+INSERT INTO TOPPING VALUES ('LAZUR', '16', 220, 350, 1, 'img/lazur.png', '000000', '14c814', '1');
 INSERT INTO TOPPING VALUES ('BROKULY', '17', 110, 140, 1, 'img/brokuly.png', '000000', '14c814', '1');
 INSERT INTO TOPPING VALUES ('SUSZONE_POMIDORY', '18', 150, 190, 1, 'img/suszone_pomidory.png', '000000', '14c814', '1');
 INSERT INTO TOPPING VALUES ('SER_FETA', '19', 160, 200, 1, 'img/feta.png', '000000', '14c814', '1');
@@ -54,17 +54,19 @@ PRICE              INTEGER NOT NULL,
 PRIORITY           INTEGER,
 IMAGE              TEXT,
 FONT_COLOR         VARCHAR6,
-BACKGROUND_COLOR   VARCHAR6
+BACKGROUND_COLOR   VARCHAR6,
+SINGLE_IN_LINE     BOOLEAN
 );
 
-INSERT INTO ADDITION VALUES (1, 'CZOSNKOWY',    'X',  150, 10, 'img/czosnkowy.png',  'ffffff', '3282ff');
-INSERT INTO ADDITION VALUES (2, 'POMIDOROWY',   'Y',  150, 20, 'img/pomidorowy.png', 'ffffff', '3282ff');
-INSERT INTO ADDITION VALUES (3, 'PIEKIELNY',    'Z',  150, 30, 'img/piekielny.png',  'ffffff', '3282ff');
-INSERT INTO ADDITION VALUES (4, 'SAMBAL',       'S',  150, 40, 'img/sambal.png',     'ffffff', '3282ff');
-INSERT INTO ADDITION VALUES (5, 'BBQ',          'Q',  240, 50, 'img/bbq.png',        'ffffff', '3282ff');
-INSERT INTO ADDITION VALUES (6, 'OIL',        'OIL',  190, 60, 'img/oil.png',        'ffffff', '3282ff');
-INSERT INTO ADDITION VALUES (7, 'COLA',       'COL',  400, 70, 'img/cola.png',       'ffffff', '3282ff');
-INSERT INTO ADDITION VALUES (8, 'FANTA',      'FAN',  400, 80, 'img/fanta.png',      'ffffff', '3282ff');
+INSERT INTO ADDITION VALUES (1, 'CZOSNKOWY',    'X',  150, 10, 'img/czosnkowy.png',  'ffffff', '3282ff', 0);
+INSERT INTO ADDITION VALUES (2, 'POMIDOROWY',   'Y',  150, 20, 'img/pomidorowy.png', 'ffffff', '3282ff', 0);
+INSERT INTO ADDITION VALUES (3, 'PIEKIELNY',    'Z',  150, 30, 'img/piekielny.png',  'ffffff', '3282ff', 0);
+INSERT INTO ADDITION VALUES (4, 'SAMBAL',       'S',  150, 40, 'img/sambal.png',     'ffffff', '3282ff', 0);
+INSERT INTO ADDITION VALUES (5, 'BBQ',          'Q',  240, 50, 'img/bbq.png',        'ffffff', '3282ff', 0);
+INSERT INTO ADDITION VALUES (6, 'OIL',        'OIL',  190, 60, 'img/oil.png',        'ffffff', '3282ff', 0);
+INSERT INTO ADDITION VALUES (7, 'COLA',       'COL',  400, 70, 'img/cola.png',       'ffffff', '3282ff', 0);
+INSERT INTO ADDITION VALUES (8, 'FANTA',      'FAN',  400, 80, 'img/fanta.png',      'ffffff', '3282ff', 0);
+INSERT INTO ADDITION VALUES (9, 'KURCZAK', 'KURCZAK', 2490, 90, null,                'ffffff', '3282ff', 1);
 
 DROP TABLE IF EXISTS COMPOSITION;
 CREATE TABLE COMPOSITION (
@@ -97,8 +99,8 @@ INSERT INTO COMPOSITION VALUES (18,  '17',  '0',  0,  '1',  '23,24,28');
 
 DROP TABLE IF EXISTS PROPERTY;
 CREATE TABLE PROPERTY (
-    KEY             VARCHAR30 PRIMARY KEY NOT NULL,
-    VALUE           TEXT
+KEY             VARCHAR30 PRIMARY KEY NOT NULL,
+VALUE           TEXT
 );
 
 INSERT INTO PROPERTY VALUES ('QUEUE_TOPPING_IN_ORDER',  'OSTRY,BBQ,SER,27,18,24,23,1,2,8,4,3,9,11,17,5,6,10,25,7,12,15,26,21,19,29,28,20,22,13,14');

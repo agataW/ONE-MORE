@@ -6,8 +6,6 @@ import pl.wujko.one_more.code.item.Entry;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-
 /**
  * Created by Agata on 2015-06-25.
  */
@@ -18,6 +16,7 @@ public class Addition extends Entry
 	private int id;
 	private String name;
 	private BufferedImage image;
+	private boolean singleInLine;
 
 	@Override
 	public EntryTypeEnum getType()
@@ -60,5 +59,15 @@ public class Addition extends Entry
 		{
 			LOG.info("Brak obrazka dla " + getKey());
 		}
+	}
+
+	public boolean isSingleInLine()
+	{
+		return singleInLine;
+	}
+
+	public void setSingleInLine(boolean singleInLine)
+	{
+		this.singleInLine = singleInLine;
 	}
 }
