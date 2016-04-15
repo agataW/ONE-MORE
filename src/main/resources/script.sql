@@ -23,8 +23,8 @@ INSERT INTO TOPPING VALUES ('BOCZEK', '9', 120, 160, 1, 'img/boczek.png', '00000
 INSERT INTO TOPPING VALUES ('OLIWKI', '10', 70, 90, 1, 'img/oliwki.png', '000000', '14c814', '1');
 INSERT INTO TOPPING VALUES ('POMIDOR', '11', 70, 90, 1, 'img/pomidor.png', '000000', '14c814', '1');
 INSERT INTO TOPPING VALUES ('PAPRYCZKI_PEPERONI', '12', 110, 150, 1, 'img/chili.png', '000000', '14c814', '1');
-INSERT INTO TOPPING VALUES ('RUKOLA', '13', 70, 100, 0, 'img/rukola.png', '000000', 'ff0000', '1');
-INSERT INTO TOPPING VALUES ('SZPINAK', '14', 70, 100, 0, 'img/szpinak.png', '000000', 'ff0000', '1');
+INSERT INTO TOPPING VALUES ('RUKOLA', '13', 70, 100, 1, 'img/rukola.png', '000000', 'ff0000', '1');
+INSERT INTO TOPPING VALUES ('SZPINAK', '14', 70, 100, 1, 'img/szpinak.png', '000000', 'ff0000', '1');
 INSERT INTO TOPPING VALUES ('KURCZAK', '15', 270, 370, 1, 'img/kurczak.png', '000000', '14c814', '1');
 INSERT INTO TOPPING VALUES ('LAZUR', '16', 220, 350, 1, 'img/lazur.png', '000000', '14c814', '1');
 INSERT INTO TOPPING VALUES ('BROKULY', '17', 110, 140, 1, 'img/brokuly.png', '000000', '14c814', '1');
@@ -33,15 +33,15 @@ INSERT INTO TOPPING VALUES ('SER_FETA', '19', 160, 200, 1, 'img/feta.png', '0000
 INSERT INTO TOPPING VALUES ('SZYNKA_PROSCIUTTO', '20', 380, 490, 1, 'img/szynka_prosciutto.png', '000000', 'ff0000', '1');
 INSERT INTO TOPPING VALUES ('SER', 'SER', 80, 120, 0, 'img/ser.png', '000000', '14c814', '1');
 INSERT INTO TOPPING VALUES ('MIESO WOLOWE', '21', 270, 270, 1, 'img/wolowina.png', '000000', '14c814', '1');
-INSERT INTO TOPPING VALUES ('CHORIZO', '22', 290, 290, 0, 'img/chorizo.png', '000000', 'ff0000', '1');
-INSERT INTO TOPPING VALUES ('RICOTTA', '23', 240, 310, 0, 'img/ricotto.png', '000000', '14c814', '1');
-INSERT INTO TOPPING VALUES ('GORGONZOLA', '24', 360, 440, 0, 'img/gorgonzola.png', '000000', '14c814', '1');
+INSERT INTO TOPPING VALUES ('CHORIZO', '22', 290, 290, 1, 'img/chorizo.png', '000000', 'ff0000', '1');
+INSERT INTO TOPPING VALUES ('RICOTTA', '23', 240, 310, 1, 'img/ricotto.png', '000000', '14c814', '1');
+INSERT INTO TOPPING VALUES ('GORGONZOLA', '24', 360, 440, 1, 'img/gorgonzola.png', '000000', '14c814', '1');
 INSERT INTO TOPPING VALUES ('OLIWKI ZIELONE', '25', 70, 90, 1, 'img/oliwki_zielone.png', '000000', '14c814', '1');
-INSERT INTO TOPPING VALUES ('KAPARY', '26', 160, 200, 0, 'img/kapary.png', '000000', '14c814', '1');
-INSERT INTO TOPPING VALUES ('CZOSNEK', '27', 110, 150, 0, 'img/czosnek.png', '000000', '8c3c00', '1');
-INSERT INTO TOPPING VALUES ('PARMEZAN', '28', 170, 220, 0, 'img/parmezan.png', '000000', '8c3c00','1');
+INSERT INTO TOPPING VALUES ('KAPARY', '26', 160, 200, 1, 'img/kapary.png', '000000', '14c814', '1');
+INSERT INTO TOPPING VALUES ('CZOSNEK', '27', 110, 150, 1, 'img/czosnek.png', '000000', '8c3c00', '1');
+INSERT INTO TOPPING VALUES ('PARMEZAN', '28', 170, 220, 1, 'img/parmezan.png', '000000', '8c3c00','1');
 INSERT INTO TOPPING VALUES ('STARTER', 'START', 0, 0, 0, 'img/ser.png', '000000', '8c3c00','0');
-INSERT INTO TOPPING VALUES ('SLONECZNIK', '29', 100, 130, 0, 'img/slonecznik.png', '000000', '8c3c00', '1');
+INSERT INTO TOPPING VALUES ('SLONECZNIK', '29', 100, 130, 1, 'img/slonecznik.png', '000000', '8c3c00', '1');
 INSERT INTO TOPPING VALUES ('OSTRY SOS', 'OSTRY', 0, 0, 0, null, '000000', '8c3c00', '1');
 INSERT INTO TOPPING VALUES ('BBQ', 'BBQ', 0, 0, 0, null, '000000', '8c3c00', '1');
 
