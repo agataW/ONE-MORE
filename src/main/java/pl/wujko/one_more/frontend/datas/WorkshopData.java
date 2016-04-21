@@ -37,6 +37,16 @@ public class WorkshopData
         panSize = PanSize.NORMAL;
     }
 
+    public WorkshopData(WorkshopData workshopData)
+    {
+        this();
+        leftSpace.addAll(workshopData.getLeftSpace());
+        rightSpace.addAll(workshopData.getRightSpace());
+        wholeSpace.addAll(workshopData.getWholeSpace());
+        panType = workshopData.getPanType();
+        panSize = workshopData.getPanSize();
+    }
+
     public LinkedList<Entry> getEntriesToPrint()
     {
         LinkedList<Entry> entries = new LinkedList<Entry>();
