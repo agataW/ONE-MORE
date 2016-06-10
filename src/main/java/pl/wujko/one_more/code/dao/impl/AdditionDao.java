@@ -43,7 +43,6 @@ public class AdditionDao implements Dao<Addition>
         while (rs.next())
         {
             Addition addition = new Addition();
-            addition.setId(rs.getInt(AdditionEnum.ID.toString()));
             addition.setName(rs.getString(AdditionEnum.NAME.toString()));
             addition.setKey(rs.getString(AdditionEnum.KEY.toString()));
             addition.setPrice(rs.getInt(AdditionEnum.PRICE.toString()));
@@ -51,7 +50,6 @@ public class AdditionDao implements Dao<Addition>
             addition.setImage(rs.getString(AdditionEnum.IMAGE.toString()));
             addition.setFontColor(rs.getString(AdditionEnum.FONT_COLOR.toString()));
             addition.setBackgroundColor(rs.getString(AdditionEnum.BACKGROUND_COLOR.toString()));
-            addition.setSingleInLine(rs.getBoolean(AdditionEnum.SINGLE_IN_LINE.toString()));
             additionList.add(addition);
         }
         return additionList;

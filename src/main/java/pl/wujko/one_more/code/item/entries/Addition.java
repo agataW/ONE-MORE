@@ -13,25 +13,13 @@ public class Addition extends Entry
 {
 	private static Logger LOG = Logger.getLogger(Addition.class);
 
-	private int id;
 	private String name;
 	private BufferedImage image;
-	private boolean singleInLine;
 
 	@Override
 	public EntryTypeEnum getType()
 	{
 		return EntryTypeEnum.ADDITIONS;
-	}
-
-	public int getId()
-	{
-		return id;
-	}
-
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 
 	public String getName()
@@ -59,15 +47,5 @@ public class Addition extends Entry
 		{
 			LOG.info("Brak obrazka dla " + getKey());
 		}
-	}
-
-	public boolean isSingleInLine()
-	{
-		return singleInLine;
-	}
-
-	public void setSingleInLine(boolean singleInLine)
-	{
-		this.singleInLine = singleInLine;
 	}
 }

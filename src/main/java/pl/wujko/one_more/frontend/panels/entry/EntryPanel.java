@@ -14,7 +14,6 @@ public class EntryPanel extends JPanel
 {
     public EntryPanel(Entry entry)
     {
-//		setLayout(new FormLayout("f:p:g", "f:m"));
         setBackground(entry.getBackgroundColor());
 
         JLabel label = new JLabel(entry.getKey(), SwingConstants.CENTER);
@@ -23,8 +22,6 @@ public class EntryPanel extends JPanel
 		label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setForeground(entry.getFontColor());
 
-//		CellConstraints cc = new CellConstraints();
-//		add(label, cc.xy(1, 1));
         add(label);
     }
 }

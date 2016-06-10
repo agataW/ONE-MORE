@@ -45,8 +45,6 @@ public class ToppingAndAdditionPanel extends Panel
     @Resource
     private CartListController cartListController;
 
-//    private List<Topping> toppingList;
-
     private Map<Topping, JButton> toppingToButtonMap;
 
     private int TOPPING_COLUMN_COUNT;
@@ -68,7 +66,7 @@ public class ToppingAndAdditionPanel extends Panel
         }
 
         FormLayout formLayout = FormLayoutUtils
-            .createDefaultFoodLayout(TOPPING_COLUMN_COUNT + 1, Math.max(maxRowsCount, additionList.size()));
+            .createDefaultFoodLayout(TOPPING_COLUMN_COUNT + 2, maxRowsCount);//Math.max(maxRowsCount, additionList.size()));
         DefaultFormBuilder builder = new DefaultFormBuilder(formLayout);
         CellConstraints cc = new CellConstraints();
 
@@ -89,13 +87,24 @@ public class ToppingAndAdditionPanel extends Panel
             }
         }
 
+        if (row <= maxRow)
+        {
+            column += 2;
+        }
         row = 1;
+        maxRow = Math.min(maxRow, additionList.size());
+
         for (Addition addition : additionList)
         {
             JButton button = createButtonFor(addition);
-            builder.add(button, cc.rc(row, TOPPING_COLUMN_COUNT * 2 + 1));
+            builder.add(button, cc.rc(row, column));
 
             row += 2;
+            if (row > maxRow)
+            {
+                row = 1;
+                column += 2;
+            }
         }
 
         add(builder.getPanel(), cc.xy(1, 1));

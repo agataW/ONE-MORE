@@ -9,4 +9,12 @@ import java.util.List;
  */
 public interface AdditionService {
     List<Addition> findAll();
+
+    boolean isChicken(Addition addition);
+
+    boolean isChickenAddition(Addition addition);
+
+    boolean isSouse(Addition addition);
+
+    boolean isPotato(Addition addition);
 }

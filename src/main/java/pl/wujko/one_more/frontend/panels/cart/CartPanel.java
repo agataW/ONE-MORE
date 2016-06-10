@@ -4,11 +4,10 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import org.apache.commons.collections.CollectionUtils;
-import pl.wujko.one_more.code.constance.PanSize;
-import pl.wujko.one_more.code.constance.PanType;
+import pl.wujko.one_more.bean.BeanHelper;
 import pl.wujko.one_more.code.constance.PizzaConstants;
-import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Addition;
+import pl.wujko.one_more.code.service.AdditionService;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
@@ -31,6 +30,8 @@ public class CartPanel extends JPanel
 
     private List<CartEntryPanel> cartEntryPanelList;
 
+    private List<ChickenCartEntry> chickenList;
+
     private AdditionCartEntry lastAdditionCartEntry;
 
     private int currentRow = 1;
@@ -41,6 +42,7 @@ public class CartPanel extends JPanel
     {
         headerPanel = new CartHeaderPanel(this);
         cartEntryPanelList = new LinkedList<CartEntryPanel>();
+        chickenList = new LinkedList<ChickenCartEntry>();
 
         setBackground(GUIConstants.CART_HEADER_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:m"));
@@ -71,9 +73,14 @@ public class CartPanel extends JPanel
 
     public void addAddition(Addition addition)
     {
-        if (addition.isSingleInLine())
+        ChickenCartEntry chickenCartEntry;
+        if (getAdditionService().isChicken(addition))
         {
-            addSingleAddition(addition);
+            addNewChicken(addition);
+        }
+        else if ((chickenCartEntry = findNeededChickenEntry(addition)) != null)
+        {
+            addChickenAddition(addition, chickenCartEntry);
         }
         else
         {
@@ -81,20 +88,50 @@ public class CartPanel extends JPanel
         }
     }
 
-    private void addSingleAddition(Addition addition)
+	private void addNewChicken(Addition addition)
+	{
+		int index = cartEntryPanelList.size();
+		ChickenCartEntry chickenCartEntry = new ChickenCartEntry();
+		chickenCartEntry.add(addition);
+
+		CartEntryPanel cartEntryPanel = new CartEntryPanel(chickenCartEntry.createWorkshopData());
+		cartEntryPanel.disableEditButton();
+		cartEntryPanelList.add(index, cartEntryPanel);
+		calculatePrice();
+		initPanel();
+
+		chickenCartEntry.setCartEntryPanel(cartEntryPanel);
+		chickenList.add(chickenCartEntry);
+	}
+
+    private void addChickenAddition(Addition addition, ChickenCartEntry chickenCartEntry)
     {
-        int index = cartEntryPanelList.size();
-        AdditionCartEntry singleAdditionCartEntry = new AdditionCartEntry();
-        singleAdditionCartEntry.add(addition);
+		int index = cartEntryPanelList.indexOf(chickenCartEntry.getCartEntryPanel());
+		removeEntry(chickenCartEntry.getCartEntryPanel());
 
-        CartEntryPanel cartEntryPanel = new CartEntryPanel(singleAdditionCartEntry.createWorkshopData());
-        cartEntryPanel.disableEditButton();
-        cartEntryPanelList.add(index, cartEntryPanel);
-        calculatePrice();
-        initPanel();
+		chickenCartEntry.add(addition);
 
-        singleAdditionCartEntry.setCartEntryPanel(cartEntryPanel);
+		CartEntryPanel cartEntryPanel = new CartEntryPanel(chickenCartEntry.createWorkshopData());
+		cartEntryPanel.disableEditButton();
+		cartEntryPanelList.add(index, cartEntryPanel);
+		calculatePrice();
+		initPanel();
+
+		chickenCartEntry.setCartEntryPanel(cartEntryPanel);
     }
+
+	private ChickenCartEntry findNeededChickenEntry(Addition addition)
+	{
+		for (ChickenCartEntry chickenCartEntry : chickenList)
+		{
+			if (chickenCartEntry.canAdd(addition))
+			{
+				return chickenCartEntry;
+			}
+		}
+
+		return null;
+	}
 
     private void addMultiAddition(Addition addition)
     {
@@ -199,43 +236,8 @@ public class CartPanel extends JPanel
         }
     }
 
-    private class AdditionCartEntry
+    private AdditionService getAdditionService()
     {
-        private CartEntryPanel cartEntryPanel;
-
-        private LinkedList<Entry> additionList;
-
-        public void add(Addition addition)
-        {
-            if (additionList == null)
-            {
-                additionList = new LinkedList<Entry>();
-            }
-            additionList.add(addition);
-        }
-
-        public void setCartEntryPanel(CartEntryPanel cartEntryPanel)
-        {
-            this.cartEntryPanel = cartEntryPanel;
-        }
-
-        public CartEntryPanel getCartEntryPanel()
-        {
-            return cartEntryPanel;
-        }
-
-        public boolean full()
-        {
-            return additionList.size() == 5;
-        }
-
-        public WorkshopData createWorkshopData()
-        {
-            WorkshopData workshopData = new WorkshopData();
-            workshopData.setPanType(PanType.NO_PANE);
-            workshopData.setPanSize(PanSize.NO_PAN);
-            workshopData.setWholeSpace(additionList);
-            return workshopData;
-        }
+        return (AdditionService) BeanHelper.getBean("additionService");
     }
 }
