@@ -34,7 +34,7 @@ public class WorkshopData
         rightSpace = new SpaceList<Entry>(SpacePanel.Space.HALF);
         wholeSpace = new SpaceList<Entry>(SpacePanel.Space.WHOLE);
         panType = PanType.NORMAL;
-        panSize = PanSize.NORMAL;
+        panSize = PanSize.SIZE_32;
     }
 
     public WorkshopData(WorkshopData workshopData)
@@ -74,9 +74,9 @@ public class WorkshopData
                 panEntry = createEntry("CL");
             }
 
-            if (panSize.equals(PanSize.SIZE_35))
+            if (panSize.equals(PanSize.SIZE_40))
             {
-                panEntry.setBackgroundColor(GUIConstants.PAN_SIZE_35_BACKGROUND);
+                panEntry.setBackgroundColor(GUIConstants.PAN_SIZE_40_BACKGROUND);
             }
             entries.add(0, panEntry);
         }
@@ -138,11 +138,11 @@ public class WorkshopData
             return 0;
         }
         int price = 0;
-        if (panSize.equals(PanSize.SIZE_35))
+        if (panSize.equals(PanSize.SIZE_40))
         {
             for (Entry entry : entryList)
             {
-                price += ((Topping) entry).getPrice35();
+                price += ((Topping) entry).getPrice40();
             }
         }
         else

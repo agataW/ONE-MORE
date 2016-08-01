@@ -18,7 +18,7 @@ public class Topping extends Entry
     private boolean isLimited;
     private BufferedImage image;
     private boolean visible;
-    private int price35;
+    private int price40;
 
     @Override
     public EntryTypeEnum getType()
@@ -73,13 +73,13 @@ public class Topping extends Entry
         this.visible = visible;
     }
 
-    public int getPrice35()
+    public int getPrice40()
     {
-        return price35;
+        return price40;
     }
 
-    public void setPrice35(int price35)
+    public void setPrice40(int price40)
     {
-        this.price35 = price35;
+        this.price40 = price40;
     }
 }

@@ -55,7 +55,7 @@ public class WorkshopController
         updatePriceInMainOptionPanel();
     }
 
-    private void updatePriceInMainOptionPanel()
+    public void updatePriceInMainOptionPanel()
     {
         getMainOptionsPanel().setPrice(getWorkshopData().getPrice());
     }

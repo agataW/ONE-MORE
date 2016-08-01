@@ -7,7 +7,7 @@ public enum ToppingEnum {
     NAME,
     KEY,
     PRICE,
-    PRICE35,
+    PRICE40,
     IS_LIMITED,
     IMAGE,
     FONT_COLOR,

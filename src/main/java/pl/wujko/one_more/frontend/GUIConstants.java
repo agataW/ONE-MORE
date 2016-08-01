@@ -43,5 +43,5 @@ public class GUIConstants
     public static final Color CONFIRM_DELETE_BUTTONS_BACKGROUND = new Color(200, 200, 200);
 
     //PAN SIZE COLORS
-    public static final Color PAN_SIZE_35_BACKGROUND = new Color(73, 79, 255);
+    public static final Color PAN_SIZE_40_BACKGROUND = new Color(73, 79, 255);
 }
