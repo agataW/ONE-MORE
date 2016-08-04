@@ -75,15 +75,19 @@ public class WorkshopPanel extends Panel
             public void actionPerformed(ActionEvent e)
             {
                 PanType panType = workshopData.getPanType();
-                if (panType.equals(PanType.AMERICAN))
-                {
-                    workshopData.setPanType(PanType.NORMAL);
-                    changePanTypeButton(PanType.NORMAL);
-                }
-                else
+                if (panType.equals(PanType.NORMAL))
                 {
                     workshopData.setPanType(PanType.AMERICAN);
                     changePanTypeButton(PanType.AMERICAN);
+                    workshopData.setPanSize(PanSize.SIZE_35);
+                    changePanSizeButton(PanSize.SIZE_35);
+                }
+                else
+                {
+                    workshopData.setPanType(PanType.NORMAL);
+                    changePanTypeButton(PanType.NORMAL);
+                    workshopData.setPanSize(PanSize.SIZE_32);
+                    changePanSizeButton(PanSize.SIZE_32);
                 }
                 ((WorkshopController) BeanHelper.getBean("workshopController")).updatePriceInMainOptionPanel();
             }
@@ -98,15 +102,17 @@ public class WorkshopPanel extends Panel
             public void actionPerformed(ActionEvent e)
             {
                 PanSize panSize = workshopData.getPanSize();
-                if (panSize.equals(PanSize.SIZE_40))
-                {
-                    workshopData.setPanSize(PanSize.SIZE_32);
-                    changePanSizeButton(PanSize.SIZE_32);
-                }
-                else
+                if (panSize.equals(PanSize.SIZE_32) || panSize.equals(PanSize.SIZE_35))
                 {
                     workshopData.setPanSize(PanSize.SIZE_40);
                     changePanSizeButton(PanSize.SIZE_40);
+                    workshopData.setPanType(PanType.NORMAL);
+                    changePanTypeButton(PanType.NORMAL);
+                }
+                else
+                {
+                    workshopData.setPanSize(PanSize.SIZE_32);
+                    changePanSizeButton(PanSize.SIZE_32);
                 }
                 ((WorkshopController) BeanHelper.getBean("workshopController")).updatePriceInMainOptionPanel();
             }

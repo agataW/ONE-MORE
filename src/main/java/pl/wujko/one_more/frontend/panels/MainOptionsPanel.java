@@ -44,7 +44,7 @@ public class MainOptionsPanel extends Panel implements ActionListener, NeedConfi
         cleanCartList = new JButton("WYCZYŚĆ STRONĘ");
         newCart = new JButton("NOWE ZAMÓWIENIE");
         addEntry = new JButton("DODAJ");
-        price = new JLabel("0.00", SwingConstants.CENTER);
+        price = new JLabel("0.00 zł", SwingConstants.CENTER);
 
         cleanCartList.addActionListener(this);
         newCart.addActionListener(this);
@@ -72,7 +72,14 @@ public class MainOptionsPanel extends Panel implements ActionListener, NeedConfi
     {
         int integer = price / 100;
         int afterComa = price % 100;
-        this.price.setText(integer + "." + afterComa + " zł");
+        if (afterComa > 9)
+        {
+            this.price.setText(integer + "." + afterComa + " zł");
+        }
+        else
+        {
+            this.price.setText(integer + ".0" + afterComa + " zł");
+        }
     }
 
     @Override

@@ -19,17 +19,26 @@ public class ChickenCartEntry
 
 	private Entry souse;
 
+	private Entry souse2;
+
 	private Entry potato;
 
 	public void add(Addition addition)
 	{
-		if (getAdditionService().isChicken(addition))
+		if (getAdditionService().isChicken(addition) || getAdditionService().isChickenXXL(addition))
 		{
 			chicken = addition;
 		}
 		else if (getAdditionService().isSouse(addition))
 		{
-			souse = simpleClone(addition);
+			if (souse == null)
+			{
+				souse = simpleClone(addition);
+			}
+			else
+			{
+				souse2 = simpleClone(addition);
+			}
 		}
 		else if (getAdditionService().isPotato(addition))
 		{
@@ -47,13 +56,20 @@ public class ChickenCartEntry
 
 	public boolean canAdd(Addition addition)
 	{
-		if (getAdditionService().isChicken(addition) && chicken == null)
+		if ((getAdditionService().isChicken(addition) || getAdditionService().isChickenXXL(addition)) && chicken == null)
 		{
 			return true;
 		}
-		else if (getAdditionService().isSouse(addition) && souse == null)
+		else if (getAdditionService().isSouse(addition))
 		{
-			return true;
+			if (souse == null)
+			{
+				return true;
+			}
+			if (getAdditionService().isChickenXXL((Addition) chicken) && souse2 == null)
+			{
+				return true;
+			}
 		}
 		else if (getAdditionService().isPotato(addition) && potato == null)
 		{
@@ -85,6 +101,10 @@ public class ChickenCartEntry
 		if (souse != null)
 		{
 			workshopData.addToWholeSpace(souse);
+		}
+		if (souse2 != null)
+		{
+			workshopData.addToWholeSpace(souse2);
 		}
 		return workshopData;
 	}

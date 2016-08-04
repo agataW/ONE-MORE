@@ -23,6 +23,7 @@
     <bean id="additionService" class="pl.wujko.one_more.code.service.impl.AdditionServiceImpl"/>
     <bean id="compositionService" class="pl.wujko.one_more.code.service.impl.CompositionService"/>
     <bean id="propertyService" class="pl.wujko.one_more.code.service.PropertyService"/>
+    <bean id="priceService" class="pl.wujko.one_more.code.service.PriceService"/>
 
     <!--CONTROLLERS-->
     <bean id="panelController" class="pl.wujko.one_more.frontend.controller.ChoosePanelController"/>

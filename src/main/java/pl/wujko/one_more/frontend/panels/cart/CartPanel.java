@@ -73,12 +73,14 @@ public class CartPanel extends JPanel
 
     public void addAddition(Addition addition)
     {
-        ChickenCartEntry chickenCartEntry;
-        if (getAdditionService().isChicken(addition))
+        if (getAdditionService().isChicken(addition) || getAdditionService().isChickenXXL(addition))
         {
             addNewChicken(addition);
+            return;
         }
-        else if ((chickenCartEntry = findNeededChickenEntry(addition)) != null)
+
+        ChickenCartEntry chickenCartEntry = findNeededChickenEntry(addition);
+        if (chickenCartEntry != null)
         {
             addChickenAddition(addition, chickenCartEntry);
         }

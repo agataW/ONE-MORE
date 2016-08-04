@@ -68,6 +68,7 @@ INSERT INTO ADDITION VALUES ('OIL',        'OIL',  190, 80, 'img/oil.png',      
 INSERT INTO ADDITION VALUES ('COLA',       'COL',  500, 90, 'img/cola.png',       'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('FANTA',      'FAN',  500, 100, 'img/fanta.png',      'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('KURCZAK', 'KURCZAK', 2680, 110, null,                'ffffff', '3282ff', 1);
+INSERT INTO ADDITION VALUES ('KURCZAK XXL', 'KUR XXL', 4290, 115, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('FRYTKI',      'FRY', 480, 120, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('ZIEMNIAKI',  'ZIEM', 480, 130, null,                'ffffff', '3282ff', 1);
 

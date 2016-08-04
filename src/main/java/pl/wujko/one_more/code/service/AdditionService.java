@@ -12,6 +12,8 @@ public interface AdditionService {
 
     boolean isChicken(Addition addition);
 
+    boolean isChickenXXL(Addition addition);
+
     boolean isChickenAddition(Addition addition);
 
     boolean isSouse(Addition addition);

@@ -7,6 +7,7 @@ public enum PanSize
 {
 	NO_PAN(0, 0),
 	SIZE_32(1490, 1490),
+	SIZE_35(2000, 2000),
 	SIZE_40(2200, 2200);
 
 	private int price;

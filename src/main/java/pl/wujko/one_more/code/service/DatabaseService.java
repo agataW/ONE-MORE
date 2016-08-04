@@ -46,7 +46,7 @@ public class DatabaseService
 		}
 	}
 
-	private boolean checkIfMustImportDefaultDatabase() throws SQLException
+	private boolean checkIfMustImportDefaultDatabase()
 	{
 		return true; //TODO
 //		ResultSet resultSet = executeQuery("SELECT * FROM PROPERTY");

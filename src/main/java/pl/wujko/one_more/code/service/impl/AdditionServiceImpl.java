@@ -37,6 +37,12 @@ public class AdditionServiceImpl implements AdditionService{
     }
 
     @Override
+    public boolean isChickenXXL(Addition addition)
+    {
+        return "KUR XXL".equals(addition.getKey());
+    }
+
+    @Override
     public boolean isChickenAddition(Addition addition)
     {
         return chickenSauce.contains(addition.getKey()) || chickenPotato.contains(addition.getKey());

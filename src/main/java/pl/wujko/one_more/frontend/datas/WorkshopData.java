@@ -86,7 +86,7 @@ public class WorkshopData
 
     public int getPrice()
     {
-        if (wholeSpace.isEmpty() &&leftSpace.isEmpty() && rightSpace.isEmpty())
+        if (wholeSpace.isEmpty() && leftSpace.isEmpty() && rightSpace.isEmpty())
         {
             return 0;
         }
@@ -105,7 +105,7 @@ public class WorkshopData
 
     public int getPriceWithDiscount()
     {
-        if (wholeSpace.isEmpty() &&leftSpace.isEmpty() && rightSpace.isEmpty())
+        if (wholeSpace.isEmpty() && leftSpace.isEmpty() && rightSpace.isEmpty())
         {
             return 0;
         }
@@ -138,7 +138,7 @@ public class WorkshopData
             return 0;
         }
         int price = 0;
-        if (panSize.equals(PanSize.SIZE_40))
+        if (panSize.equals(PanSize.SIZE_40) || panSize.equals(PanSize.SIZE_35))
         {
             for (Entry entry : entryList)
             {
