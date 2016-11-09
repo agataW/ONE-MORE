@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * Created by Agata on 2015-06-25.
  */
-public class AdditionServiceImpl implements AdditionService{
-
+public class AdditionServiceImpl implements AdditionService
+{
     @Resource
     private AdditionDao additionDao;
 
@@ -20,7 +20,7 @@ public class AdditionServiceImpl implements AdditionService{
 
     private List<String> chickenSauce = Arrays.asList("X", "Y", "Z", "S", "Q2", "KECHUP");
 
-    private List<String> chickenPotato = Arrays.asList("FRY", "ZIEM");
+    private List<String> chickenPotato = Arrays.asList("FRY", "ZIEM", "KULKI");
 
     @Override
     public List<Addition> findAll() {

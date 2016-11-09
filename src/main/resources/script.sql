@@ -54,7 +54,7 @@ PRIORITY           INTEGER,
 IMAGE              TEXT,
 FONT_COLOR         VARCHAR6,
 BACKGROUND_COLOR   VARCHAR6,
-CHICKEN     BOOLEAN
+CHICKEN            BOOLEAN
 );
 
 INSERT INTO ADDITION VALUES ('CZOSNKOWY',    'X',  150, 10, 'img/czosnkowy.png',  'ffffff', '3282ff', 0);
@@ -71,6 +71,7 @@ INSERT INTO ADDITION VALUES ('KURCZAK', 'KURCZAK', 2680, 110, null,             
 INSERT INTO ADDITION VALUES ('KURCZAK XXL', 'KUR XXL', 4290, 115, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('FRYTKI',      'FRY', 480, 120, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('ZIEMNIAKI',  'ZIEM', 480, 130, null,                'ffffff', '3282ff', 1);
+INSERT INTO ADDITION VALUES ('KULKI',  'KULKI', 600, 140, null,                'ffffff', '3282ff', 1);
 
 DROP TABLE IF EXISTS COMPOSITION;
 CREATE TABLE COMPOSITION (
