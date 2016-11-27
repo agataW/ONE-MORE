@@ -23,7 +23,6 @@
     <bean id="additionService" class="pl.wujko.one_more.code.service.impl.AdditionServiceImpl"/>
     <bean id="compositionService" class="pl.wujko.one_more.code.service.impl.CompositionService"/>
     <bean id="propertyService" class="pl.wujko.one_more.code.service.PropertyService"/>
-    <bean id="priceService" class="pl.wujko.one_more.code.service.PriceService"/>
 
     <!--CONTROLLERS-->
     <bean id="panelController" class="pl.wujko.one_more.frontend.controller.ChoosePanelController"/>
@@ -43,6 +42,7 @@
     </bean>
     <bean id="toppingAndAdditionPanel" class="pl.wujko.one_more.frontend.panels.food.ToppingAndAdditionPanel">
         <property name="toppingColumnCount" value="3"/>
+        <property name="additionsColumnCount" value="2"/>
     </bean>
     <bean id="workshopPanel" class="pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel"/>
 

@@ -4,6 +4,7 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import org.apache.commons.collections.CollectionUtils;
+import org.joda.time.DateTime;
 import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
@@ -22,7 +23,6 @@ import java.util.List;
  */
 public class CartListPanel extends Panel
 {
-
     private DefaultFormBuilder builder;
 
     private CellConstraints cc;
@@ -135,6 +135,14 @@ public class CartListPanel extends Panel
             addNewCart();
         }
         currentCartPanel.addAddition(addition);
+    }
+
+    public void updateTimers(DateTime currentTime)
+    {
+        for (CartPanel cartPanel : cartPanelList)
+        {
+            cartPanel.updateTimer(currentTime);
+        }
     }
 
     private void ifMustSetNewCurrentCartPanel(CartPanel cartPanelToRemove)

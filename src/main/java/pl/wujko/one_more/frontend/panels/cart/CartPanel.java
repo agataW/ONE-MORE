@@ -4,6 +4,7 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import org.apache.commons.collections.CollectionUtils;
+import org.joda.time.DateTime;
 import pl.wujko.one_more.bean.BeanHelper;
 import pl.wujko.one_more.code.constance.PizzaConstants;
 import pl.wujko.one_more.code.item.entries.Addition;
@@ -175,6 +176,7 @@ public class CartPanel extends JPanel
     private void calculatePrice()
     {
         int price = 0;
+        int colaPrice = 0;
         for (CartEntryPanel cartEntryPanel : cartEntryPanelList)
         {
             cartEntryPanel.setPizzaDiscount(pizzaCount() >= PizzaConstants.COUNT_OF_PIZZA_TO_DISCOUNT);
@@ -184,7 +186,12 @@ public class CartPanel extends JPanel
         {
             price += cartEntryPanel.getPrice();
         }
+        for (CartEntryPanel cartEntryPanel : cartEntryPanelList)
+        {
+            colaPrice += cartEntryPanel.getColaPrice();
+        }
         headerPanel.setPrice(price);
+        headerPanel.setColaPrice(colaPrice);
     }
 
     private void initPanel()
@@ -236,6 +243,11 @@ public class CartPanel extends JPanel
             this.selected = selected;
             initPanel();
         }
+    }
+
+    public void updateTimer(DateTime currentTime)
+    {
+        headerPanel.updateTimer(currentTime);
     }
 
     private AdditionService getAdditionService()

@@ -49,6 +49,8 @@ public class ToppingAndAdditionPanel extends Panel
 
     private int TOPPING_COLUMN_COUNT;
 
+    private int ADDITIONS_COLUMN_COUNT;
+
     @Override
     public void initPanel()
     {
@@ -59,20 +61,18 @@ public class ToppingAndAdditionPanel extends Panel
         List<Topping> toppingList = toppingService.findAllVisible();
         List<Addition> additionList = additionService.findAll();
 
-        int maxRowsCount = toppingList.size() / TOPPING_COLUMN_COUNT;
-        if (toppingList.size() % TOPPING_COLUMN_COUNT != 0)
-        {
-            maxRowsCount += 1;
-        }
+        int maxRowsCount = (int) Math.max(
+                Math.ceil(toppingList.size() / TOPPING_COLUMN_COUNT),
+                Math.ceil(additionList.size() / ADDITIONS_COLUMN_COUNT));
 
         FormLayout formLayout = FormLayoutUtils
-            .createDefaultFoodLayout(TOPPING_COLUMN_COUNT + 2, maxRowsCount);//Math.max(maxRowsCount, additionList.size()));
+            .createDefaultFoodLayout(TOPPING_COLUMN_COUNT + 2, maxRowsCount);
         DefaultFormBuilder builder = new DefaultFormBuilder(formLayout);
         CellConstraints cc = new CellConstraints();
 
         int column = 1;
         int row = 1;
-        int maxRow = maxRowsCount * 2 - 1;
+        int maxRow = builder.getRowCount();
         for (Topping topping : toppingList)
         {
             JButton button = createButtonFor(topping);
@@ -87,13 +87,10 @@ public class ToppingAndAdditionPanel extends Panel
             }
         }
 
-        if (row <= maxRow)
-        {
-            column += 2;
-        }
+
+        column = 2 * TOPPING_COLUMN_COUNT + 1;
         row = 1;
         maxRow = Math.min(maxRow, additionList.size());
-
         for (Addition addition : additionList)
         {
             JButton button = createButtonFor(addition);
@@ -170,5 +167,11 @@ public class ToppingAndAdditionPanel extends Panel
     public void setToppingColumnCount(int toppingColumnCount)
     {
         TOPPING_COLUMN_COUNT = toppingColumnCount;
+    }
+
+    @Required
+    public void setAdditionsColumnCount(int additionsColumnCount)
+    {
+        this.ADDITIONS_COLUMN_COUNT = additionsColumnCount;
     }
 }

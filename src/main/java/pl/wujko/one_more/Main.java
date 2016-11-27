@@ -4,6 +4,7 @@ import javax.swing.UIManager;
 
 import pl.wujko.one_more.bean.BeanHelper;
 import pl.wujko.one_more.frontend.MainFrame;
+import pl.wujko.one_more.thread.TimerThread;
 
 public class Main
 {
@@ -27,5 +28,7 @@ public class Main
 
         MainFrame mainFrame = (MainFrame) BeanHelper.getBean("mainFrame");
         mainFrame.initFrame();
+        TimerThread timerThread = new TimerThread();
+        timerThread.start();
     }
 }

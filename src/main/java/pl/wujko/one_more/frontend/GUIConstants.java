@@ -16,6 +16,8 @@ public class GUIConstants
 
     public static final Font DEFAULT_FONT = new Font("Tahoma", Font.BOLD, 18);
 
+    public static final Font TIMER_FONT = new Font("Tahoma", Font.PLAIN, 18);
+
     // WORKSPACE
     public static final Color WORKSPACE_PANEL_BACKGROUND = new Color(40, 40, 40);
 

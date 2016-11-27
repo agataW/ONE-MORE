@@ -1,5 +1,6 @@
 package pl.wujko.one_more.frontend.controller;
 
+import org.joda.time.DateTime;
 import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.cart.CartEntryPanel;
@@ -62,5 +63,10 @@ public class CartListController
     public void addToSelectedCart(Addition addition)
     {
         cartListPanel.addToSelectedCart(addition);
+    }
+
+    public void updateTimers()
+    {
+        cartListPanel.updateTimers(new DateTime());
     }
 }

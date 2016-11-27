@@ -83,6 +83,11 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
         return workshopData.getPrice();
     }
 
+    public int getColaPrice()
+    {
+        return workshopData.getColaPrice();
+    }
+
     public boolean isPizza()
     {
         return workshopData.isPizza();

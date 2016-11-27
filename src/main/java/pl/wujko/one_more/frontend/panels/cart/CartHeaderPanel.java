@@ -1,5 +1,9 @@
 package pl.wujko.one_more.frontend.panels.cart;
 
+import org.joda.time.DateTime;
+import org.joda.time.Period;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import pl.wujko.one_more.bean.BeanHelper;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
@@ -10,10 +14,9 @@ import pl.wujko.one_more.frontend.utils.PriceUtils;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by Agata on 2015-10-14.
@@ -22,11 +25,19 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
 {
     private static int COUNT_OF_CART = 0;
 
-    private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm");
+    private static DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("H:mm");
 
     private final CartPanel currentCartPanel;
 
     private JLabel price;
+
+    private JLabel colaPrice;
+
+    private JLabel timer;
+
+    private JLabel bigEmptySpace;
+
+    private DateTime startTime = new DateTime();
 
     public CartHeaderPanel(CartPanel cartPanel)
     {
@@ -38,8 +49,12 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
         countLabel.setFont(GUIConstants.DEFAULT_FONT);
         JLabel time = new JLabel(getCurrentTime());
         time.setFont(GUIConstants.DEFAULT_FONT);
+        timer = new JLabel("(0:00)");
+        timer.setFont(GUIConstants.TIMER_FONT);
         price = new JLabel(PriceUtils.convertPrice(0));
         price.setFont(GUIConstants.DEFAULT_FONT);
+        colaPrice = new JLabel();
+        colaPrice.setFont(GUIConstants.TIMER_FONT);
         JButton close = new JButton("X");
         close.setFont(GUIConstants.DEFAULT_FONT);
 
@@ -53,19 +68,21 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
             }
         });
 
+        JLabel smallEmptySpace = new JLabel();
+        smallEmptySpace.setPreferredSize(new Dimension(15, 1));
+        bigEmptySpace = new JLabel();
+        bigEmptySpace.setPreferredSize(new Dimension(150, 1));
+
         add(countLabel);
-        add(new JLabel());
+        add(smallEmptySpace);
         add(time);
-        add(new JLabel());
-        add(new JLabel());
-        add(new JLabel());
-        add(new JLabel());
-        add(new JLabel());
-        add(new JLabel());
-        add(new JLabel());
-        add(new JLabel());
+        add(smallEmptySpace);
+        add(timer);
+        add(bigEmptySpace);
         add(price);
-        add(new JLabel());
+        add(smallEmptySpace);
+        add(colaPrice);
+        add(smallEmptySpace);
         add(close);
     }
 
@@ -80,9 +97,37 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
         this.price.setText(PriceUtils.convertPrice(price));
     }
 
-    private static String getCurrentTime()
+    public void setColaPrice(int price)
     {
-        return DATE_FORMAT.format(new Date());
+        if (price == 0)
+        {
+            bigEmptySpace.setPreferredSize(new Dimension(150, 1));
+            this.colaPrice.setText("");
+        }
+        else
+        {
+            bigEmptySpace.setPreferredSize(new Dimension(72, 1));
+            this.colaPrice.setText("(" + PriceUtils.convertPrice(price) + ")");
+        }
+    }
+
+    public void updateTimer(DateTime currentTime)
+    {
+        Period diff = new Period(startTime, currentTime);
+        int hours = diff.getHours();
+        int minutes = diff.getMinutes();
+        String zero = "";
+        if (minutes < 10)
+        {
+            zero = "0";
+        }
+
+        timer.setText("(" + hours + ":" + zero + minutes + ")");
+    }
+
+    private String getCurrentTime()
+    {
+        return DATE_FORMAT.print(startTime);
     }
 
     private CartListController getCartListController()

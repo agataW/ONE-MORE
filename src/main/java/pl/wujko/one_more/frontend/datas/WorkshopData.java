@@ -103,6 +103,24 @@ public class WorkshopData
         return result + getPanSize().getPrice();
     }
 
+    public int getColaPrice()
+    {
+        if (CollectionUtils.isEmpty(wholeSpace))
+        {
+            return 0;
+        }
+        int price = 0;
+        for (Entry entry : wholeSpace)
+        {
+            if ("COL".equals(entry.getKey()))
+            {
+                price += entry.getPrice();
+            }
+        }
+
+        return price;
+    }
+
     public int getPriceWithDiscount()
     {
         if (wholeSpace.isEmpty() && leftSpace.isEmpty() && rightSpace.isEmpty())

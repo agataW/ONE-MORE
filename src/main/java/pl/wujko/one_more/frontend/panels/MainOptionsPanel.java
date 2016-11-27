@@ -41,7 +41,7 @@ public class MainOptionsPanel extends Panel implements ActionListener, NeedConfi
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:p"));
 
-        cleanCartList = new JButton("WYCZYŚĆ STRONĘ");
+        cleanCartList = new JButton("WYCZYSC STRONE");
         newCart = new JButton("NOWE ZAMÓWIENIE");
         addEntry = new JButton("DODAJ");
         price = new JLabel("0.00 zł", SwingConstants.CENTER);

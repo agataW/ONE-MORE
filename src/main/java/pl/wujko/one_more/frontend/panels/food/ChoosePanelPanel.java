@@ -49,7 +49,7 @@ public class ChoosePanelPanel extends Panel implements ActionListener
     @Override
     public void initButtonsAndLabels()
     {
-        workshopButton = new JButton("SKŁADNIKI");
+        workshopButton = new JButton("SKLADNIKI");
         workshopButton.addActionListener(this);
         workshopButton.setFont(GUIConstants.DEFAULT_FONT);
 

@@ -37,7 +37,8 @@ public class WorkshopPanel extends Panel
 
     private SpacePanel selectedSpace;
 
-    private JButton americanPanButton;
+//    TODO PanType.AMERICAN
+//    private JButton americanPanButton;
 
     private WorkshopData workshopData;
 
@@ -57,7 +58,8 @@ public class WorkshopPanel extends Panel
         builder.add(rightSpace, cc.xywh(2, 1, 1, 3));
         builder.add(wholeSpace, cc.xywh(1, 4, 2, 2));
 
-        builder.add(americanPanButton, cc.xy(4, 2));
+//        TODO PanType.AMERICAN
+//        builder.add(americanPanButton, cc.xy(4, 2));
         builder.add(panSize40Button, cc.xy(4, 4));
 
         add(builder.getPanel(), cc.xy(1, 1));
@@ -67,31 +69,32 @@ public class WorkshopPanel extends Panel
     {
         workshopData = new WorkshopData();
 
-        americanPanButton = new JButton("AM PAN");
-        americanPanButton.setFont(GUIConstants.DEFAULT_FONT);
-        americanPanButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                PanType panType = workshopData.getPanType();
-                if (panType.equals(PanType.NORMAL))
-                {
-                    workshopData.setPanType(PanType.AMERICAN);
-                    changePanTypeButton(PanType.AMERICAN);
-                    workshopData.setPanSize(PanSize.SIZE_35);
-                    changePanSizeButton(PanSize.SIZE_35);
-                }
-                else
-                {
-                    workshopData.setPanType(PanType.NORMAL);
-                    changePanTypeButton(PanType.NORMAL);
-                    workshopData.setPanSize(PanSize.SIZE_32);
-                    changePanSizeButton(PanSize.SIZE_32);
-                }
-                ((WorkshopController) BeanHelper.getBean("workshopController")).updatePriceInMainOptionPanel();
-            }
-        });
+//        TODO PanType.AMERICAN
+//        americanPanButton = new JButton("AM PAN");
+//        americanPanButton.setFont(GUIConstants.DEFAULT_FONT);
+//        americanPanButton.addActionListener(new ActionListener()
+//        {
+//            @Override
+//            public void actionPerformed(ActionEvent e)
+//            {
+//                PanType panType = workshopData.getPanType();
+//                if (panType.equals(PanType.NORMAL))
+//                {
+//                    workshopData.setPanType(PanType.AMERICAN);
+//                    changePanTypeButton(PanType.AMERICAN);
+//                    workshopData.setPanSize(PanSize.SIZE_35);
+//                    changePanSizeButton(PanSize.SIZE_35);
+//                }
+//                else
+//                {
+//                    workshopData.setPanType(PanType.NORMAL);
+//                    changePanTypeButton(PanType.NORMAL);
+//                    workshopData.setPanSize(PanSize.SIZE_32);
+//                    changePanSizeButton(PanSize.SIZE_32);
+//                }
+//                ((WorkshopController) BeanHelper.getBean("workshopController")).updatePriceInMainOptionPanel();
+//            }
+//        });
         changePanTypeButton(PanType.NORMAL);
 
         panSize40Button = new JButton("40");
@@ -181,14 +184,15 @@ public class WorkshopPanel extends Panel
 
     private void changePanTypeButton(PanType panType)
     {
-        if (panType.equals(PanType.AMERICAN))
-        {
-            americanPanButton.setBackground(Color.GREEN);
-        }
-        else
-        {
-            americanPanButton.setBackground(Color.GRAY);
-        }
+//        TODO PanType.AMERICAN
+//        if (panType.equals(PanType.AMERICAN))
+//        {
+//            americanPanButton.setBackground(Color.GREEN);
+//        }
+//        else
+//        {
+//            americanPanButton.setBackground(Color.GRAY);
+//        }
     }
 
     private void changePanSizeButton(PanSize panSize)
