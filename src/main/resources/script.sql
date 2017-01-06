@@ -72,6 +72,9 @@ INSERT INTO ADDITION VALUES ('KURCZAK XXL', 'KUR XXL', 4290, 115, null,         
 INSERT INTO ADDITION VALUES ('FRYTKI',      'FRY', 480, 120, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('ZIEMNIAKI',  'ZIEM', 480, 130, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('KULKI',  'KULKI', 600, 140, null,                'ffffff', '3282ff', 1);
+INSERT INTO ADDITION VALUES ('M1',  'M1', 2300, 150, null,                'ffffff', '3282ff', 1);
+INSERT INTO ADDITION VALUES ('M2',  'M2', 2300, 160, null,                'ffffff', '3282ff', 1);
+INSERT INTO ADDITION VALUES ('M3',  'M3', 2300, 170, null,                'ffffff', '3282ff', 1);
 
 DROP TABLE IF EXISTS COMPOSITION;
 CREATE TABLE COMPOSITION (
