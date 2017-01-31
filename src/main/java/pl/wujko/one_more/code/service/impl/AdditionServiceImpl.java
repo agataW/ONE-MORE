@@ -18,9 +18,9 @@ public class AdditionServiceImpl implements AdditionService
 
     private List<Addition> additionList;
 
-    private List<String> chickenSauce = Arrays.asList("X", "Y", "Z", "S", "Q2", "KECHUP");
+    private List<String> chickenSauce = Arrays.asList("X", "Y", "Z","Q2", "KECHUP");
 
-    private List<String> chickenPotato = Arrays.asList("FRY", "ZIEM", "KULKI");
+    private List<String> chickenPotato = Arrays.asList("FRY", "ZIEM");
 
     @Override
     public List<Addition> findAll() {

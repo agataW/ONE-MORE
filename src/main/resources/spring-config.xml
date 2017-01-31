@@ -41,7 +41,7 @@
         <property name="columnCount" value="2"/>
     </bean>
     <bean id="toppingAndAdditionPanel" class="pl.wujko.one_more.frontend.panels.food.ToppingAndAdditionPanel">
-        <property name="toppingColumnCount" value="3"/>
+        <property name="toppingColumnCount" value="4"/>
         <property name="additionsColumnCount" value="2"/>
     </bean>
     <bean id="workshopPanel" class="pl.wujko.one_more.frontend.panels.food.workshop.WorkshopPanel"/>

@@ -60,18 +60,15 @@ CHICKEN            BOOLEAN
 INSERT INTO ADDITION VALUES ('CZOSNKOWY',    'X',  150, 10, 'img/czosnkowy.png',  'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('POMIDOROWY',   'Y',  150, 20, 'img/pomidorowy.png', 'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('PIEKIELNY',    'Z',  150, 30, 'img/piekielny.png',  'ffffff', '3282ff', 0);
-INSERT INTO ADDITION VALUES ('SAMBAL',       'S',  150, 40, 'img/sambal.png',     'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('BBQ',          'Q',  240, 50, 'img/bbq.png',        'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('BBQ2',         'Q2', 150, 60, 'img/bbq.png',        'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('KETCHUP',   'KECHUP', 150, 70, null,        'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('OIL',        'OIL',  190, 80, 'img/oil.png',        'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('COLA',       'COL',  500, 90, 'img/cola.png',       'ffffff', '3282ff', 0);
-INSERT INTO ADDITION VALUES ('FANTA',      'FAN',  500, 100, 'img/fanta.png',      'ffffff', '3282ff', 0);
 INSERT INTO ADDITION VALUES ('KURCZAK', 'KURCZAK', 2680, 110, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('KURCZAK XXL', 'KUR XXL', 4290, 115, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('FRYTKI',      'FRY', 480, 120, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('ZIEMNIAKI',  'ZIEM', 480, 130, null,                'ffffff', '3282ff', 1);
-INSERT INTO ADDITION VALUES ('KULKI',  'KULKI', 600, 140, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('M1',  'M1', 2300, 150, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('M2',  'M2', 2300, 160, null,                'ffffff', '3282ff', 1);
 INSERT INTO ADDITION VALUES ('M3',  'M3', 2300, 170, null,                'ffffff', '3282ff', 1);
