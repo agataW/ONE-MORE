@@ -1,6 +1,5 @@
 package pl.wujko.one_more.code.item.entries;
 
-import pl.wujko.one_more.code.constance.EntryTypeEnum;
 import pl.wujko.one_more.code.item.Entry;
 
 import java.util.List;
@@ -20,11 +19,5 @@ public class Composition extends Entry
     public void setToppingList(List<Topping> toppingList)
     {
         this.toppingList = toppingList;
-    }
-
-    @Override
-    public EntryTypeEnum getType()
-    {
-        return EntryTypeEnum.COMPOSITION;
     }
 }

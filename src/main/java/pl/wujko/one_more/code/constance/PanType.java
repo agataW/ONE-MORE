@@ -5,7 +5,19 @@ package pl.wujko.one_more.code.constance;
  */
 public enum PanType
 {
-	NORMAL,
-	AMERICAN,
-	NO_PANE
+	NORMAL(0),
+	AMERICAN(200),
+	NO_PANE(0);
+	
+	int price;
+	
+	PanType(int price)
+	{
+		this.price = price;
+	}
+	
+	public int getPrice()
+	{
+		return price;
+	}
 }

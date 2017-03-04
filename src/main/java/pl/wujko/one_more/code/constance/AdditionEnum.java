@@ -7,10 +7,7 @@ public enum AdditionEnum {
     NAME,
     KEY,
     PRICE,
-    PRIORITY,
-    IMAGE,
-    FONT_COLOR,
-    BACKGROUND_COLOR;
+    IMAGE;
 
     AdditionEnum() {}
 }

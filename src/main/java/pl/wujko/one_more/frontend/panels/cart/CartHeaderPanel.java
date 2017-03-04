@@ -43,7 +43,7 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
     {
         this.currentCartPanel = cartPanel;
 
-        setBackground(GUIConstants.CART_HEADER_PANEL_BACKGROUND);
+        setBackground(GUIConstants.Cart.HEADER_PANEL_BACKGROUND);
 
         JLabel countLabel = new JLabel((++COUNT_OF_CART) + ".");
         countLabel.setFont(GUIConstants.DEFAULT_FONT);

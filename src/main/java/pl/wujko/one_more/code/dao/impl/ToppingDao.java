@@ -62,7 +62,7 @@ public class ToppingDao implements Dao<Topping>
 			topping.setVisible(rs.getBoolean(ToppingEnum.VISIBLE.toString()));
 
 			int priority = queueToppingsInOrder.indexOf(topping.getKey());
-			if (queueToppingsInOrder.indexOf(topping.getKey()) == -1)
+			if (priority == -1)
 			{
 				topping.setPriority(99);
 			}

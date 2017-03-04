@@ -45,7 +45,7 @@ public class CartPanel extends JPanel
         cartEntryPanelList = new LinkedList<CartEntryPanel>();
         chickenList = new LinkedList<ChickenCartEntry>();
 
-        setBackground(GUIConstants.CART_HEADER_PANEL_BACKGROUND);
+        setBackground(GUIConstants.Cart.HEADER_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:m"));
 
         initPanel();
@@ -253,5 +253,10 @@ public class CartPanel extends JPanel
     private AdditionService getAdditionService()
     {
         return (AdditionService) BeanHelper.getBean("additionService");
+    }
+    
+    public List<ChickenCartEntry> getChickenList()
+    {
+        return chickenList;
     }
 }

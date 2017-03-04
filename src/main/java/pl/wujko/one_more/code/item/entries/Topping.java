@@ -1,7 +1,6 @@
 package pl.wujko.one_more.code.item.entries;
 
 import org.apache.log4j.Logger;
-import pl.wujko.one_more.code.constance.EntryTypeEnum;
 import pl.wujko.one_more.code.item.Entry;
 
 import javax.imageio.ImageIO;
@@ -19,12 +18,6 @@ public class Topping extends Entry
     private BufferedImage image;
     private boolean visible;
     private int price40;
-
-    @Override
-    public EntryTypeEnum getType()
-    {
-        return EntryTypeEnum.TOPPINGS;
-    }
 
     public String getName()
     {

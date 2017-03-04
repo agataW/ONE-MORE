@@ -18,32 +18,47 @@ public class GUIConstants
 
     public static final Font TIMER_FONT = new Font("Tahoma", Font.PLAIN, 18);
 
-    // WORKSPACE
-    public static final Color WORKSPACE_PANEL_BACKGROUND = new Color(40, 40, 40);
+    public static class WorkSpace
+    {
+        public static final Color PANEL_BACKGROUND = new Color(40, 40, 40);
 
-    public static final Color WORKSPACE_BORDER_COLOR = new Color(153, 204, 255);
+        public static final Color BORDER_COLOR = new Color(153, 204, 255);
 
-    public static final Border WORKSPACE_BORDER = BorderFactory.createLineBorder(WORKSPACE_BORDER_COLOR, 2);
+        public static final Border BORDER = BorderFactory.createLineBorder(BORDER_COLOR, 2);
 
-    public static final Border WORKSPACE_BORDER_BLACK = BorderFactory.createLineBorder(new Color(0, 0, 0), 1);
+        public static final Border BORDER_BLACK = BorderFactory.createLineBorder(new Color(0, 0, 0), 1);
+    }
 
-    // CART
-    public static final Color CART_BORDER_COLOR = new Color(244, 63, 21);
+    public static class Cart
+    {
+        public static final Color BORDER_COLOR = new Color(244, 63, 21);
 
-    public static final Color CART_HEADER_PANEL_BACKGROUND = new Color(140, 140, 140);
+        public static final Color HEADER_PANEL_BACKGROUND = new Color(140, 140, 140);
 
-    public static final Border CART_BORDER = BorderFactory.createLineBorder(CART_BORDER_COLOR, 2);
+        public static final Border BORDER = BorderFactory.createLineBorder(BORDER_COLOR, 2);
 
-    public static final Border CART_BORDER_BLACK = BorderFactory.createLineBorder(new Color(0, 0, 0), 1);
+        public static final Border BORDER_BLACK = BorderFactory.createLineBorder(new Color(0, 0, 0), 1);
+    }
 
-    // CART ENTRY
-    public static final Color CART_ENTRY_PANEL_BACKGROUND = new Color(160, 160, 160);
+    public static class CartEntry
+    {
+        public static final Color PANEL_BACKGROUND = new Color(160, 160, 160);
+    }
 
-    //CONFIRM DELETE
-    public static final Color CONFIRM_DELETE_LABEL_FOREGROUND = new Color(200, 200, 200);
+    public static class ConfirmDelete
+    {
+        public static final Color LABEL_FOREGROUND = new Color(200, 200, 200);
 
-    public static final Color CONFIRM_DELETE_BUTTONS_BACKGROUND = new Color(200, 200, 200);
+        public static final Color BUTTONS_BACKGROUND = new Color(200, 200, 200);
+    }
 
-    //PAN SIZE COLORS
-    public static final Color PAN_SIZE_40_BACKGROUND = new Color(73, 79, 255);
+    public static class PanSizeColour
+    {
+        public static final Color BACKGROUND_40 = new Color(73, 79, 255);
+    }
+
+    public static class Additions {
+        public static final Color FONT_COLOUR = new Color(Integer.parseInt("ffffff", 16));
+        public static final Color BACKGROUND_COLOR = new Color(Integer.parseInt("3282ff", 16));
+    }
 }

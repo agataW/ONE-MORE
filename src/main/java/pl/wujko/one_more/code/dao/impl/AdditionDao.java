@@ -6,11 +6,15 @@ import pl.wujko.one_more.code.constance.TableEnum;
 import pl.wujko.one_more.code.dao.Dao;
 import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.code.service.DatabaseService;
+import pl.wujko.one_more.code.service.PropertyService;
+import pl.wujko.one_more.frontend.GUIConstants;
 
 import javax.annotation.Resource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,12 +27,16 @@ public class AdditionDao implements Dao<Addition>
     @Resource
     private DatabaseService databaseService;
 
+    @Resource
+    private PropertyService propertyService;
+
     public List<Addition> findAll()
     {
         try
         {
+            List<String> additionsPriority = propertyService.getAdditionsPriority();
             ResultSet resultSet = databaseService.executeQuery("SELECT * FROM " + TableEnum.ADDITION);
-            return convert(resultSet);
+            return convert(resultSet, additionsPriority);
         }
         catch (SQLException e)
         {
@@ -37,7 +45,7 @@ public class AdditionDao implements Dao<Addition>
         }
     }
 
-    private List<Addition> convert(ResultSet rs) throws SQLException
+    private List<Addition> convert(ResultSet rs, final List<String> additionsPriority) throws SQLException
     {
         List<Addition> additionList = new ArrayList<Addition>();
         while (rs.next())
@@ -46,12 +54,31 @@ public class AdditionDao implements Dao<Addition>
             addition.setName(rs.getString(AdditionEnum.NAME.toString()));
             addition.setKey(rs.getString(AdditionEnum.KEY.toString()));
             addition.setPrice(rs.getInt(AdditionEnum.PRICE.toString()));
-            addition.setPriority(rs.getInt(AdditionEnum.PRIORITY.toString()));
             addition.setImage(rs.getString(AdditionEnum.IMAGE.toString()));
-            addition.setFontColor(rs.getString(AdditionEnum.FONT_COLOR.toString()));
-            addition.setBackgroundColor(rs.getString(AdditionEnum.BACKGROUND_COLOR.toString()));
+            addition.setFontColor(GUIConstants.Additions.FONT_COLOUR);
+            addition.setBackgroundColor(GUIConstants.Additions.BACKGROUND_COLOR);
+
+            int priority = additionsPriority.indexOf(addition.getKey());
+            if (priority == -1)
+            {
+                addition.setPriority(99);
+            }
+            else
+            {
+                addition.setPriority(priority);
+            }
+
             additionList.add(addition);
         }
+
+        Collections.sort(additionList, new Comparator<Addition>()
+        {
+            @Override
+            public int compare(Addition addition1, Addition addition2)
+            {
+                return addition1.getPriority() - addition2.getPriority();
+            }
+        });
         return additionList;
     }
 }

@@ -1,7 +1,6 @@
 package pl.wujko.one_more.code.item.entries;
 
 import org.apache.log4j.Logger;
-import pl.wujko.one_more.code.constance.EntryTypeEnum;
 import pl.wujko.one_more.code.item.Entry;
 
 import javax.imageio.ImageIO;
@@ -15,12 +14,6 @@ public class Addition extends Entry
 
 	private String name;
 	private BufferedImage image;
-
-	@Override
-	public EntryTypeEnum getType()
-	{
-		return EntryTypeEnum.ADDITIONS;
-	}
 
 	public String getName()
 	{

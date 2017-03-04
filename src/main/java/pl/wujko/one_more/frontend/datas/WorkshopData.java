@@ -76,7 +76,7 @@ public class WorkshopData
 
             if (panSize.equals(PanSize.SIZE_40))
             {
-                panEntry.setBackgroundColor(GUIConstants.PAN_SIZE_40_BACKGROUND);
+                panEntry.setBackgroundColor(GUIConstants.PanSizeColour.BACKGROUND_40);
             }
             entries.add(0, panEntry);
         }
@@ -86,7 +86,7 @@ public class WorkshopData
 
     public int getPrice()
     {
-        if (wholeSpace.isEmpty() && leftSpace.isEmpty() && rightSpace.isEmpty())
+        if (isEmpty())
         {
             return 0;
         }
@@ -100,7 +100,7 @@ public class WorkshopData
         {
             result -= 5;
         }
-        return result + getPanSize().getPrice();
+        return result + getPanSize().getPrice() + getPanType().getPrice();
     }
 
     public int getColaPrice()
@@ -123,7 +123,7 @@ public class WorkshopData
 
     public int getPriceWithDiscount()
     {
-        if (wholeSpace.isEmpty() && leftSpace.isEmpty() && rightSpace.isEmpty())
+        if (isEmpty())
         {
             return 0;
         }
@@ -137,7 +137,7 @@ public class WorkshopData
         {
             result -= 5;
         }
-        return result + getPanSize().getPriceWithDiscount();
+        return result + getPanSize().getPriceWithDiscount() + getPanType().getPrice();
     }
 
     private Entry createEntry(final String brand)
@@ -156,7 +156,7 @@ public class WorkshopData
             return 0;
         }
         int price = 0;
-        if (panSize.equals(PanSize.SIZE_40) || panSize.equals(PanSize.SIZE_35))
+        if (panSize.equals(PanSize.SIZE_40))
         {
             for (Entry entry : entryList)
             {
@@ -295,8 +295,7 @@ public class WorkshopData
     {
         leftSpace.remove(entry);
     }
-
-
+    
     public void removeFromRightSpace(Entry entry)
     {
         rightSpace.remove(entry);

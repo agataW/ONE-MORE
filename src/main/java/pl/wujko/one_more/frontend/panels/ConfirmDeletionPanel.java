@@ -50,21 +50,21 @@ public class ConfirmDeletionPanel extends JFrame implements ActionListener
 
         JLabel label = new JLabel("<html>Czy na pewno<br>chcesz usunac?</html>");
         label.setBounds(10, 10, getWidth() - 20, 50);
-        label.setForeground(GUIConstants.CONFIRM_DELETE_LABEL_FOREGROUND);
+        label.setForeground(GUIConstants.ConfirmDelete.LABEL_FOREGROUND);
         label.setFont(GUIConstants.DEFAULT_FONT);
         add(label);
 
         yesButton = new JButton("TAK");
         yesButton.setBounds(10, 80, 110, 50);
         yesButton.setFont(GUIConstants.DEFAULT_FONT);
-        yesButton.setBackground(GUIConstants.CONFIRM_DELETE_BUTTONS_BACKGROUND);
+        yesButton.setBackground(GUIConstants.ConfirmDelete.BUTTONS_BACKGROUND);
         yesButton.setOpaque(true);
         yesButton.addActionListener(this);
         add(yesButton);
 
         JButton noButton = new JButton("NIE");
         noButton.setFont(GUIConstants.DEFAULT_FONT);
-        noButton.setBackground(GUIConstants.CONFIRM_DELETE_BUTTONS_BACKGROUND);
+        noButton.setBackground(GUIConstants.ConfirmDelete.BUTTONS_BACKGROUND);
         noButton.setOpaque(true);
         noButton.setBounds(130, 80, 110, 50);
         noButton.addActionListener(this);

@@ -3,7 +3,6 @@ package pl.wujko.one_more.frontend.panels.cart;
 import pl.wujko.one_more.bean.BeanHelper;
 import pl.wujko.one_more.code.constance.PanSize;
 import pl.wujko.one_more.code.constance.PanType;
-import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Addition;
 import pl.wujko.one_more.code.service.AdditionService;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
@@ -15,13 +14,13 @@ public class ChickenCartEntry
 {
 	private CartEntryPanel cartEntryPanel;
 
-	private Entry chicken;
+	private Addition chicken;
 
-	private Entry souse;
+	private Addition souse;
 
-	private Entry souse2;
+	private Addition souse2;
 
-	private Entry potato;
+	private Addition potato;
 
 	public void add(Addition addition)
 	{
@@ -33,24 +32,49 @@ public class ChickenCartEntry
 		{
 			if (souse == null)
 			{
-				souse = simpleClone(addition);
+				souse = souseClone(addition);
 			}
 			else
 			{
-				souse2 = simpleClone(addition);
+				souse2 = souseClone(addition);
 			}
 		}
 		else if (getAdditionService().isPotato(addition))
 		{
-			potato = simpleClone(addition);
+			potato = potatoClone(addition);
 		}
 	}
-
-	private Entry simpleClone(Addition addition)
+	
+	private Addition souseClone(Addition addition)
 	{
 		Addition clone = new Addition();
 		clone.setKey(addition.getKey());
-		clone.setPrice(0);
+		if ("Q".equals(addition.getKey()))
+		{
+			clone.setPrice(40);
+		}
+		else
+		{
+			clone.setPrice(0);
+		}
+		return clone;
+	}
+	
+	private Addition potatoClone(Addition addition)
+	{
+		Addition clone = new Addition();
+		clone.setKey(addition.getKey());
+		if ("ZIEM".equals(addition.getKey()))
+		{
+			if (getAdditionService().isChicken(chicken))
+			{
+				clone.setPrice(100);
+			}
+			else
+			{
+				clone.setPrice(150);
+			}
+		}
 		return clone;
 	}
 
@@ -66,7 +90,7 @@ public class ChickenCartEntry
 			{
 				return true;
 			}
-			if (getAdditionService().isChickenXXL((Addition) chicken) && souse2 == null)
+			if (getAdditionService().isChickenXXL(chicken) && souse2 == null)
 			{
 				return true;
 			}

@@ -6,9 +6,9 @@ package pl.wujko.one_more.code.constance;
 public enum PanSize
 {
 	NO_PAN(0, 0),
-	SIZE_32(1490, 1490),
-	SIZE_35(2000, 2000),
-	SIZE_40(2200, 2200);
+	SIZE_32(1600, 1600),
+//	SIZE_35(2000, 2000),
+	SIZE_40(2300, 2300);
 
 	private int price;
 

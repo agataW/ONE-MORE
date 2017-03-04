@@ -1,7 +1,5 @@
 package pl.wujko.one_more.code.item;
 
-import pl.wujko.one_more.code.constance.EntryTypeEnum;
-
 import java.awt.Color;
 
 /**
@@ -78,6 +76,4 @@ public abstract class Entry
     {
         setBackgroundColor(new Color(Integer.parseInt(backgroundColor, 16)));
     }
-
-    public abstract EntryTypeEnum getType();
 }

@@ -22,4 +22,9 @@ public class PropertyService
 	{
 		return propertyDao.getProperty("QUEUE_TOPPING_IN_FOOD_PANEL", ",");
 	}
+
+	public List<String> getAdditionsPriority()
+	{
+		return propertyDao.getProperty("ADDITION_PRIORITY", ",");
+	}
 }

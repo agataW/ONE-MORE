@@ -123,7 +123,16 @@ public class CartListPanel extends Panel
             if (cartPanel.contains(cartEntryPanel))
             {
                 cartPanel.removeEntry(cartEntryPanel);
-                return;
+                List<ChickenCartEntry> chickenList = cartPanel.getChickenList();
+                for (ChickenCartEntry chickenCartEntry : chickenList)
+                {
+                    if (chickenCartEntry.getCartEntryPanel().equals(cartEntryPanel))
+                    {
+                        chickenList.remove(chickenCartEntry);
+                        break;
+                    }
+                }
+                break;
             }
         }
     }
@@ -174,13 +183,13 @@ public class CartListPanel extends Panel
         {
             if (panel.equals(cartPanel))
             {
-                panel.setBorder(GUIConstants.CART_BORDER);
+                panel.setBorder(GUIConstants.Cart.BORDER);
                 panel.setSelected(true);
                 currentCartPanel = panel;
             }
             else
             {
-                panel.setBorder(GUIConstants.CART_BORDER_BLACK);
+                panel.setBorder(GUIConstants.Cart.BORDER_BLACK);
                 panel.setSelected(false);
             }
         }

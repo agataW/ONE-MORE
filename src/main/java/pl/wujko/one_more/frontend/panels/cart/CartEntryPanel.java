@@ -55,7 +55,7 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
     {
         this.workshopData = workshopData;
 
-        setBackground(GUIConstants.CART_ENTRY_PANEL_BACKGROUND);
+        setBackground(GUIConstants.CartEntry.PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:m"));
 
         delete = new JButton("X");
