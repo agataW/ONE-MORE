@@ -11,9 +11,7 @@ import pl.wujko.one_more.frontend.interfaces.NeedConfirmation;
 import pl.wujko.one_more.frontend.panels.ConfirmDeletionPanel;
 import pl.wujko.one_more.frontend.utils.PriceUtils;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -36,6 +34,8 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
     private JLabel timer;
 
     private JLabel bigEmptySpace;
+    
+    private JLabel clockIcon;
 
     private DateTime startTime = new DateTime();
 
@@ -55,6 +55,23 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
         price.setFont(GUIConstants.DEFAULT_FONT);
         colaPrice = new JLabel();
         colaPrice.setFont(GUIConstants.TIMER_FONT);
+        clockIcon = new JLabel();
+        clockIcon.setIcon(GUIConstants.Image.CLOCK_GREY);
+        clockIcon.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+                if (clockIcon.getIcon().equals(GUIConstants.Image.CLOCK_RED))
+                {
+                    clockIcon.setIcon(GUIConstants.Image.CLOCK_GREY);
+                }
+                else
+                {
+                    clockIcon.setIcon(GUIConstants.Image.CLOCK_RED);
+                }
+            }
+        });
+    
         JButton close = new JButton("X");
         close.setFont(GUIConstants.DEFAULT_FONT);
 
@@ -78,6 +95,8 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
         add(time);
         add(smallEmptySpace);
         add(timer);
+        add(smallEmptySpace);
+        add(clockIcon);
         add(bigEmptySpace);
         add(price);
         add(smallEmptySpace);
