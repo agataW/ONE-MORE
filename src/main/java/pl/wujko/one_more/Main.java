@@ -26,6 +26,9 @@ public class Main
             // If Nimbus is not available, you can set the GUI to another look and feel.
         }
 
+        System.setProperty("awt.useSystemAAFontSettings","on");
+        System.setProperty("swing.aatext", "true");
+
         MainFrame mainFrame = (MainFrame) BeanHelper.getBean("mainFrame");
         mainFrame.initFrame();
         TimerThread timerThread = new TimerThread();

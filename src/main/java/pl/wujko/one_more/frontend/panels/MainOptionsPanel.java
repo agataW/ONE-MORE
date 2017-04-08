@@ -4,15 +4,19 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import pl.wujko.one_more.bean.BeanHelper;
+import pl.wujko.one_more.frontend.DefaultJButton;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.CartListController;
 import pl.wujko.one_more.frontend.controller.WorkshopController;
 import pl.wujko.one_more.frontend.interfaces.NeedConfirmation;
 
 import javax.annotation.Resource;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,19 +45,18 @@ public class MainOptionsPanel extends Panel implements ActionListener, NeedConfi
         setBackground(GUIConstants.MAIN_PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:p"));
 
-        cleanCartList = new JButton("WYCZYSC STRONE");
-        newCart = new JButton("NOWE ZAMÓWIENIE");
-        addEntry = new JButton("DODAJ");
+        cleanCartList = DefaultJButton.createStylized("WYCZYSC STRONE").taller();
+        newCart = DefaultJButton.createStylized("NOWE ZAMÓWIENIE").taller();
+        addEntry = DefaultJButton.createStylized("DODAJ");
         price = new JLabel("0.00 zł", SwingConstants.CENTER);
 
         cleanCartList.addActionListener(this);
         newCart.addActionListener(this);
         addEntry.addActionListener(this);
 
-        cleanCartList.setFont(GUIConstants.DEFAULT_FONT);
-        newCart.setFont(GUIConstants.DEFAULT_FONT);
-        addEntry.setFont(GUIConstants.DEFAULT_FONT);
         price.setFont(GUIConstants.DEFAULT_FONT);
+        price.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2));
+        price.setForeground(Color.LIGHT_GRAY);
 
         FormLayout formLayout = new FormLayout("f:100dlu:g, 1dlu, f:120dlu:g, 1dlu, f:50dlu:g, 1dlu, f:50dlu:g",
             "f:p:g");
@@ -112,4 +115,5 @@ public class MainOptionsPanel extends Panel implements ActionListener, NeedConfi
     {
         return (ConfirmDeletionPanel) BeanHelper.getBean("confirmDeletionPanel");
     }
+
 }

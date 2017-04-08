@@ -10,6 +10,7 @@ import pl.wujko.one_more.code.constance.PanType;
 import pl.wujko.one_more.code.item.Entry;
 import pl.wujko.one_more.code.item.entries.Composition;
 import pl.wujko.one_more.code.item.entries.Topping;
+import pl.wujko.one_more.frontend.DefaultJButton;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.WorkshopController;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
@@ -67,7 +68,7 @@ public class WorkshopPanel extends Panel
     {
         workshopData = new WorkshopData();
 
-        americanPanButton = new JButton("AM PAN");
+        americanPanButton = DefaultJButton.createStylized("AM PAN").taller().wider();
         americanPanButton.setFont(GUIConstants.DEFAULT_FONT);
         americanPanButton.addActionListener(new ActionListener()
         {
@@ -94,7 +95,7 @@ public class WorkshopPanel extends Panel
         });
         changePanTypeButton(PanType.NORMAL);
 
-        panSize40Button = new JButton("40");
+        panSize40Button = DefaultJButton.createStylized("40").taller().wider();
         panSize40Button.setFont(GUIConstants.DEFAULT_FONT);
         panSize40Button.addActionListener(new ActionListener()
         {

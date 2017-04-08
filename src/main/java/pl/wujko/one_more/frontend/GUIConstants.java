@@ -19,7 +19,9 @@ public class GUIConstants
 	public static final Font DEFAULT_FONT = new Font("Tahoma", Font.BOLD, 18);
 	
 	public static final Font TIMER_FONT = new Font("Tahoma", Font.PLAIN, 18);
-	
+
+	public static final Color BUTTON_FONT_COLOR = new Color(200, 200, 200);
+
 	public static class Image
 	{
 		public static final ImageIcon CLOCK_RED = getImage("img/icons/clock_red_24.png");
@@ -60,7 +62,7 @@ public class GUIConstants
 		
 		public static final Border BORDER = BorderFactory.createLineBorder(BORDER_COLOR, 2);
 		
-		public static final Border BORDER_BLACK = BorderFactory.createLineBorder(new Color(0, 0, 0), 2);
+		public static final Border BORDER_BLACK = BorderFactory.createLineBorder(HEADER_PANEL_BACKGROUND.darker(), 2);
 	}
 	
 	public static class CartEntry
