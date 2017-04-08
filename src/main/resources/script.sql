@@ -57,9 +57,9 @@ CHICKEN            BOOLEAN
 INSERT INTO ADDITION VALUES ('CZOSNKOWY',    'X',       200,    'img/czosnkowy.png',    0);
 INSERT INTO ADDITION VALUES ('POMIDOROWY',   'Y',       200,    'img/pomidorowy.png',   0);
 INSERT INTO ADDITION VALUES ('PIEKIELNY',    'Z',       200,    'img/piekielny.png',    0);
-INSERT INTO ADDITION VALUES ('BBQ',          'Q',       240,    'img/bbq.png',          0);
-INSERT INTO ADDITION VALUES ('BBQ2',         'Q2',      200,    'img/bbq.png',          0);
-INSERT INTO ADDITION VALUES ('KETCHUP',   'KECHUP',     150,    null,                   0);
+INSERT INTO ADDITION VALUES ('BBQ USA',    'Q USA',     300,    'img/bbq.png',          0);
+INSERT INTO ADDITION VALUES ('BBQ',         'Q',        200,    'img/bbq.png',          0);
+INSERT INTO ADDITION VALUES ('KETCHUP',   'KECHUP',     200,    null,                   0);
 INSERT INTO ADDITION VALUES ('OIL',        'OIL',       300,    'img/oil.png',          0);
 INSERT INTO ADDITION VALUES ('COLA',       'COL',       500,    'img/cola.png',         0);
 INSERT INTO ADDITION VALUES ('KURCZAK', 'KURCZAK',      2700,   null,                   1);
@@ -103,4 +103,4 @@ VALUE           TEXT
 
 INSERT INTO PROPERTY VALUES ('QUEUE_TOPPING_IN_ORDER',  'OSTRY,BBQ,BIALY,SER,27,18,24,23,1,2,8,4,3,9,11,14,17,5,6,10,25,7,12,15,26,21,19,29,28,20,22,13');
 INSERT INTO PROPERTY VALUES ('QUEUE_TOPPING_IN_FOOD_PANEL',  '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,SER,OSTRY,BBQ,BIALY');
-INSERT INTO PROPERTY VALUES ('ADDITION_PRIORITY',  'X,Y,Z,Q,Q2,KECHUP,OIL,COL,KURCZAK,KUR XXL,FRY,ZIEM,M1,M2,M3');
+INSERT INTO PROPERTY VALUES ('ADDITION_PRIORITY',  'X,Y,Z,Q USA,Q,KECHUP,OIL,COL,KURCZAK,KUR XXL,FRY,ZIEM,M1,M2,M3');

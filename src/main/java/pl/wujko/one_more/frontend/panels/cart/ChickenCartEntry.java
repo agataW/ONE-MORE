@@ -49,9 +49,9 @@ public class ChickenCartEntry
 	{
 		Addition clone = new Addition();
 		clone.setKey(addition.getKey());
-		if ("Q".equals(addition.getKey()))
+		if ("Q USA".equals(addition.getKey()))
 		{
-			clone.setPrice(40);
+			clone.setPrice(100);
 		}
 		else
 		{

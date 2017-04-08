@@ -179,18 +179,26 @@ public class CartListPanel extends Panel
 
     private void selectCurrentCartPanel(CartPanel cartPanel)
     {
-        for (CartPanel panel : cartPanelList)
+        if (currentCartPanel != null && currentCartPanel.equals(cartPanel))
         {
-            if (panel.equals(cartPanel))
+            currentCartPanel.setBorder(GUIConstants.Cart.BORDER_BLACK);
+            currentCartPanel.setSelected(false);
+            currentCartPanel = null;
+        }
+        else
+        {
+            for (CartPanel panel : cartPanelList)
             {
-                panel.setBorder(GUIConstants.Cart.BORDER);
-                panel.setSelected(true);
-                currentCartPanel = panel;
-            }
-            else
-            {
-                panel.setBorder(GUIConstants.Cart.BORDER_BLACK);
-                panel.setSelected(false);
+                if (panel.equals(cartPanel))
+                {
+                    panel.setBorder(GUIConstants.Cart.BORDER);
+                    panel.setSelected(true);
+                    currentCartPanel = panel;
+                }
+                else
+                {
+                    panel.setBorder(GUIConstants.Cart.BORDER_BLACK);
+                }
             }
         }
     }
