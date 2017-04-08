@@ -60,7 +60,7 @@ public class GUIConstants
 		
 		public static final Border BORDER = BorderFactory.createLineBorder(BORDER_COLOR, 2);
 		
-		public static final Border BORDER_BLACK = BorderFactory.createLineBorder(new Color(0, 0, 0), 1);
+		public static final Border BORDER_BLACK = BorderFactory.createLineBorder(new Color(0, 0, 0), 2);
 	}
 	
 	public static class CartEntry
