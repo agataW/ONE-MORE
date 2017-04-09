@@ -3,6 +3,7 @@ package pl.wujko.one_more.frontend.panels.food;
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import pl.wujko.one_more.frontend.DefaultJButton;
 import pl.wujko.one_more.frontend.GUIConstants;
 import pl.wujko.one_more.frontend.controller.ChoosePanelController;
 import pl.wujko.one_more.frontend.panels.Panel;
@@ -49,13 +50,11 @@ public class ChoosePanelPanel extends Panel implements ActionListener
     @Override
     public void initButtonsAndLabels()
     {
-        workshopButton = new JButton("SKLADNIKI");
+        workshopButton = DefaultJButton.createStylized("SKLADNIKI");
         workshopButton.addActionListener(this);
-        workshopButton.setFont(GUIConstants.DEFAULT_FONT);
 
-        packageButton = new JButton("GOTOWCE");
+        packageButton = DefaultJButton.createStylized("GOTOWCE");
         packageButton.addActionListener(this);
-        packageButton.setFont(GUIConstants.DEFAULT_FONT);
     }
 
     @Override

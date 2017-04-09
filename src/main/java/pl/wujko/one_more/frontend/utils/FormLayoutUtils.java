@@ -9,12 +9,14 @@ public class FormLayoutUtils
 {
     //FOOD
     private static final String DEFAULT_START = "f:m:g(0.1)";
-
-    private static final String DEFAULT_NEXT = ", 1dlu, " + DEFAULT_START;
-
-    private static final String MAX_NEXT = ", 1dlu, f:p:g(0.9)";
-
-    private static final String MIN_NEXT = ", 1dlu, f:m";
+    
+    private static final String SPACE = "2dlu";
+    
+    private static final String DEFAULT_NEXT = ", " + SPACE + ", " + DEFAULT_START;
+    
+    private static final String MAX_NEXT = ", " + SPACE + ", f:p:g(0.9)";
+    
+    private static final String MIN_NEXT = ", " + SPACE + ", f:m";
 
     //CART
     public static final String CART_START = "f:m";

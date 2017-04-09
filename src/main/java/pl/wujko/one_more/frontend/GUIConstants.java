@@ -18,22 +18,26 @@ public class GUIConstants
 	
 	public static final Font DEFAULT_FONT = new Font("Tahoma", Font.BOLD, 18);
 	
-	public static final Font TIMER_FONT = new Font("Tahoma", Font.PLAIN, 18);
-
+	public static final Font TIMER_FONT = new Font("Tahoma", Font.PLAIN, 16);
+	
 	public static final Color BUTTON_FONT_COLOR = new Color(200, 200, 200);
-
+	
 	public static class Image
 	{
-		public static final ImageIcon CLOCK_RED = getImage("img/icons/clock_red_24.png");
+		public static final ImageIcon CLOCK_RED = getImage("img/icons/clock_red_32.png");
 		
-		public static final ImageIcon CLOCK_GREY = getImage("img/icons/clock_grey_24.png");
+		public static final ImageIcon CLOCK_GREY = getImage("img/icons/clock_grey_32.png");
+		
+		public static final ImageIcon TRASH = getImage("img/icons/trash_black_24.png");
+		
+		public static final ImageIcon EDIT = getImage("img/icons/gear_black_24.png");
 		
 		public static ImageIcon getImage(String imageSource)
 		{
 			try
 			{
 				BufferedImage bufferedImage = ImageIO.read(GUIConstants.class.getClassLoader().getResourceAsStream(imageSource));
-				return new ImageIcon(bufferedImage.getScaledInstance(35, -1, java.awt.Image.SCALE_SMOOTH));
+				return new ImageIcon(bufferedImage.getScaledInstance(-1, -1, java.awt.Image.SCALE_SMOOTH));
 			}
 			catch (IOException e)
 			{
@@ -45,29 +49,30 @@ public class GUIConstants
 	
 	public static class WorkSpace
 	{
-		public static final Color PANEL_BACKGROUND = new Color(40, 40, 40);
+		public static final Color PANEL_BACKGROUND = OmColor.GRAY_DARK;
 		
-		public static final Color BORDER_COLOR = new Color(153, 204, 255);
+		public static final Border BORDER = BorderFactory.createLineBorder(OmColor.RED, 2);
 		
-		public static final Border BORDER = BorderFactory.createLineBorder(BORDER_COLOR, 2);
+		public static final Border BORDER_BLACK = BorderFactory.createLineBorder(OmColor.BLACK, 2);
 		
-		public static final Border BORDER_BLACK = BorderFactory.createLineBorder(new Color(0, 0, 0), 2);
+		public static final Color BUTTON_SELECTED = OmColor.GREEN;
+		
+		public static final Color BUTTON_DISABLE = OmColor.GRAY_LIGHT;
 	}
 	
 	public static class Cart
 	{
-		public static final Color BORDER_COLOR = new Color(244, 63, 21);
+		public static final Color HEADER_PANEL_BACKGROUND = OmColor.GRAY;
 		
-		public static final Color HEADER_PANEL_BACKGROUND = new Color(140, 140, 140);
+		public static final Border BORDER_RED_2 = BorderFactory.createLineBorder(OmColor.RED, 2);
 		
-		public static final Border BORDER = BorderFactory.createLineBorder(BORDER_COLOR, 2);
+		public static final Border BORDER_GRAY_DARK_2 = BorderFactory.createLineBorder(OmColor.GRAY_DARK, 2);
 		
-		public static final Border BORDER_BLACK = BorderFactory.createLineBorder(HEADER_PANEL_BACKGROUND.darker(), 2);
 	}
 	
 	public static class CartEntry
 	{
-		public static final Color PANEL_BACKGROUND = new Color(160, 160, 160);
+		public static final Color PANEL_BACKGROUND = OmColor.GRAY_LIGHT;
 	}
 	
 	public static class ConfirmDelete
@@ -79,12 +84,24 @@ public class GUIConstants
 	
 	public static class PanSizeColour
 	{
-		public static final Color BACKGROUND_40 = new Color(73, 79, 255);
+		public static final Color BACKGROUND_40 = OmColor.PURPLE;
 	}
 	
 	public static class Additions
 	{
-		public static final Color FONT_COLOUR = new Color(Integer.parseInt("ffffff", 16));
-		public static final Color BACKGROUND_COLOR = new Color(Integer.parseInt("3282ff", 16));
+		public static final Color FONT_COLOUR = OmColor.BLACK;
+		public static final Color BACKGROUND_COLOR = OmColor.BLUE;
+	}
+	
+	private static class OmColor
+	{
+		public static final Color BLACK = Color.BLACK;
+		public static final Color BLUE =  new Color(56, 166, 255);
+		public static final Color GRAY = new Color(140, 140, 140);
+		public static final Color GRAY_LIGHT = new Color(160, 160, 160);
+		public static final Color GRAY_DARK = new Color(30, 30, 30);
+		public static final Color PURPLE = new Color(73, 79, 255);
+		public static final Color RED = new Color(216, 0, 39);
+		public static final Color GREEN = new Color(74, 255, 41);
 	}
 }

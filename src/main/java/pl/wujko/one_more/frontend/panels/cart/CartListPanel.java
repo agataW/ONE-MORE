@@ -113,9 +113,10 @@ public class CartListPanel extends Panel
             addNewCart();
         }
         currentCartPanel.createCartEntry(workshop);
+        currentCartPanel.open();
         revalidate();
     }
-
+    
     public void removeCartEntry(CartEntryPanel cartEntryPanel)
     {
         for (CartPanel cartPanel : cartPanelList)
@@ -181,9 +182,7 @@ public class CartListPanel extends Panel
     {
         if (currentCartPanel != null && currentCartPanel.equals(cartPanel))
         {
-            currentCartPanel.setBorder(GUIConstants.Cart.BORDER_BLACK);
-            currentCartPanel.setSelected(false);
-            currentCartPanel = null;
+            currentCartPanel.openOrClose();
         }
         else
         {
@@ -191,16 +190,17 @@ public class CartListPanel extends Panel
             {
                 if (panel.equals(cartPanel))
                 {
-                    panel.setBorder(GUIConstants.Cart.BORDER);
-                    panel.setSelected(true);
+                    panel.setBorder(GUIConstants.Cart.BORDER_RED_2);
+                    panel.open();
                     currentCartPanel = panel;
                 }
                 else
                 {
-                    panel.setBorder(GUIConstants.Cart.BORDER_BLACK);
+                    panel.setBorder(GUIConstants.Cart.BORDER_GRAY_DARK_2);
                 }
             }
         }
+        cartPanel.revalidate();
     }
 
     private MouseListener createMouseListener(final CartPanel cartPanel)
@@ -213,5 +213,10 @@ public class CartListPanel extends Panel
                 selectCurrentCartPanel(cartPanel);
             }
         };
+    }
+    
+    public void focusEntry(CartPanel cartPanel)
+    {
+        selectCurrentCartPanel(cartPanel);
     }
 }

@@ -72,8 +72,7 @@ public class CartHeaderPanel extends JPanel implements NeedConfirmation
             }
         });
     
-        JButton close = new JButton("X");
-        close.setFont(GUIConstants.DEFAULT_FONT);
+        JLabel close = new JLabel(GUIConstants.Image.TRASH);
 
         final CartHeaderPanel that = this;
         close.addMouseListener(new MouseAdapter()

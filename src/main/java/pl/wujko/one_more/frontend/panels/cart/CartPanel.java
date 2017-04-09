@@ -37,7 +37,7 @@ public class CartPanel extends JPanel
 
     private int currentRow = 1;
 
-    private boolean selected;
+    private boolean open;
 
     public CartPanel()
     {
@@ -53,7 +53,7 @@ public class CartPanel extends JPanel
 
     public void createCartEntry(WorkshopData workshop)
     {
-        CartEntryPanel cartEntryPanel = new CartEntryPanel(workshop);
+        CartEntryPanel cartEntryPanel = new CartEntryPanel(workshop, this);
         cartEntryPanelList.add(cartEntryPanel);
         initPanel();
         calculatePrice();
@@ -97,7 +97,7 @@ public class CartPanel extends JPanel
 		ChickenCartEntry chickenCartEntry = new ChickenCartEntry();
 		chickenCartEntry.add(addition);
 
-		CartEntryPanel cartEntryPanel = new CartEntryPanel(chickenCartEntry.createWorkshopData());
+		CartEntryPanel cartEntryPanel = new CartEntryPanel(chickenCartEntry.createWorkshopData(), this);
 		cartEntryPanel.disableEditButton();
 		cartEntryPanelList.add(index, cartEntryPanel);
 		calculatePrice();
@@ -114,7 +114,7 @@ public class CartPanel extends JPanel
 
 		chickenCartEntry.add(addition);
 
-		CartEntryPanel cartEntryPanel = new CartEntryPanel(chickenCartEntry.createWorkshopData());
+		CartEntryPanel cartEntryPanel = new CartEntryPanel(chickenCartEntry.createWorkshopData(), this);
 		cartEntryPanel.disableEditButton();
 		cartEntryPanelList.add(index, cartEntryPanel);
 		calculatePrice();
@@ -151,7 +151,7 @@ public class CartPanel extends JPanel
         }
         lastAdditionCartEntry.add(addition);
 
-        CartEntryPanel cartEntryPanel = new CartEntryPanel(lastAdditionCartEntry.createWorkshopData());
+        CartEntryPanel cartEntryPanel = new CartEntryPanel(lastAdditionCartEntry.createWorkshopData(), this);
         cartEntryPanel.disableEditButton();
         cartEntryPanelList.add(index, cartEntryPanel);
         calculatePrice();
@@ -199,7 +199,7 @@ public class CartPanel extends JPanel
         cc = new CellConstraints();
         initBuilder();
         addToBuilder(headerPanel);
-        if (selected)
+        if (open)
         {
             addToBuilder(cartEntryPanelList);
         }
@@ -227,7 +227,7 @@ public class CartPanel extends JPanel
     {
         currentRow = 1;
         int size = 0;
-        if (selected)
+        if (open)
         {
             size = cartEntryPanelList.size();
         }
@@ -235,21 +235,26 @@ public class CartPanel extends JPanel
         builder = new DefaultFormBuilder(layout);
         removeAll();
     }
-
-    public void setSelected(boolean selected)
+    
+    public void openOrClose()
     {
-        if (this.selected != selected)
+        open = !open;
+        initPanel();
+    }
+    
+    public void open()
+    {
+        if (!open)
         {
-            this.selected = selected;
-            initPanel();
+            openOrClose();
         }
     }
-
+    
     public void updateTimer(DateTime currentTime)
     {
         headerPanel.updateTimer(currentTime);
     }
-
+    
     private AdditionService getAdditionService()
     {
         return (AdditionService) BeanHelper.getBean("additionService");

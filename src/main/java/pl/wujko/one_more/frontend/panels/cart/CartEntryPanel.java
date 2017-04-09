@@ -16,28 +16,25 @@ import pl.wujko.one_more.frontend.panels.entry.EntryPanel;
 import pl.wujko.one_more.frontend.utils.FormLayoutUtils;
 import pl.wujko.one_more.frontend.utils.PriceUtils;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
 /**
  * Created by Agata on 2015-10-21.
  */
 
-public class CartEntryPanel extends JPanel implements ActionListener, NeedConfirmation
+public class CartEntryPanel extends JPanel implements NeedConfirmation
 {
     private static final int STATIC_ELEMENTS_COUNT = 4;
 
     private WorkshopData workshopData;
 
-    private JButton delete;
+    private JLabel delete;
 
-    private JButton edit;
+    private JLabel edit;
 
     private JLabel priceLabel;
 
@@ -51,20 +48,33 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
 
     private boolean discount = false;
 
-    public CartEntryPanel(WorkshopData workshopData)
+    public CartEntryPanel(final WorkshopData workshopData, final CartPanel cartPanel)
     {
         this.workshopData = workshopData;
 
         setBackground(GUIConstants.CartEntry.PANEL_BACKGROUND);
         setLayout(new FormLayout("f:p:g", "f:m"));
 
-        delete = new JButton("X");
-        delete.addActionListener(this);
-        delete.setFont(GUIConstants.DEFAULT_FONT);
+        final CartEntryPanel that = this;
+        delete = new JLabel(GUIConstants.Image.TRASH);
+        delete.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                getConfirmDeletionPanel().showConfirmation(that);
+            }
+        });
 
-        edit = new JButton(">");
-        edit.setFont(GUIConstants.DEFAULT_FONT);
-        edit.addActionListener(this);
+        edit = new JLabel(GUIConstants.Image.EDIT);
+        edit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                getWorkshopController().editEntry(workshopData);
+                getCartListController().removeCartEntry(that);
+                getCartListController().focus(cartPanel);
+            }
+        });
 
         priceLabel = new JLabel("0.00", SwingConstants.CENTER);
         priceLabel.setFont(GUIConstants.DEFAULT_FONT);
@@ -118,8 +128,8 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
         calculatePrice();
         addToBuilder(emptyLabel);
         addToBuilder(priceLabel);
-        addToBuilder(delete);
         addToBuilder(edit);
+        addToBuilder(delete);
 
         add(builder.getPanel(), cc.xy(1, 1));
     }
@@ -142,22 +152,6 @@ public class CartEntryPanel extends JPanel implements ActionListener, NeedConfir
     {
         builder.add(panel, cc.xy(currentRow, 1));
         currentRow += 2;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        Object source = e.getSource();
-
-        if (source.equals(edit))
-        {
-            getWorkshopController().editEntry(workshopData);
-            getCartListController().removeCartEntry(this);
-        }
-        else if (source.equals(delete))
-        {
-            getConfirmDeletionPanel().showConfirmation(this);
-        }
     }
 
     @Override

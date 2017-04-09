@@ -1,7 +1,5 @@
 package pl.wujko.one_more.frontend;
 
-import javafx.print.Printer;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -37,14 +35,21 @@ public class DefaultJButton extends JButton {
 
     public static DefaultJButton createStylized(String text) {
         DefaultJButton defaultJButton = create(text);
-        stylizeButton(defaultJButton);
+        stylizeButton(defaultJButton, GUIConstants.MAIN_PANEL_BACKGROUND, Color.LIGHT_GRAY);
         return defaultJButton;
     }
-
-    private static void stylizeButton(JButton button) {
-        Color foreground = GUIConstants.MAIN_PANEL_BACKGROUND;
-        Color background = Color.LIGHT_GRAY;
-
+    
+    public static DefaultJButton createStylized(String text, Color foreground, Color background) {
+        DefaultJButton defaultJButton = create(text);
+        stylizeButton(defaultJButton, foreground, background);
+        return defaultJButton;
+    }
+    
+    public static void stylizeButton(JButton button){
+        stylizeButton(button, GUIConstants.MAIN_PANEL_BACKGROUND, Color.LIGHT_GRAY);
+    }
+    
+    public static void stylizeButton(JButton button, Color foreground, Color background) {
         button.setForeground(foreground);
         button.setBackground(background);
         button.setFocusPainted(false);

@@ -69,4 +69,9 @@ public class CartListController
     {
         cartListPanel.updateTimers(new DateTime());
     }
+	
+	public void focus(CartPanel cartPanel)
+    {
+        cartListPanel.focusEntry(cartPanel);
+    }
 }

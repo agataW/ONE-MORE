@@ -16,8 +16,7 @@ import pl.wujko.one_more.frontend.controller.WorkshopController;
 import pl.wujko.one_more.frontend.datas.WorkshopData;
 import pl.wujko.one_more.frontend.panels.Panel;
 
-import javax.swing.JButton;
-import java.awt.Color;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -184,11 +183,11 @@ public class WorkshopPanel extends Panel
     {
         if (panType.equals(PanType.AMERICAN))
         {
-            americanPanButton.setBackground(Color.GREEN);
+            americanPanButton.setBackground(GUIConstants.WorkSpace.BUTTON_SELECTED);
         }
         else
         {
-            americanPanButton.setBackground(Color.GRAY);
+            americanPanButton.setBackground(GUIConstants.WorkSpace.BUTTON_DISABLE);
         }
     }
 
@@ -196,11 +195,11 @@ public class WorkshopPanel extends Panel
     {
         if (panSize.equals(PanSize.SIZE_40))
         {
-            panSize40Button.setBackground(Color.GREEN);
+            panSize40Button.setBackground(GUIConstants.WorkSpace.BUTTON_SELECTED);
         }
         else
         {
-            panSize40Button.setBackground(Color.GRAY);
+            panSize40Button.setBackground(GUIConstants.WorkSpace.BUTTON_DISABLE);
         }
     }
 
