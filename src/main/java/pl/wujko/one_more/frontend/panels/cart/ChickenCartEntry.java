@@ -47,8 +47,7 @@ public class ChickenCartEntry
 	
 	private Addition souseClone(Addition addition)
 	{
-		Addition clone = new Addition();
-		clone.setKey(addition.getKey());
+		Addition clone = addition.clone();
 		if ("Q USA".equals(addition.getKey()))
 		{
 			clone.setPrice(100);
@@ -62,8 +61,7 @@ public class ChickenCartEntry
 	
 	private Addition potatoClone(Addition addition)
 	{
-		Addition clone = new Addition();
-		clone.setKey(addition.getKey());
+		Addition clone = addition.clone();
 		if ("ZIEM".equals(addition.getKey()))
 		{
 			if (getAdditionService().isChicken(chicken))

@@ -41,4 +41,23 @@ public class Addition extends Entry
 			LOG.info("Brak obrazka dla " + getKey());
 		}
 	}
+	
+	private void setImage(BufferedImage image)
+	{
+		this.image = image;
+	}
+	
+	public Addition clone()
+	{
+		Addition clone = new Addition();
+		clone.setKey(getKey());
+		clone.setName(getName());
+		clone.setImage(getImage());
+		clone.setPrice(getPrice());
+		clone.setPriority(getPriority());
+		clone.setBackgroundColor(getBackgroundColor());
+		clone.setFontColor(getFontColor());
+		
+		return clone;
+	}
 }
