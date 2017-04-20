@@ -73,6 +73,10 @@ public class ChickenCartEntry
 				clone.setPrice(150);
 			}
 		}
+		else
+		{
+			clone.setPrice(0);
+		}
 		return clone;
 	}
 
